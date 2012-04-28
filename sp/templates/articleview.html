@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Latest Articles</h1>
+</br>
+Here is the content from the article:
+</br>
+<p>
+	
+{% if article %}
+    {% for article in article %}
+	<b> {{ article.thesis }} </b>
+	<p>
+	{{ article.articlecontent|linebreaks }}
+	{% endfor %}
+	
+	{% else %}
+	    <p>No article is available.</p>
+{% endif %}
+
+{% endblock %}

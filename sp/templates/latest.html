@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Latest Articles</h1>
+</br>
+Here is a list of the latest articles:
+</br>
+
+{% if article %}
+    <ul>
+    {% for article in article %}
+        <li><a href="{{ article.id }}/">{{ article }}</li></a>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<p>
+
+{% endblock %}
