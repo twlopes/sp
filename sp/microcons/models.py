@@ -14,3 +14,4 @@ class MicroCons(models.Model):
 class MicroConsModelForm(ModelForm):
 	class Meta:
 		model = MicroCons
+
