@@ -9,8 +9,7 @@ from sp.microcons.models import MicroConsModelForm, MicroCons
 
 
 def edit_article(request, articleid):
-	contentdisplay = [p.articlecontent for p in MicroCons.objects.filter(id__contains=articleid)]
-	# articleid = MicroCons.objects.all
+	populatecontent = MicroCons.objects.get(id__contains=articleid)
 	errors = []
 	if request.method == 'POST':
 		form = EditForm(request.POST)
@@ -19,6 +18,6 @@ def edit_article(request, articleid):
 			return HttpResponseRedirect('/done/')
 	else:
 		form = EditForm(
-			initial={'markup': contentdisplay}
+			initial={'markup': populatecontent}
 			)
 	return render_to_response('editarticle.html', {'form': form})

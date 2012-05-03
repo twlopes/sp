@@ -11,4 +11,4 @@ def latest_articles(request):
 
 def view_article(request, articleid):
 	article = MicroCons.objects.filter(id__contains=articleid)
-	return render_to_response('articleview.html', {'article': article})
+	return render_to_response('articleview.html', {'article': article, 'articleid': articleid})

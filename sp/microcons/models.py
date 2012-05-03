@@ -9,7 +9,7 @@ class MicroCons(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
-		return self.thesis
+		return '%s' % (self.articlecontent)
 
 class MicroConsModelForm(ModelForm):
 	class Meta:
