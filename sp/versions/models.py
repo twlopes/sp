@@ -5,7 +5,8 @@ class Edits(models.Model):
 	createtime = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	idversions = models.IntegerField(editable=False)
-	diffnotation = models.TextField(blank=True)
+	patch = models.TextField(editable=False)
+	htmldiff = models.TextField(editable=False)
 		
 	def __unicode__(self):
 		return self.thesis
