@@ -1,23 +1,25 @@
 from django.shortcuts import render_to_response
+from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
-from sp.versions.models import EditForm
-from sp.microcons.models import MicroConsModelForm, MicroCons
-
-# def view_article(request, articleid):
-# 	article = MicroCons.objects.filter(id__contains=articleid)
-# 	return render_to_response('articleview.html', {'article': article})
+# from sp.versions.forms import EditForm
+from sp.versions.models import Edits
+from sp.versions.models import EditsForm
+from sp.microcons.models import MicroCons
 
 
 def edit_article(request, articleid):
-	populatecontent = MicroCons.objects.get(id__contains=articleid)
 	errors = []
 	if request.method == 'POST':
-		form = EditForm(request.POST)
+		form = EditsForm(request.POST)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/done/')
 	else:
-		form = EditForm(
-			initial={'markup': populatecontent}
-			)
+		populatecontent = MicroCons.objects.get(id__contains=articleid)
+		form = EditsForm(initial={'diffnotation': populatecontent})
 	return render_to_response('editarticle.html', {'form': form})
+	
+	# initial={'diff': populatecontent}
+	
+	# cd = form.cleaned_data
+	# 			MicroCons.objects.create(diffhtml=cd['Firstcontent'].strip())

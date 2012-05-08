@@ -4,11 +4,11 @@ from django.forms import ModelForm
 class Edits(models.Model):
 	createtime = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
-	markup = models.TextField()
-	
+	diffnotation = models.TextField(blank=True)
+		
 	def __unicode__(self):
 		return self.thesis
 
-class EditForm(ModelForm):
+class EditsForm(ModelForm):
 	class Meta:
 		model = Edits

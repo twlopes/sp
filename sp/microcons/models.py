@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from django import forms
 
 class MicroCons(models.Model):
 	thesis = models.CharField(max_length=100)

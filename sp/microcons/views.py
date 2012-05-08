@@ -1,6 +1,5 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-# from sp.microcons.forms import MicroConsForm
 from sp.microcons.models import MicroConsModelForm
 
 def micro_cons(request):
