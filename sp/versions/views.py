@@ -8,7 +8,8 @@ from sp.versions.diff_match_patch import *
 def edit_article(request, articleid):
 	errors = []
 	if request.method == 'POST':
-		form = EditsForm(request.POST)
+		newid = Edits(idversions=articleid)
+		form = EditsForm(request.POST, instance=newid)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/done/')

@@ -4,6 +4,7 @@ from django.forms import ModelForm
 class Edits(models.Model):
 	createtime = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	idversions = models.IntegerField(editable=False)
 	diffnotation = models.TextField(blank=True)
 		
 	def __unicode__(self):
