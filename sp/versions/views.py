@@ -1,11 +1,9 @@
-from django.shortcuts import render_to_response
 from django import forms
+from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-# from sp.versions.forms import EditForm
-from sp.versions.models import Edits
-from sp.versions.models import EditsForm
+from sp.versions.models import Edits, EditsForm
 from sp.microcons.models import MicroCons
-
+from sp.versions.diff_match_patch import *
 
 def edit_article(request, articleid):
 	errors = []
@@ -18,8 +16,3 @@ def edit_article(request, articleid):
 		populatecontent = MicroCons.objects.get(id__contains=articleid)
 		form = EditsForm(initial={'diffnotation': populatecontent})
 	return render_to_response('editarticle.html', {'form': form})
-	
-	# initial={'diff': populatecontent}
-	
-	# cd = form.cleaned_data
-	# 			MicroCons.objects.create(diffhtml=cd['Firstcontent'].strip())
