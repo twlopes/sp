@@ -15,5 +15,5 @@ def edit_article(request, articleid):
 			return HttpResponseRedirect('/done/')
 	else:
 		populatecontent = MicroCons.objects.get(id__contains=articleid)
-		form = EditsForm(initial={'diffnotation': populatecontent})
+		form = EditsForm(initial={'patch': populatecontent})
 	return render_to_response('editarticle.html', {'form': form})
