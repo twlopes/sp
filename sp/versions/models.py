@@ -11,7 +11,3 @@ class Edits(models.Model):
 		
 	def __unicode__(self):
 		return self.thesis
-
-class EditsForm(ModelForm):
-	class Meta:
-		model = Edits
