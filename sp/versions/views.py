@@ -21,7 +21,6 @@ def edit_article(request, articleid):
 		form = EditForm(request.POST)
 		if form.is_valid():
 			
-			
 			data = form.cleaned_data['article']
 			asciidata = data.encode("utf8")
 
