@@ -25,10 +25,14 @@ def edit_article(request, articleid):
 			asciidata = data.encode("utf8")
 
 			diff = dfunction.diff_main(formatted, asciidata)
-			p = Edits(idversions=articleid, patch=diff, htmldiff=articleid)
+			
+			diffhtml = dfunction.diff_prettyHtml(diff)
+			
+			p = Edits(idversions=articleid, patch=diff, htmldiff=diffhtml)
 			p.save()
 		
-		return HttpResponseRedirect('/done/')
+		return render_to_response('donediff.html', {'diff': diffhtml})
+
 	else:
 		populate = MicroCons.objects.get(id__contains=articleid)
 		form = EditForm(initial={'article': populate})
