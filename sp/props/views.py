@@ -25,7 +25,7 @@ def edit_article(request, articleid):
 			asciidata = data.encode("utf8")
 			diff = dfunction.diff_main(formatted, asciidata)
 			diffhtml = dfunction.diff_prettyHtml(diff)
-			p = Props(idversions=articleid, patch=diff, htmldiff=diffhtml)
+			p = Props(idversions=articleid, maindiff=diff, patch=diff, htmldiff=diffhtml)
 			p.save()
 		
 		return render_to_response('donediff.html', {'diff': diffhtml})

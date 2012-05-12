@@ -12,6 +12,9 @@ class MicroCons(models.Model):
 	def __unicode__(self):
 		return "%s" % (self.thesis)
 
+	class Meta:
+		verbose_name_plural = "Micro-constitutions"
+
 class MicroConsModelForm(ModelForm):
 	class Meta:
 		model = MicroCons
