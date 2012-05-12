@@ -59,5 +59,29 @@ def create_prop(request, articleid):
 def view_article_props(request, articleid):
 	htmldiff = Props.objects.filter(idversions__contains=articleid)
 	return render_to_response('articleprops.html', {'articleid': articleid, 'displaydiff': htmldiff})
+
+def view_single_prop(request, propid):
+	prop = Props.objects.get(id=propid)
+	return render_to_response('singleprop.html', {'prop':prop})
+
+def view_latest_props(request):
+	prop = (Props.objects.order_by('createtime').reverse())[:5]
+	return render_to_response('latestprops.html', {'prop':prop})
+
+def prop_accept(request, articleid):
+	article = MicroCons.objects.get(id=articleid)
+	dfunction = diff_match_patch()
+	# need to do the rest of the code.
+	
+	return render_to_response('done.html')
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	

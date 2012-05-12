@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Latest Props</h1>
+</br>
+Here is a list of the latest props:
+</br>
+
+{% if prop %}
+    <ul>
+    {% for prop in prop %}
+	<b>Prop</b>
+	
+	{% autoescape off %}
+	<p>
+        {{ prop }}
+        {# <li><a href="{{ article.id }}/">{{ article }}</li></a> #}
+	</br>
+	</br>
+	<a href="{{ prop.id }}/">Go to Prop</a>
+	<p>
+	{% endautoescape %}
+
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No props are available.  Get cracking!</p>
+{% endif %}
+
+<p>
+
+{% endblock %}

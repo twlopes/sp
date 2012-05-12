@@ -8,14 +8,15 @@
 {% if displaydiff %}
     {% for displaydiff in displaydiff %}
 
-<b>New Prop</b>
+<b>Prop</b>
 
 	{% autoescape off %}
 	<p>
 	{{ displaydiff }}
 	<p>
 	{% endautoescape %}
-
+	</br>
+	</br>
 	{% endfor %}
 
 		{% else %}
@@ -23,3 +24,4 @@
 {% endif %}
 
 {% endblock %}
+

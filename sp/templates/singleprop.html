@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Proposition</h1>
+
+<p>	
+{% if prop %}
+
+	{% autoescape off %}
+	<p>
+	{{ prop }}
+	<p>
+	{% endautoescape %}
+
+	<b>Link to Add to Article</b>
+
+	{% else %}
+	    <p>No article is available.</p>
+{% endif %}
+
+{% endblock %}
