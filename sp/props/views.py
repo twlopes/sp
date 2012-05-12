@@ -61,4 +61,3 @@ def view_article_props(request, articleid):
 	return render_to_response('articleprops.html', {'articleid': articleid, 'displaydiff': htmldiff})
 	
 	
-	
