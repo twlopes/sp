@@ -6,7 +6,7 @@ from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
 
-def edit_article(request, articleid):
+def create_prop(request, articleid):
 	
 	# form structure
 	

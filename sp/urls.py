@@ -4,7 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 from sp.microcons.views import micro_cons, micro_done
 from sp.article.views import latest_articles, view_article
-from sp.props.views import edit_article
+from sp.props.views import create_prop
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 	(r'^done/$', micro_done),
 	(r'^latest/$', latest_articles),
 	(r'^latest/(\d+)/$', view_article),
-	(r'^edit/(\d+)/$', edit_article),
+	(r'^edit/(\d+)/$', create_prop),
 
     # Examples:
     # url(r'^$', 'sp.views.home', name='home'),
