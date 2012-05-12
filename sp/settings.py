@@ -129,7 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'sp.microcons',
 	'sp.article',
-	'sp.versions',
+	'sp.props',
 	'django.contrib.admin',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',

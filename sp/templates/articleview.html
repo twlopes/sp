@@ -2,15 +2,12 @@
 
 {% block content %}
 
-<h1>Latest Articles</h1>
-</br>
-Here is the content from the article:
-</br>
-<p>
-	
+<h1>Requested Article</h1>
+
+<p>	
 {% if article %}
     {% for article in article %}
-	<b> {{ article.thesis }} </b>
+	<b> Thesis:  {{ article.thesis }} </b>
 	<p>
 	{{ article.articlecontent|linebreaks }}
 	{% endfor %}

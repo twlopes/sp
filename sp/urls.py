@@ -4,7 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 from sp.microcons.views import micro_cons, micro_done
 from sp.article.views import latest_articles, view_article
-from sp.versions.views import edit_article
+from sp.props.views import edit_article
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
