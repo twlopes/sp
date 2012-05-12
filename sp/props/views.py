@@ -51,7 +51,14 @@ def create_prop(request, articleid):
 		
 		# Displaying initial data in form.
 		
-		populate = MicroCons.objects.get(id__contains=articleid)
+		populate = MicroCons.objects.get(id=articleid)
 		form = PropForm(initial={'article': initial})
 
 	return render_to_response('editarticle.html', {'form': form})
+
+def view_article_props(request, articleid):
+	htmldiff = Props.objects.filter(idversions__contains=articleid)
+	return render_to_response('articleprops.html', {'articleid': articleid, 'displaydiff': htmldiff})
+	
+	
+	

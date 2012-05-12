@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Propositions Relating to Article</h1>
+
+<p>	
+{% if displaydiff %}
+    {% for displaydiff in displaydiff %}
+
+	{% autoescape off %}
+	<p>
+	{{ displaydiff }}
+	<p>
+	{% endautoescape %}
+
+	{% endfor %}
+
+		{% else %}
+	<p>No propositions are available for this article.</p>
+{% endif %}
+
+{% endblock %}

@@ -11,7 +11,7 @@ class Props(models.Model):
 	htmldiff = models.TextField()
 
 	def __unicode__(self):
-		return self.maindiff
+		return self.htmldiff
 	
 	class Meta:
 		verbose_name_plural = "Propositions"
