@@ -90,14 +90,3 @@ def prop_accept(request, propid):
 	MicroCons.objects.filter(id=articleid).update(articlecontent=newcontent)
 	
 	return render_to_response('done.html')
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
