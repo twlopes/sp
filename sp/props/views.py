@@ -68,10 +68,22 @@ def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
 	return render_to_response('latestprops.html', {'prop':prop})
 
-def prop_accept(request, articleid):
-	article = MicroCons.objects.get(id=articleid)
+def prop_accept(request, propid):
+	
+	prop_record = Props.objects.get(id=propid)
+
 	dfunction = diff_match_patch()
-	# need to do the rest of the code.
+	articleid = prop_record.idversions
+	patch = prop_record.patch
+
+	article_record = MicroCons.objects.get(id=articleid)
+
+	articlecontent = article_record.articlecontent
+	
+	article_record = MicroCons.objects.get(id=articleid)
+	prop_text = article_record.articlecontent.encode("utf8")
+	
+	newcontent = dfunction.patch_apply(patch, prop_text)
 	
 	return render_to_response('done.html')
 	

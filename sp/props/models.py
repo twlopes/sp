@@ -9,7 +9,7 @@ class Props(models.Model):
 	maindiff = models.TextField() 
 	patch = models.TextField()
 	htmldiff = models.TextField()
-
+	
 	def __unicode__(self):
 		return self.htmldiff
 	
