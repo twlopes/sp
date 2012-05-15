@@ -84,7 +84,9 @@ def prop_accept(request, propid):
 	article_record = MicroCons.objects.get(id=articleid)
 	prop_text = article_record.articlecontent.encode("utf8")
 	
-	newcontent = dfunction.patch_apply(patch, prop_text)
+	result = dfunction.patch_apply(patch, prop_text)
+	newcontent = result[0]
+	
 	MicroCons.objects.filter(id=articleid).update(articlecontent=newcontent)
 	
 	return render_to_response('done.html')
