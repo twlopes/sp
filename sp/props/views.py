@@ -62,7 +62,7 @@ def view_article_props(request, articleid):
 
 def view_single_prop(request, propid):
 	prop = Props.objects.get(id=propid)
-	return render_to_response('singleprop.html', {'prop':prop})
+	return render_to_response('singleprop.html', {'prop':prop, 'propid':propid})
 
 def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
@@ -84,6 +84,7 @@ def prop_accept(request, propid):
 	prop_text = article_record.articlecontent.encode("utf8")
 	
 	newcontent = dfunction.patch_apply(patch, prop_text)
+	MicroCons.objects.filter(id=articleid).update(articlecontent=newcontent)
 	
 	return render_to_response('done.html')
 	
