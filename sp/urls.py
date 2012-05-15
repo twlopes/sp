@@ -20,7 +20,7 @@ urlpatterns = patterns('',
 	(r'^edit/(\d+)/$', create_prop),
 	(r'^props/(\d+)/$', view_article_props),
 	(r'^latestprops/$', view_latest_props),
-	(r'^latestprops/(\d+)/$', view_single_prop),
+	(r'^prop/(\d+)/$', view_single_prop),
 	(r'^propaccept/(\d+)/$', prop_accept),
 	
     # Examples:

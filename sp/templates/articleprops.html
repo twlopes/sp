@@ -13,10 +13,11 @@
 	{% autoescape off %}
 	<p>
 	{{ displaydiff }}
-	<p>
 	{% endautoescape %}
 	</br>
 	</br>
+	<a href = /prop/{{ prop.id }} >View Single Prop</a>
+	<p>
 	{% endfor %}
 
 		{% else %}
