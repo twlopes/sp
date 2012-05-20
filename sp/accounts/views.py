@@ -37,3 +37,6 @@ def register_done(request):
 	
 def user_home(request):
 	return render_to_response('user_home.html', {'user':user})
+	
+def profile(request):
+	return render_to_response('profile.html')
