@@ -1,14 +1,16 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
-Here you are
-</br>
-: {{ user }} 
-</br>
-at user home.
+{% if user.is_authenticated %}
+  <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+{% else %}
+  <p>Welcome, new user. Please log in.</p>
+{% endif %}
+
+<a href=/accounts/logout/> Logout </a>
 
 {% endblock %}
+
 
 
