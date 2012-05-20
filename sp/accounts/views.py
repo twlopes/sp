@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 
 def home(request):
-	return render_to_response("login.html")
+	return render_to_response('home_page.html')
 
 def register(request):
     if request.method == 'POST':
