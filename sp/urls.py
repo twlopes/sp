@@ -1,17 +1,21 @@
 from django.conf.urls.defaults import *
-from sp.views import home_page
+from sp.views import insta_links
 from django.contrib import admin
 admin.autodiscover()
 from sp.microcons.views import micro_cons, micro_done
 from sp.article.views import latest_articles, view_article
 from sp.props.views import create_prop, view_article_props, view_latest_props, view_single_prop, prop_accept
+from sp.accounts.views import register, register_done, home
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-	(r'^$', home_page), 
+	(r'^register/$', register),
+	(r'^register_done/$', register_done),
+	(r'^$', home),
+	(r'^insta_links/$', insta_links),
 	(r'^admin/', include(admin.site.urls)),
 	(r'^micro_constitution/$', micro_cons),
 	(r'^done/$', micro_done),
