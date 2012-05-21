@@ -6,7 +6,7 @@ from sp.microcons.views import micro_cons, micro_done
 from django.contrib.auth.views import login, logout
 from sp.article.views import latest_articles, view_article
 from sp.props.views import create_prop, view_article_props, view_latest_props, view_single_prop, prop_accept
-from sp.accounts.views import register, register_done, login_page, profile
+from sp.accounts.views import register, register_done, profile
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -18,7 +18,6 @@ urlpatterns = patterns('',
 	(r'^accounts/profile/$', profile),
 	(r'^register/$', register),
 	(r'^register_done/$', register_done),
-	(r'^login_page/$', login_page),
 	(r'^insta_links/$', insta_links),
 	(r'^admin/', include(admin.site.urls)),
 	(r'^micro_constitution/$', micro_cons),
