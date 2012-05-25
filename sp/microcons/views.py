@@ -1,17 +1,24 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from sp.microcons.models import MicroConsModelForm
+from django.contrib.auth.decorators import login_required
+from django.template import loader, RequestContext
 
+@login_required
 def micro_cons(request):
 	errors = []
 	if request.method == 'POST':
 		form = MicroConsModelForm(request.POST)
 		if form.is_valid():
+			business = form.save(commit=False)
+			business.director = request.user
+			business.save()
 			form.save()
 			return HttpResponseRedirect('/done/')
 	else:
 		form = MicroConsModelForm()
-	return render_to_response('cons_form.html', {'form': form})
+	return render_to_response('cons_form.html', {'form': form}, 
+	context_instance=RequestContext(request))
 
 def micro_done(request):
 	return render_to_response('done.html')

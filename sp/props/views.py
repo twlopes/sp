@@ -1,6 +1,7 @@
 from django import forms
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader, RequestContext
 from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
@@ -40,7 +41,7 @@ def create_prop(request, articleid):
 			p = Props(idversions=articleid, maindiff=diff, patch=patchdata, htmldiff=diffhtml)
 			p.save()
 		
-		return render_to_response('donediff.html', {'diff': diffhtml})
+		return render_to_response('donediff.html', {'diff': diffhtml}, context_instance=RequestContext(request))
 
 	else:
 		
@@ -56,7 +57,7 @@ def create_prop(request, articleid):
 		populate = MicroCons.objects.get(id=articleid)
 		form = PropForm(initial={'article': initial})
 
-	return render_to_response('editarticle.html', {'form': form})
+	return render_to_response('editarticle.html', {'form': form}, context_instance=RequestContext(request))
 
 def view_article_props(request, articleid):
 	htmldiff = Props.objects.filter(idversions__contains=articleid)
