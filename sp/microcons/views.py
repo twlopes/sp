@@ -18,7 +18,7 @@ def micro_cons(request):
 	else:
 		form = MicroConsModelForm()
 	return render_to_response('cons_form.html', {'form': form}, 
-	context_instance=RequestContext(request))
+		context_instance=RequestContext(request))
 
 def micro_done(request):
 	return render_to_response('done.html')
