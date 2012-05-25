@@ -61,7 +61,10 @@ def create_prop(request, articleid):
 
 def view_article_props(request, articleid):
 	htmldiff = Props.objects.filter(idversions__contains=articleid)
-	prop = Props.objects.get(id=articleid)
+	try:
+		prop = Props.objects.get(id=articleid)
+	except Props.DoesNotExist:
+		prop = None
 	return render_to_response('articleprops.html', {'articleid': articleid, 'displaydiff': htmldiff, 'prop':prop})
 
 def view_single_prop(request, propid):
