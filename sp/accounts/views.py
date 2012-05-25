@@ -24,4 +24,4 @@ def register_done(request):
 	return render_to_response('register_done.html')
 	
 def profile(request):
-	return render_to_response('profile.html')
+	return render_to_response('profile.html', context_instance=RequestContext(request))
