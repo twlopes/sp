@@ -5,7 +5,9 @@ from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def create_prop(request, articleid):
 	
 	# form structure
