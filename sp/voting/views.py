@@ -9,15 +9,45 @@ from sp.voting.models import Vote
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
 
+def status(percentage_up, threshold):
+	if percentage_up >= threshold:
+		return "Currently Passing"
+	else:
+		return "Currently Failing"
+
 def up_vote(request, propid):
 	
-	count = Vote.objects.filter(prop_id__contains=propid).values()
+	count = Vote.objects.filter(prop_id=propid).values()
 	data = count[0]
+
+# Pull out information to update.
+
 	upvote = data['vote_for']
+	downvote = data['vote_against']
+	threshold = data['threshold']
+
+# Update information for saving to database
+	
 	new_upvote = upvote + 1
+	total_votes = 	new_upvote + downvote
+	percentage_up = float(new_upvote) / float(total_votes) * 100
+	
+	blah = status(percentage_up, threshold)
+	
+# Pull out instance to update.
+
 	record = Vote.objects.get(prop_id=propid)
+	
+# Save into object instance.
+	
 	record.vote_for = new_upvote
+	record.percentage_for = percentage_up
+	record.current_status = blah
+	
+# Send back into database.
+	
 	record.save()
+	
 	return render_to_response('thanks_for_vote.html')
 
 def down_vote(request, propid):
@@ -29,6 +59,7 @@ def down_vote(request, propid):
 	record = Vote.objects.get(prop_id=propid)
 	record.vote_against = new_downvote
 	record.save()
+	
 	return render_to_response('thanks_for_vote.html')
 
 

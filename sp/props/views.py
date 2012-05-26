@@ -42,10 +42,11 @@ def create_prop(request, articleid):
 			
 			p = Props(idversions=articleid, maindiff=diff, patch=patchdata, htmldiff=diffhtml)
 			p.save()
+			next = p.id
 			
 			# Getting prop details so that vote entry can be created.
 			
-			x = Props.objects.filter(idversions__contains=articleid).values()
+			x = Props.objects.filter(id=next).values()
 			data = x[0]
 			z = data['id']
 			
@@ -55,9 +56,9 @@ def create_prop(request, articleid):
 			y = threshold_data[0]
 			q = y['majority']
 			
-			# Saving initial voting record.
+			# Saving initial record in voting table.
 			
-			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status="No Votes")
+			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status="No Votes Cast")
 			q.save()
 		
 		return render_to_response('donediff.html', {'diff': diffhtml}, context_instance=RequestContext(request))
