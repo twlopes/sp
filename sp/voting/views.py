@@ -52,30 +52,35 @@ def up_vote(request, propid):
 
 def down_vote(request, propid):
 
-	count = Vote.objects.filter(prop_id__contains=propid).values()
+	count = Vote.objects.filter(prop_id=propid).values()
 	data = count[0]
+
+# Pull out information to update.
+
+	upvote = data['vote_for']
 	downvote = data['vote_against']
-	new_downvote = downvote + 1
+	threshold = data['threshold']
+
+# Update information for saving to database
+
+	new_down_vote = downvote + 1
+	total_votes = 	new_down_vote + upvote
+	percentage_up = float(upvote) / float(total_votes) * 100
+
+	blah = status(percentage_up, threshold)
+
+# Pull out instance to update.
+
 	record = Vote.objects.get(prop_id=propid)
-	record.vote_against = new_downvote
+
+# Save into object instance.
+
+	record.vote_against = new_down_vote
+	record.percentage_for = percentage_up
+	record.current_status = blah
+
+# Send back into database.
+
 	record.save()
-	
+
 	return render_to_response('thanks_for_vote.html')
-
-
-
-# def down_vote(request, propid):
-
-
-# 	return render_to_response('thanks_for_vote.html', {'ello': ello}
-# 	
-# def view_vote_status(request, propid):
-# 	# function
-# 	return render_to_response('thanks_for_vote.html', {'ello': ello}
-# 	
-# p = Props(idversions=articleid, maindiff=diff, patch=patchdata, htmldiff=diffhtml)
-# 				p.save()
-
-
-
-				
