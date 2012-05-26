@@ -13,7 +13,9 @@
 	<p>
 	{% endautoescape %}
 
-	<a href="/propaccept/{{ propid }} ">Add Prop to Article</a>
+	<a href="/prop/{{ propid }}/up/">Upvote</a>
+	</br>
+	<a href="/prop/{{ propid }}/down/">Downvote</a>
 	{% else %}
 	    <p>No article is available.</p>
 {% endif %}
