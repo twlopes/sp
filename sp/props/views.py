@@ -7,6 +7,7 @@ from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
+from sp.voting.models import Vote
 
 @login_required
 def create_prop(request, articleid):
@@ -28,7 +29,7 @@ def create_prop(request, articleid):
 		form = PropForm(request.POST)
 		if form.is_valid():
 			
-			# Running diff functions.
+			# Running diff functions and creating entries.
 			
 			data = form.cleaned_data['article']
 			asciidata = data.encode("utf8")
@@ -36,10 +37,28 @@ def create_prop(request, articleid):
 			diffhtml = dfunction.diff_prettyHtml(diff)
 			
 			patchdata = dfunction.patch_make(formatted, asciidata)
+			
 			# Saving diff results to database.
 			
 			p = Props(idversions=articleid, maindiff=diff, patch=patchdata, htmldiff=diffhtml)
 			p.save()
+			
+			# Getting prop details so that vote entry can be created.
+			
+			x = Props.objects.filter(idversions__contains=articleid).values()
+			data = x[0]
+			z = data['id']
+			
+			# Getting constitution voting threshold so that vote entry can be created.
+			
+			threshold_data = MicroCons.objects.filter(id__contains=articleid).values()
+			y = threshold_data[0]
+			q = y['majority']
+			
+			# Saving initial voting record.
+			
+			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status="No Votes")
+			q.save()
 		
 		return render_to_response('donediff.html', {'diff': diffhtml}, context_instance=RequestContext(request))
 

@@ -143,6 +143,7 @@ INSTALLED_APPS = (
 	'sp.microcons',
 	'sp.article',
 	'sp.props',
+	'sp.voting',
 	'django.contrib.admin',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
