@@ -8,13 +8,13 @@ from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
 
-# def up_vote(request, propid):
-# 	
-# 	count = Vote.objects.filter(id__contains=articleid).values()
-# 	
-# 	p = Vote(prop_id=propid, vote_for=count )# function
-# 	return render_to_response('thanks_for_vote.html', {'ello': ello}
-# 
+def up_vote(request, propid):
+	
+	count = Vote.objects.filter(prop_id__contains=propid).values()
+	
+	p = Vote(prop_id=propid, vote_for=count )
+	return render_to_response('thanks_for_vote.html', {'ello': ello}
+
 # def down_vote(request, propid):
 # 	# function
 # 	return render_to_response('thanks_for_vote.html', {'ello': ello}

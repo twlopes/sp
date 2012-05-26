@@ -7,7 +7,7 @@ from django.contrib.auth.views import login, logout
 from sp.article.views import latest_articles, view_article
 from sp.props.views import create_prop, view_article_props, view_latest_props, view_single_prop, prop_accept
 from sp.accounts.views import register, register_done, profile
-# from sp.voting.views import up_vote, down_vote
+from sp.voting.views import up_vote# , down_vote
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -30,7 +30,7 @@ urlpatterns = patterns('',
 	(r'^latestprops/$', view_latest_props),
 	(r'^prop/(\d+)/$', view_single_prop),
 	(r'^propaccept/(\d+)/$', prop_accept),
-	# (r'^prop/(\d+)/up/$', up_vote),
+	(r'^prop/(\d+)/up/$', up_vote),
 	# (r'^prop/(\d+)/down/$', down_vote),
 	
 	
