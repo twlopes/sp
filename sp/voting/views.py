@@ -15,6 +15,7 @@ def status(percentage_up, threshold):
 	else:
 		return "Currently Failing"
 
+@login_required
 def up_vote(request, propid):
 	
 	count = Vote.objects.filter(prop_id=propid).values()
@@ -50,6 +51,7 @@ def up_vote(request, propid):
 	
 	return render_to_response('thanks_for_vote.html')
 
+@login_required
 def down_vote(request, propid):
 
 	count = Vote.objects.filter(prop_id=propid).values()
