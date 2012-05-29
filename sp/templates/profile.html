@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-  <p>Welcome, {{ user.first_name }}. Thanks for logging in.</p>
+  <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
 {% else %}
   <p>No one is logged in!</p>
 {% endif %}

@@ -93,6 +93,17 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+# Code required to operate Django-Guardian
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # default
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+ANONYMOUS_USER_ID = -1
+
+# Code required for authentication information to be passed aroound with RequestContext
+
 TEMPLATE_CONTEXT_PROCESSORS = (
 "django.contrib.auth.context_processors.auth",
 "django.core.context_processors.debug",
@@ -145,6 +156,7 @@ INSTALLED_APPS = (
 	'sp.props',
 	'sp.voting',
 	'django.contrib.admin',
+	'guardian',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
