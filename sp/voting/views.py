@@ -75,35 +75,49 @@ def up_vote(request, propid):
 @login_required
 def down_vote(request, propid):
 
-	count = Vote.objects.filter(prop_id=propid).values()
-	data = count[0]
+	u = request.user
+	m = Props.objects.filter(id=propid).values()
+	o = m[0]
+	f = o['idversions']
+	
+	c = MicroCons.objects.get(id=f)
+	j = u.has_perm('change_microcons', c)
 
-# Pull out information to update.
+	if j is True:
 
-	upvote = data['vote_for']
-	downvote = data['vote_against']
-	threshold = data['threshold']
+		count = Vote.objects.filter(prop_id=propid).values()
+		data = count[0]
 
-# Update information for saving to database
+		# Pull out information to update.
 
-	new_down_vote = downvote + 1
-	total_votes = 	new_down_vote + upvote
-	percentage_up = float(upvote) / float(total_votes) * 100
+		upvote = data['vote_for']
+		downvote = data['vote_against']
+		threshold = data['threshold']
 
-	blah = status(percentage_up, threshold)
+		# Update information for saving to database
 
-# Pull out instance to update.
+		new_down_vote = downvote + 1
+		total_votes = 	new_down_vote + upvote
+		percentage_up = float(upvote) / float(total_votes) * 100
 
-	record = Vote.objects.get(prop_id=propid)
+		blah = status(percentage_up, threshold)
 
-# Save into object instance.
+		# Pull out instance to update.
 
-	record.vote_against = new_down_vote
-	record.percentage_for = percentage_up
-	record.current_status = blah
+		record = Vote.objects.get(prop_id=propid)
 
-# Send back into database.
+		# Save into object instance.
 
-	record.save()
+		record.vote_against = new_down_vote
+		record.percentage_for = percentage_up
+		record.current_status = blah
 
-	return render_to_response('thanks_for_vote.html')
+		# Send back into database.
+
+		record.save()
+
+		return render_to_response('thanks_for_vote.html')
+
+	else:
+		
+		return render_to_response('no_permission.html')
