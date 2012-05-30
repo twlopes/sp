@@ -1,8 +1,11 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from sp.microcons.models import MicroConsModelForm
+from sp.microcons.models import MicroConsModelForm, MicroCons
+from sp.voting.models import Vote
 from django.contrib.auth.decorators import login_required
 from django.template import loader, RequestContext
+from guardian.shortcuts import assign
+from django.contrib.auth.models import User, Permission, Group
 
 @login_required
 def micro_cons(request):
@@ -13,7 +16,16 @@ def micro_cons(request):
 			business = form.save(commit=False)
 			business.director = request.user
 			business.save()
-			form.save()
+			form.save()	
+			
+			next = business.id
+			nexto = business.director
+			
+			constitution = MicroCons.objects.get(id=next)
+			user = User.objects.get(username=nexto)
+
+			assign('change_microcons', user, constitution)
+			
 			return HttpResponseRedirect('/done/')
 	else:
 		form = MicroConsModelForm()

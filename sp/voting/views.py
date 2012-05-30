@@ -8,6 +8,8 @@ from sp.microcons.models import MicroCons
 from sp.voting.models import Vote
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+
 
 def status(percentage_up, threshold):
 	if percentage_up >= threshold:
@@ -16,6 +18,7 @@ def status(percentage_up, threshold):
 		return "Currently Failing"
 
 @login_required
+# @permission_required('change_microcons')
 def up_vote(request, propid):
 	
 	count = Vote.objects.filter(prop_id=propid).values()
