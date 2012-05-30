@@ -9,6 +9,9 @@ from sp.voting.models import Vote
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
+from guardian.decorators import permission_required_or_403
+from django.contrib.auth.models import User, Permission, Group
+from guardian.shortcuts import assign
 
 
 def status(percentage_up, threshold):
@@ -18,41 +21,56 @@ def status(percentage_up, threshold):
 		return "Currently Failing"
 
 @login_required
-# @permission_required('change_microcons')
 def up_vote(request, propid):
 	
-	count = Vote.objects.filter(prop_id=propid).values()
-	data = count[0]
+# Get the variables together to check permission.	
+	
+	u = request.user
+	m = Props.objects.filter(id=propid).values()
+	o = m[0]
+	f = o['idversions']
+	
+	c = MicroCons.objects.get(id=f)
+	j = u.has_perm('change_microcons', c)
 
-# Pull out information to update.
+	if j is True:
+	
+		count = Vote.objects.filter(prop_id=propid).values()
+		data = count[0]
 
-	upvote = data['vote_for']
-	downvote = data['vote_against']
-	threshold = data['threshold']
+		# Pull out information to update.
 
-# Update information for saving to database
-	
-	new_upvote = upvote + 1
-	total_votes = 	new_upvote + downvote
-	percentage_up = float(new_upvote) / float(total_votes) * 100
-	
-	blah = status(percentage_up, threshold)
-	
-# Pull out instance to update.
+		upvote = data['vote_for']
+		downvote = data['vote_against']
+		threshold = data['threshold']
 
-	record = Vote.objects.get(prop_id=propid)
+		# Update information for saving to database
 	
-# Save into object instance.
+		new_upvote = upvote + 1
+		total_votes = 	new_upvote + downvote
+		percentage_up = float(new_upvote) / float(total_votes) * 100
 	
-	record.vote_for = new_upvote
-	record.percentage_for = percentage_up
-	record.current_status = blah
+		blah = status(percentage_up, threshold)
 	
-# Send back into database.
+		# Pull out instance to update.
+
+		record = Vote.objects.get(prop_id=propid)
 	
-	record.save()
+		# Save into object instance.
 	
-	return render_to_response('thanks_for_vote.html')
+		record.vote_for = new_upvote
+		record.percentage_for = percentage_up
+		record.current_status = blah
+	
+		# Send back into database.
+	
+		record.save()
+	
+		return render_to_response('thanks_for_vote.html')
+		
+	else:
+		
+		return render_to_response('no_permission.html')
 
 @login_required
 def down_vote(request, propid):

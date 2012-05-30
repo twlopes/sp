@@ -32,8 +32,7 @@ urlpatterns = patterns('',
 	(r'^propaccept/(\d+)/$', prop_accept),
 	(r'^prop/(\d+)/up/$', up_vote),
 	(r'^prop/(\d+)/down/$', down_vote),
-	
-	
+
     # Examples:
     # url(r'^$', 'sp.views.home', name='home'),
     # url(r'^sp/', include('sp.foo.urls')),
