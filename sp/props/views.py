@@ -40,7 +40,7 @@ def create_prop(request, articleid):
 			
 			# Saving diff results to database.
 			
-			p = Props(idversions=articleid, maindiff=diff, patch=patchdata, htmldiff=diffhtml)
+			p = Props(microcons_id=articleid, maindiff=diff, patch=patchdata, htmldiff=diffhtml)
 			p.save()
 			next = p.id
 			
@@ -80,7 +80,7 @@ def create_prop(request, articleid):
 	return render_to_response('editarticle.html', {'form': form}, context_instance=RequestContext(request))
 
 def view_article_props(request, articleid):
-	htmldiff = Props.objects.filter(idversions__contains=articleid)
+	htmldiff = Props.objects.filter(microcons_id__contains=articleid)
 	try:
 		prop = Props.objects.get(id=articleid)
 	except Props.DoesNotExist:
@@ -100,7 +100,7 @@ def prop_accept(request, propid):
 	prop_record = Props.objects.get(id=propid)
 
 	dfunction = diff_match_patch()
-	articleid = prop_record.idversions
+	articleid = prop_record.microcons_id
 	patch = prop_record.patch
 
 	article_record = MicroCons.objects.get(id=articleid)
