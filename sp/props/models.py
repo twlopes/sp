@@ -6,7 +6,7 @@ from picklefield.fields import PickledObjectField
 class Props(models.Model):
 	createtime = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
-	idversions = models.IntegerField()
+	microcons_id = models.IntegerField()
 	maindiff = models.TextField() 
 	patch = PickledObjectField()
 	htmldiff = models.TextField()

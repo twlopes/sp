@@ -28,7 +28,7 @@ def up_vote(request, propid):
 	u = request.user
 	m = Props.objects.filter(id=propid).values()
 	o = m[0]
-	f = o['idversions']
+	f = o['microcons_id']
 	
 	c = MicroCons.objects.get(id=f)
 	j = u.has_perm('change_microcons', c)
@@ -78,7 +78,7 @@ def down_vote(request, propid):
 	u = request.user
 	m = Props.objects.filter(id=propid).values()
 	o = m[0]
-	f = o['idversions']
+	f = o['microcons_id']
 	
 	c = MicroCons.objects.get(id=f)
 	j = u.has_perm('change_microcons', c)
