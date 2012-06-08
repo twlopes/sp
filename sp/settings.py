@@ -1,6 +1,10 @@
 import os
 os.getcwd()
 
+import djcelery
+djcelery.setup_loader()
+
+
 # Django settings for sp project.
 
 DEBUG = True
@@ -157,6 +161,7 @@ INSTALLED_APPS = (
 	'sp.voting',
 	'django.contrib.admin',
 	'guardian',
+	'djcelery',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
