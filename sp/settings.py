@@ -90,6 +90,10 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'w2aa0x#g9wr!d!6nybkts-ft9e3ldvj)^nw$qz@qs+@)$p^2n9'
 
+BROKER_URL = "amqp://guest:guest@localhost:5672/"
+
+CELERY_IMPORTS = ('sp.views',)
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
