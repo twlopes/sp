@@ -10,7 +10,7 @@ def expiry(z):
 	# function to save to database
 	record = Vote.objects.get(prop_id=z)
 	# Save into object instance.
-	record.current_status = "No"
+	record.current_status = "Expired"
 	# Send back into database.
 	record.save()
 	# return z + y
