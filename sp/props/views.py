@@ -8,14 +8,11 @@ from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
 from sp.voting.models import Vote
+from sp.tasks import expiry
+
 
 @login_required
 def create_prop(request, articleid):
-	
-	# form structure
-	
-	errors = []
-
 	if request.method == 'POST':
 		dfunction = diff_match_patch()
 				
@@ -56,9 +53,15 @@ def create_prop(request, articleid):
 			y = threshold_data[0]
 			q = y['majority']
 			
+			
+			# Setting up status of prop and programming its expiry.
+			
+			status = "Current"
+			expiry.apply_async(args=[z], countdown=30)
+				
 			# Saving initial record in voting table.
 			
-			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status="No Votes Cast")
+			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status=status)
 			q.save()
 		
 		return render_to_response('donediff.html', {'diff': diffhtml}, context_instance=RequestContext(request))

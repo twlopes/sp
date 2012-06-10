@@ -92,7 +92,7 @@ SECRET_KEY = 'w2aa0x#g9wr!d!6nybkts-ft9e3ldvj)^nw$qz@qs+@)$p^2n9'
 
 BROKER_URL = "amqp://guest:guest@localhost:5672/"
 
-CELERY_IMPORTS = ('sp.views',)
+CELERY_IMPORTS = ('sp.views', 'sp.tasks',)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
