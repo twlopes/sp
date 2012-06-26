@@ -29,44 +29,53 @@ def up_vote(request, propid):
 	m = Props.objects.filter(id=propid).values()
 	o = m[0]
 	f = o['microcons_id']
+	g = o['current_status']
+
+	# Insert code to grab currency status.
 	
 	c = MicroCons.objects.get(id=f)
 	j = u.has_perm('change_microcons', c)
 
 	if j is True:
 		
-		count = Vote.objects.filter(prop_id=propid).values()
-		data = count[0]
+		if g == "current":
 
-		# Pull out information to update.
+			count = Vote.objects.filter(prop_id=propid).values()
+			data = count[0]
 
-		upvote = data['vote_for']
-		downvote = data['vote_against']
-		threshold = data['threshold']
+			# Pull out information to update.
 
-		# Update information for saving to database
+			upvote = data['vote_for']
+			downvote = data['vote_against']
+			threshold = data['threshold']
 
-		new_upvote = upvote + 1
-		total_votes = 	new_upvote + downvote
-		percentage_up = float(new_upvote) / float(total_votes) * 100
+			# Update information for saving to database
 
-		blah = status(percentage_up, threshold)
+			new_upvote = upvote + 1
+			total_votes = 	new_upvote + downvote
+			percentage_up = float(new_upvote) / float(total_votes) * 100
 
-		# Pull out instance to update.
+			blah = status(percentage_up, threshold)
 
-		record = Vote.objects.get(prop_id=propid)
+			# Pull out instance to update.
 
-		# Save into object instance.
+			record = Vote.objects.get(prop_id=propid)
 
-		record.vote_for = new_upvote
-		record.percentage_for = percentage_up
-		record.current_status = blah
+			# Save into object instance.
 
-		# Send back into database.
+			record.vote_for = new_upvote
+			record.percentage_for = percentage_up
+			record.current_status = blah
 
-		record.save()
+			# Send back into database.
 
-		return render_to_response('thanks_for_vote.html')
+			record.save()
+
+			return render_to_response('thanks_for_vote.html')
+
+		else:
+
+			return render_to_response('prop_expired.html')
 		
 	else:
 		
