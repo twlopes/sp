@@ -24,7 +24,7 @@ def expiry(z):
 
 
 @task
-def time_expirty(id, hours):
-	record = Props.objects.get(id=z)
+def time_expiry(next, hours):
+	record = Props.objects.get(id=next)
 	record.current_status = "expired"
 	record.save()

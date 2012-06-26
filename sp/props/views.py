@@ -6,6 +6,7 @@ from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
+from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from sp.voting.models import Vote
 from sp.tasks import expiry
@@ -21,6 +22,7 @@ def create_prop(request, articleid):
 		first = MicroCons.objects.filter(id__contains=articleid).values()
 		valuelist = first[0]
 		data = valuelist['articlecontent']
+		hours_number = valuelist['prop_hours']
 		formatted = data.encode("utf8")
 
 		form = PropForm(request.POST)
@@ -34,16 +36,18 @@ def create_prop(request, articleid):
 			diffhtml = dfunction.diff_prettyHtml(diff)
 			
 			patchdata = dfunction.patch_make(formatted, asciidata)
+
+			time_object = datetime.now() + timedelta(minutes=hours_number)
 			
 			# Saving diff results to database.
 			
-			p = Props(microcons_id=articleid, current_status="current", maindiff=diff, patch=patchdata, htmldiff=diffhtml)
+			p = Props(microcons_id=articleid, expiry_time=time_object, current_status="current", maindiff=diff, patch=patchdata, htmldiff=diffhtml)
 			p.save()
 			next = p.id
 			
 			# Programming the expiry of the prop.
 			
-			expiry.apply_async(args=[next], countdown=20)
+			expiry.apply_async(args=[next], eta=time_object)
 
 			# Getting prop details so that vote entry can be created.
 			
