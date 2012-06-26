@@ -37,10 +37,14 @@ def create_prop(request, articleid):
 			
 			# Saving diff results to database.
 			
-			p = Props(microcons_id=articleid, maindiff=diff, patch=patchdata, htmldiff=diffhtml)
+			p = Props(microcons_id=articleid, current_status="current", maindiff=diff, patch=patchdata, htmldiff=diffhtml)
 			p.save()
 			next = p.id
 			
+			# Programming the expiry of the prop.
+			
+			expiry.apply_async(args=[next], countdown=20)
+
 			# Getting prop details so that vote entry can be created.
 			
 			x = Props.objects.filter(id=next).values()
@@ -52,16 +56,10 @@ def create_prop(request, articleid):
 			threshold_data = MicroCons.objects.filter(id__contains=articleid).values()
 			y = threshold_data[0]
 			q = y['majority']
-			
-			
-			# Setting up status of prop and programming its expiry.
-			
-			status = "Current"
-			expiry.apply_async(args=[z], countdown=30)
 				
 			# Saving initial record in voting table.
 			
-			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status=status)
+			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status="current")
 			q.save()
 		
 		return render_to_response('donediff.html', {'diff': diffhtml}, context_instance=RequestContext(request))

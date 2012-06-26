@@ -34,7 +34,7 @@ def up_vote(request, propid):
 	j = u.has_perm('change_microcons', c)
 
 	if j is True:
-	
+		
 		count = Vote.objects.filter(prop_id=propid).values()
 		data = count[0]
 
@@ -45,27 +45,27 @@ def up_vote(request, propid):
 		threshold = data['threshold']
 
 		# Update information for saving to database
-	
+
 		new_upvote = upvote + 1
 		total_votes = 	new_upvote + downvote
 		percentage_up = float(new_upvote) / float(total_votes) * 100
-	
+
 		blah = status(percentage_up, threshold)
-	
+
 		# Pull out instance to update.
 
 		record = Vote.objects.get(prop_id=propid)
-	
+
 		# Save into object instance.
-	
+
 		record.vote_for = new_upvote
 		record.percentage_for = percentage_up
 		record.current_status = blah
-	
+
 		# Send back into database.
-	
+
 		record.save()
-	
+
 		return render_to_response('thanks_for_vote.html')
 		
 	else:
