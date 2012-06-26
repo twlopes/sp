@@ -17,7 +17,14 @@ def expiry(z):
 	record.current_status = "expired"
 	
 	# Send back into database.
-	
+
 	record.save()
 	
 	# return z + y
+
+
+@task
+def time_expirty(id, hours):
+	record = Props.objects.get(id=z)
+	record.current_status = "expired"
+	record.save()

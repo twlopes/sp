@@ -8,6 +8,7 @@ class MicroCons(models.Model):
 	articlecontent = models.TextField()
 	director = models.ForeignKey(User)
 	majority = models.IntegerField(max_length=3)
+	prop_hours = models.IntegerField(max_length=3)
 	createtime = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
