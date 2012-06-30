@@ -1,5 +1,8 @@
-<html>
-	<body>
+{% extends "base.html" %}
+
+{% block title %}Welcome to Superpleb!{% endblock %}
+
+{% block content %}
 		<h3>Welcome to SuperPleb!</h3>
 		<p>	
 		<a href = /micro_constitution/>Create a <b>new article</b> by filling in the constitution!</a>
@@ -20,7 +23,4 @@
 		</br>
 		</br>
 		<a href = /accounts/login/><b>LOGIN</b></a>
-		</br>
-		</br>
-	</body>
-</html>
+{% endblock %}
