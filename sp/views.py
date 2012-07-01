@@ -2,11 +2,12 @@ from django.shortcuts import render_to_response
 from django.template import Context
 from django.http import HttpResponse
 from celery.task import task
+from django.template import loader, RequestContext
 from datetime import datetime, timedelta
 
 
 def insta_links(request):
-	return render_to_response('insta_links.html')
+	return render_to_response('insta_links.html', context_instance=RequestContext(request))
 
 @task
 def addo(x, y):

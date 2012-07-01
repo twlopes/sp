@@ -1,10 +1,8 @@
 {% extends "base.html" %}
-<html>
-<head>
-        <title>Edit Article</title>
-</head>
+
+{% block content %}
 <body>
-	<h1>Edit Article</h1>
+	<h2>Edit Article</h2>
 	
 	
 	{% if form.errors %}
@@ -21,4 +19,4 @@
 		<input type="submit" value="Submit">
 	</form>
 </body>
-</html>
+{% endblock %}

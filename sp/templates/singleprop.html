@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<h1>Proposition</h1>
-
+<h2>Proposition</h2>
+</br>
 <p>	
 {% if prop %}
 
@@ -12,10 +12,11 @@
 	{{ prop }}
 	<p>
 	{% endautoescape %}
-
-	<a href="/prop/{{ propid }}/up/">Upvote</a>
 	</br>
-	<a href="/prop/{{ propid }}/down/">Downvote</a>
+	<a class="btn btn-success" href="/prop/{{ propid }}/up/">Upvote</a>
+	<a class="btn btn-danger" href="/prop/{{ propid }}/down/">Downvote</a>
+	</br>
+	</br>
 	{% else %}
 	    <p>No article is available.</p>
 {% endif %}

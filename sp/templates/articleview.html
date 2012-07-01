@@ -1,25 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="row">
+</div>
 
 <div class="row">
 
 <div class="span8">
-{% if article %}
+</br>
+<a href="/edit/{{ articleid }} "> Edit </a>
 
+{% if article %}
+    
     {% for article in article %}
 	<h3>{{ article.thesis }} </h3>
 	<p>
 	{{ article.articlecontent|linebreaks }}
 	{% endfor %}
-</div>
-
-<div class="span4">
-		<li><a href="/edit/{{ articleid }} "> Edit </li></a>
-		<li><a href="/props/{{ articleid }} "> Props </li></a>
 	{% else %}
 	    <p>No article is available.</p>
+	{% endif %}
+
+</div>
+
+<div class="span1">
+<p>
+</div>
+
+<div class="span3">
+		
+		<li><a href="/props/{{ articleid }} "> Props </li></a>
+	
+	{% if displaydiff %}
+    {% for displaydiff in displaydiff %}
+
+<b>Prop</b>
+
+	{% autoescape off %}
+	<p>
+	{{ displaydiff }}
+	{% endautoescape %}
+	</br>
+	</br>
+	<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
+	<p>
+	{% endfor %}
+
+		{% else %}
+	<p>No propositions are available for this article.</p>
 {% endif %}
+
+
 </div>
 </div>
 {% endblock %}
