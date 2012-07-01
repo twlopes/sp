@@ -5,6 +5,9 @@ import djcelery
 djcelery.setup_loader()
 
 
+# Bootstrap toolkit integration
+SETTINGS_ROOT = os.path.dirname(__file__)
+
 # Django settings for sp project.
 
 DEBUG = True
@@ -55,18 +58,18 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(SETTINGS_ROOT, "media/")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(SETTINGS_ROOT, "static/")
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -166,6 +169,7 @@ INSTALLED_APPS = (
 	'django.contrib.admin',
 	'guardian',
 	'djcelery',
+    'bootstrap_toolkit',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -200,3 +204,10 @@ LOGGING = {
         },
     }
 }
+
+BOOTSTRAP_BASE_URL      = 'http://twitter.github.com/bootstrap/assets/'
+BOOTSTRAP_CSS_BASE_URL  = BOOTSTRAP_BASE_URL + 'css/'
+BOOTSTRAP_CSS_URL       = BOOTSTRAP_CSS_BASE_URL + 'bootstrap.css'
+BOOTSTRAP_JS_BASE_URL   = BOOTSTRAP_BASE_URL + 'js/'
+# Enable for single bootstrap.js file
+#BOOTSTRAP_JS_URL        = BOOTSTRAP_JS_BASE_URL + 'bootstrap.js'

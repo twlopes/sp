@@ -1,11 +1,8 @@
 {% extends "base.html" %}
-<html>
-<head>
-        <title>Microconstitution</title>
-</head>
-<body>
-	<h1>Create Microconstitution</h1>
-	
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
 	
 	{% if form.errors %}
 		<p style="color: red;">
@@ -15,10 +12,11 @@
 	
 	<form action="" method="post"> {% csrf_token %}
 		<table>
-			{{ form.as_table }}
+			{{ form|as_bootstrap }}
 		</table>
 		</br>
 		<input type="submit" value="Submit">
 	</form>
 </body>
-</html>
+
+{% endblock %}
