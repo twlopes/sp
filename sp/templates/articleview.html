@@ -2,26 +2,24 @@
 
 {% block content %}
 
-<div id="container" style="width:400px; float:center;">
+<div class="row">
 
-
-
-<h1>Requested Article</h1>
-
-<p>	
+<div class="span8">
 {% if article %}
+
     {% for article in article %}
-	<b> Thesis:  {{ article.thesis }} </b>
+	<h3>{{ article.thesis }} </h3>
 	<p>
 	{{ article.articlecontent|linebreaks }}
 	{% endfor %}
-	
-	<li><a href="/edit/{{ articleid }} "> Edit </li></a>
-	<li><a href="/props/{{ articleid }} "> Props </li></a>
+</div>
+
+<div class="span4">
+		<li><a href="/edit/{{ articleid }} "> Edit </li></a>
+		<li><a href="/props/{{ articleid }} "> Props </li></a>
 	{% else %}
 	    <p>No article is available.</p>
 {% endif %}
-
 </div>
-
+</div>
 {% endblock %}
