@@ -10,6 +10,11 @@ from django.contrib.auth.models import User, Permission, Group
 @login_required
 def micro_cons(request):
 	errors = []
+	
+	# Bootstrap toolkit specification
+
+	layout = 'horizontal'
+
 	if request.method == 'POST':
 		form = MicroConsModelForm(request.POST)
 		if form.is_valid():
@@ -30,7 +35,7 @@ def micro_cons(request):
 	else:
 		form = MicroConsModelForm()
 	return render_to_response('cons_form.html', {'form': form}, 
-		context_instance=RequestContext(request))
+		context_instance=RequestContext(request, {'layout': layout,}))
 
 def micro_done(request):
 	return render_to_response('done.html', context_instance=RequestContext(request))
