@@ -1,5 +1,5 @@
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea, DateField, CharField
 from django import forms
 from django.contrib.auth.models import User
 
@@ -19,7 +19,27 @@ class MicroCons(models.Model):
 		verbose_name_plural = "Micro-constitutions"
 
 class MicroConsModelForm(ModelForm):
+	thesis = CharField(
+		label='Thesis', 
+		help_text='The thesis is the kernel of your idea.',
+		widget=forms.TextInput(attrs={'class':'span6'})
+		)
+	articlecontent = CharField(
+		label='Article Content', 
+		help_text='Get everyone started on your idea!  Put as much text in here as you like.',
+		widget=forms.Textarea(attrs={'class':'span6'})
+		)
+	majority = CharField(
+		label='Voting Majority', 
+		help_text='What majority needs to vote for a change for it to pass?',
+		widget=forms.TextInput(attrs={'class':'span1'})
+		)
+	prop_hours = CharField(
+		label='Voting Period', 
+		help_text='How long will the members have to vote?',
+		widget=forms.TextInput(attrs={'class':'span1'})
+		)
+
 	class Meta:
 		model = MicroCons
-		exclude = ('director')
-
+		exclude = ('director',)
