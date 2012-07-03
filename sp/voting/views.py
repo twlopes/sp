@@ -71,15 +71,15 @@ def up_vote(request, propid):
 
 			record.save()
 
-			return render_to_response('thanks_for_vote.html')
+			return render_to_response('thanks_for_vote.html', context_instance=RequestContext(request))
 
 		else:
 
-			return render_to_response('prop_expired.html')
+			return render_to_response('prop_expired.html', context_instance=RequestContext(request))
 		
 	else:
 		
-		return render_to_response('no_permission.html')
+		return render_to_response('no_permission.html', context_instance=RequestContext(request))
 
 @login_required
 def down_vote(request, propid):
@@ -88,6 +88,7 @@ def down_vote(request, propid):
 	m = Props.objects.filter(id=propid).values()
 	o = m[0]
 	f = o['microcons_id']
+	g = o['current_status']
 	
 	c = MicroCons.objects.get(id=f)
 	j = u.has_perm('change_microcons', c)
@@ -127,12 +128,12 @@ def down_vote(request, propid):
 
 			record.save()
 
-			return render_to_response('thanks_for_vote.html')
+			return render_to_response('thanks_for_vote.html', context_instance=RequestContext(request))
 
 		else:
 
-			return render_to_response('prop_expired.html')
+			return render_to_response('prop_expired.html', context_instance=RequestContext(request))
 
 	else:
 		
-		return render_to_response('no_permission.html')
+		return render_to_response('no_permission.html', context_instance=RequestContext(request))

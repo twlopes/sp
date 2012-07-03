@@ -90,15 +90,15 @@ def view_article_props(request, articleid):
 		prop = Props.objects.get(id=articleid)
 	except Props.DoesNotExist:
 		prop = None
-	return render_to_response('articleprops.html', {'articleid': articleid, 'displaydiff': htmldiff, 'prop':prop})
+	return render_to_response('articleprops.html', {'articleid': articleid, 'displaydiff': htmldiff, 'prop':prop}, context_instance=RequestContext(request))
 
 def view_single_prop(request, propid):
 	prop = Props.objects.get(id=propid)
-	return render_to_response('singleprop.html', {'prop':prop, 'propid':propid})
+	return render_to_response('singleprop.html', {'prop':prop, 'propid':propid}, context_instance=RequestContext(request))
 
 def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
-	return render_to_response('latestprops.html', {'prop':prop})
+	return render_to_response('latestprops.html', {'prop':prop}, context_instance=RequestContext(request))
 
 def prop_accept(request, propid):
 	
@@ -120,4 +120,4 @@ def prop_accept(request, propid):
 	
 	MicroCons.objects.filter(id=articleid).update(articlecontent=newcontent)
 	
-	return render_to_response('done.html')
+	return render_to_response('done.html', context_instance=RequestContext(request))
