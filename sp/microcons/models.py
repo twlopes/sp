@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import ModelForm, Textarea, DateField, CharField
 from django import forms
+from crispy_forms.bootstrap import AppendedText
 from django.contrib.auth.models import User
 
 class MicroCons(models.Model):
@@ -22,7 +23,7 @@ class MicroConsModelForm(ModelForm):
 	thesis = CharField(
 		label='Thesis', 
 		help_text='The thesis is the kernel of your idea.',
-		widget=forms.TextInput(attrs={'class':'span6'})
+		widget=forms.TextInput(attrs={'class':'message span6'})
 		)
 	articlecontent = CharField(
 		label='Article Content', 

@@ -14,11 +14,12 @@
 			Please correct the error{{ form.errors|pluralize }} below.
 		</p>
 	{% endif %}
-	
+
 	<form class="form-{{ layout }}" action="" method="post">
         {% csrf_token %}
 		<table>
 			{{ form|as_bootstrap:layout }}
+			<span class="countdown"></span>
 		</table>
 		</br>
 		<input type="submit" value="Submit" class="text btn btn-primary">
