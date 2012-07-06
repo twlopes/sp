@@ -26,52 +26,51 @@ class MicroConsModelForm(forms.ModelForm):
 	
 	class Meta:
 		model = MicroCons
-
+		exclude = ('director')
 
 	thesis = forms.CharField(
 		label = 'Thesis',
 		required = 'True',
-		widget = forms.Textarea(),
-
-
+		help_text = 'This is the kernel of your idea.  Short and sweet.',
+		widget = forms.Textarea(attrs={'rows':'2'}),
 	)
 
 	articlecontent = forms.CharField(
 		label = 'Article Content',
 		required = 'True',
+		widget = forms.Textarea(),
+		help_text = 'Put as much article content in as you like.  This will get people started on your idea.',
 	)
 
 	majority = forms.CharField(
 		label = 'Majority',
 		required = 'True',
+		help_text = 'This is the threshold of votes required to pass content into the article.',
+
 	)
 
 	prop_hours = forms.CharField(
 		label = 'Prop Hours',
 		required = 'True',
+		help_text = 'How many hours do you want to give people to vote?',
+		# widget = forms.TextInput(attrs={'class':'span2'}),
 	)
 
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
-		# self.helper.form_class = "message"
 		self.helper.form_method = 'post'
-		self.helper.add_input(Submit('submit', 'Submit'))
-
-
+		self.helper.form_class = 'form-horizontal'
 		self.helper.layout=Layout(
-    			Field('thesis', css_class="message"),
-    			Fieldset(
-        			# 'Tell us your favorite stuff {{ username }}',
-        			
-        			'articlecontent',
-        			HTML("""<span class="countdown"></span><p>"""),
-        			
-
-        			
-        			# 'prop_hours',
-        			# 'majority',
-        			
-    			)
+    			HTML("""<div class="span 3 offset6"><span class="countdown"></span></div></br>"""),
+    			Field('thesis', css_class="message span6 input-xlarge"),
+    			HTML("""</br>"""),
+    			Field('articlecontent', css_class="span6"),
+    			HTML("""</br>"""),
+    			AppendedText('majority', '%'),
+    			AppendedText('prop_hours', 'Hours', 'span1'),
+				FormActions(
+					Submit('save_changes', 'Submit', css_class="btn-primary")
+					)			
 			)
 		super(MicroConsModelForm, self).__init__(*args, **kwargs)
 
