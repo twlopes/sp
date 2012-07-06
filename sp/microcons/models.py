@@ -1,7 +1,9 @@
 from django.db import models
 from django.forms import ModelForm, Textarea, DateField, CharField
 from django import forms
-from crispy_forms.bootstrap import AppendedText
+from crispy_forms.helper import FormHelper
+from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset
 from django.contrib.auth.models import User
 
 class MicroCons(models.Model):
@@ -19,28 +21,59 @@ class MicroCons(models.Model):
 	class Meta:
 		verbose_name_plural = "Micro-constitutions"
 
-class MicroConsModelForm(ModelForm):
-	thesis = CharField(
-		label='Thesis', 
-		help_text='The thesis is the kernel of your idea.',
-		widget=forms.TextInput(attrs={'class':'message span6'})
-		)
-	articlecontent = CharField(
-		label='Article Content', 
-		help_text='Get everyone started on your idea!  Put as much text in here as you like.',
-		widget=forms.Textarea(attrs={'class':'span6'})
-		)
-	majority = CharField(
-		label='Voting Majority', 
-		help_text='What majority needs to vote for a change for it to pass?',
-		widget=forms.TextInput(attrs={'class':'span1'})
-		)
-	prop_hours = CharField(
-		label='Voting Period', 
-		help_text='How long will the members have to vote?',
-		widget=forms.TextInput(attrs={'class':'span1'})
-		)
 
+class MicroConsModelForm(forms.ModelForm):
+	
 	class Meta:
 		model = MicroCons
-		exclude = ('director',)
+
+
+	thesis = forms.CharField(
+		label = 'Thesis',
+		required = 'True',
+		widget = forms.Textarea(),
+
+
+	)
+
+	articlecontent = forms.CharField(
+		label = 'Article Content',
+		required = 'True',
+	)
+
+	majority = forms.CharField(
+		label = 'Majority',
+		required = 'True',
+	)
+
+	prop_hours = forms.CharField(
+		label = 'Prop Hours',
+		required = 'True',
+	)
+
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		# self.helper.form_class = "message"
+		self.helper.form_method = 'post'
+		self.helper.add_input(Submit('submit', 'Submit'))
+
+
+		self.helper.layout=Layout(
+    			Field('thesis', css_class="message"),
+    			Fieldset(
+        			# 'Tell us your favorite stuff {{ username }}',
+        			
+        			'articlecontent',
+        			HTML("""<span class="countdown"></span><p>"""),
+        			
+
+        			
+        			# 'prop_hours',
+        			# 'majority',
+        			
+    			)
+			)
+		super(MicroConsModelForm, self).__init__(*args, **kwargs)
+
+	
+        
