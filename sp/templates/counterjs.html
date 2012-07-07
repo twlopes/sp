@@ -1,0 +1,18 @@
+ <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+
+    <script>
+
+    function updateCountdown() {
+        // 140 is the max message length
+        var remaining = 140 - jQuery('.message').val().length;
+        jQuery('.countdown').text(remaining + ' characters left');
+    }
+
+    jQuery(document).ready(function($) {
+        updateCountdown();
+        $('.message').change(updateCountdown);
+        $('.message').keyup(updateCountdown);
+    });
+
+    </script>

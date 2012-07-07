@@ -16,28 +16,6 @@
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-
-    <!-- for character counter-->
-
-    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <meta charset="utf-8" />
-
-    <script>
-
-    function updateCountdown() {
-        // 140 is the max message length
-        var remaining = 140 - jQuery('.message').val().length;
-        jQuery('.countdown').text(remaining + ' characters left');
-    }
-
-    jQuery(document).ready(function($) {
-        updateCountdown();
-        $('.message').change(updateCountdown);
-        $('.message').keyup(updateCountdown);
-    });
-
-    </script>
-
     {% bootstrap_javascript_tag "dropdown" %}
     {% block extra_head %}{% endblock %}
 </head>
@@ -48,7 +26,7 @@
     <div class="navbar-inner">
         <div class="container">
          	
-            <a class="brand" style="color:pink">SUPERPLEB</a>
+            <a href="/insta_links/" class="brand" style="color:pink">SUPERPLEB</a>
             
             <ul class="nav pull-right">
                 <li>
@@ -81,11 +59,9 @@
         <div class="span6" style="text-align:right">
             <p>
                 &copy; <a href="http://twitter.com/pjbrow">Patrick Brown</a> 2012
-              
             </p>
         </div>
     </footer>
-
 </div> <!-- container -->
 
 </body>
