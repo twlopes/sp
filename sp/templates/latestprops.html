@@ -2,32 +2,34 @@
 
 {% block content %}
 
-<h1>Latest Props</h1>
+<h3>Latest Props</h3>
 </br>
 Here is a list of the latest props:
 </br>
+</br>
 
-{% if prop %}
-    <ul>
-    {% for prop in prop %}
-	<b>Prop</b>
-	
-	{% autoescape off %}
-	<p>
-        {{ prop }}
-        {# <li><a href="{{ article.id }}/">{{ article }}</li></a> #}
-	</br>
-	</br>
-	<a href="/prop/{{ prop.id }}/">Go to Prop</a>
-	<p>
-	{% endautoescape %}
-
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No props are available.  Get cracking!</p>
-{% endif %}
-
-<p>
+<table class="table table-striped table-bordered"> 
+	<tbody>
+		{% if prop %}
+    	{% for prop in prop %}
+		<tr>
+		<td>
+			</br>
+			{% autoescape off %}
+    		{{ prop }}
+			{% endautoescape %}
+			</br>
+			</br>
+		</td>
+		<td>
+			<a href="/prop/{{ prop.id }}/">Go to Prop</a>
+		</td>
+		</tr>
+    		{% endfor %}
+			{% else %}
+    		<p>No props are available.  Get cracking!</p>
+			{% endif %}
+	</tbody>
+</table>
 
 {% endblock %}

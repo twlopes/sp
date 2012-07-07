@@ -2,21 +2,30 @@
 
 {% block content %}
 
-<h1>Latest Articles</h1>
+<h3>Latest Articles</h3>
 </br>
 Here is a list of the latest articles:
 </br>
+</br>	
+<table class="table table-striped table-bordered"> 
+	<tbody>
+		{% if article %}
+    	{% for article in article %}
+     	<tr>
+		<td>
+     	<b><a href="{{ article.id }}/">{{ article.thesis }}</a></b>
+     	</br>
+     	</br>
+     	{{ article.articlecontent }}
+     	</br>
+     	</br>
+    	</td>
 
-{% if article %}
-    <ul>
-    {% for article in article %}
-        <li><a href="{{ article.id }}/">{{ article }}</li></a>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No articles are available.  Get cracking!</p>
-{% endif %}
-
-<p>
+    	{% endfor %}
+		{% else %}
+    	<p>No articles are available.  Get cracking!</p>
+		{% endif %}
+	</tbody>
+</table>
 
 {% endblock %}
