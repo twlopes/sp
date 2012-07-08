@@ -25,9 +25,8 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-         	
+
             <a href="/insta_links/" class="brand" style="color:pink">SUPERPLEB</a>
-            
             <ul class="nav pull-right">
                 <li>
                   {% if user.is_authenticated %}
@@ -37,8 +36,7 @@
 			     {% endif %}
                 </li>
             </ul>
-
-            </div>
+            
         </div>
     </div>
 </div>
@@ -46,11 +44,6 @@
 <div class="container">
 
     {% block content %}Empty page{% endblock %}
-
-    <p><hr></p>
-
-    
-
 
     <footer class="row">
         <div class="span6">
@@ -62,6 +55,7 @@
             </p>
         </div>
     </footer>
+
 </div> <!-- container -->
 
 </body>

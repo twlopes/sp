@@ -1,56 +1,62 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div class="span12"> {# thesis, button and props #}
 <div class="row">
-</div>
-
-<div class="row">
-
-<div class="span8">
-</br>
-<a href="/edit/{{ articleid }} "> Edit </a>
-
-{% if article %}
-    
-    {% for article in article %}
-	<h3>{{ article.thesis }} </h3>
-	<p>
-	{{ article.articlecontent|linebreaks }}
-	{% endfor %}
-	{% else %}
-	    <p>No article is available.</p>
-	{% endif %}
-
-</div>
-
-<div class="span1">
-<p>
-</div>
-
-<div class="span3">
-		
-		<li><a href="/props/{{ articleid }} "> Props </li></a>
 	
-	{% if displaydiff %}
-    {% for displaydiff in displaydiff %}
+	<div class ="span8">
+	<div class="row">
+		
+	
+		<div class="span6"> {# thesis only #}
+			<h3>Here is my thesis and I'm going to stick to it.  Here is my thesis and I'm going to stick to it.</h3>
+			</br>
+		</div>	
+		
+		<div class="span2"> {# button only #}
+			<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
+		</div>
+	
+	</div>
+	</div>
 
-<b>Prop</b>
+	<div class="span4"> {# prop column #}
+		
+		<a href="/props/{{ articleid }} "> Props </a>
+	
+		{% if displaydiff %}
+    	{% for displaydiff in displaydiff %}
 
-	{% autoescape off %}
-	<p>
-	{{ displaydiff }}
-	{% endautoescape %}
-	</br>
-	</br>
-	<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
-	<p>
-	{% endfor %}
+		<b>Prop</b>
 
-		{% else %}
-	<p>No propositions are available for this article.</p>
-{% endif %}
+		{% autoescape off %}
+		<p>
+		{{ displaydiff }}
+		{% endautoescape %}
+		</br>
+		</br>
+		<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
+		<p>
+		{% endfor %}
 
+			{% else %}
+		<p>No propositions are available for this article.</p>
+		{% endif %}
+	
+	</div>
 
 </div>
 </div>
+
+
+
+<div class="span8"> {# thesis, button and props #}
+
+			
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+</div>	
+
 {% endblock %}
