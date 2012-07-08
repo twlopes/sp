@@ -56,14 +56,15 @@ def create_prop(request, articleid):
 			
 			# Getting constitution voting threshold so that vote entry can be created.
 			
-			q = MicroCons.objects.get(id__contains=articleid).majority
-				
+			q = MicroCons.objects.get(id__contains=articleid)
+			r = q.majority
+
 			# Saving initial record in voting table.
 			
-			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=q, current_status="current")
+			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=r, current_status="current")
 			q.save()
 		
-		return render_to_response('donediff.html', {'diff': diffhtml}, context_instance=RequestContext(request))
+		return render_to_response('prop_confirm.html', {'diff': diffhtml, 'time_object': time_object, 'hours_number': hours_number, 'micro_cons': r}, context_instance=RequestContext(request))
 
 	else:
 		
@@ -95,7 +96,7 @@ def view_single_prop(request, propid):
 def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
 	return render_to_response('latestprops.html', {'prop':prop}, context_instance=RequestContext(request))
-
+ 
 def prop_accept(request, propid):
 	
 	prop_record = Props.objects.get(id=propid)
