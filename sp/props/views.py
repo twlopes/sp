@@ -19,7 +19,7 @@ def create_prop(request, articleid):
 				
 		# Creating version to be amended to run diff against.
 		
-		first = MicroCons.objects.filter(id__contains=articleid).values()
+		first = MicroCons.objects.get(id__contains=articleid).values()
 		valuelist = first[0]
 		data = valuelist['articlecontent']
 		hours_number = valuelist['prop_hours']
@@ -72,17 +72,16 @@ def create_prop(request, articleid):
 		
 		# Put together initial data for the form.
 		
-		first = MicroCons.objects.filter(id__contains=articleid).values()
-		valuelist = first[0]
-		data = valuelist['articlecontent']
-		initial = data.encode("utf8")
+		first = MicroCons.objects.get(id__contains=articleid).articlecontent
+		initial = first.encode("utf8")
+		thesis = MicroCons.objects.get(id__contains=articleid).thesis
 		
 		# Displaying initial data in form.
 		
 		populate = MicroCons.objects.get(id=articleid)
 		form = PropForm(initial={'article': initial})
 
-	return render_to_response('editarticle.html', {'form': form}, context_instance=RequestContext(request))
+	return render_to_response('editarticle.html', {'form': form, 'thesis': thesis}, context_instance=RequestContext(request))
 
 def view_article_props(request, articleid):
 	htmldiff = Props.objects.filter(microcons_id__contains=articleid)
