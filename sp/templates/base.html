@@ -30,7 +30,7 @@
             <ul class="nav pull-right">
                 <li>
                   {% if user.is_authenticated %}
-  			       <li><h3>{{ user.username }}</h3></li>
+  			       <h3><a href="/accounts/profile/" class="brand">{{ user.username }}</a></h3>
 			     {% else %}
                  Login
 			     {% endif %}
