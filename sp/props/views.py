@@ -19,10 +19,9 @@ def create_prop(request, articleid):
 				
 		# Creating version to be amended to run diff against.
 		
-		first = MicroCons.objects.get(id__contains=articleid).values()
-		valuelist = first[0]
-		data = valuelist['articlecontent']
-		hours_number = valuelist['prop_hours']
+		first = MicroCons.objects.get(id__contains=articleid)
+		data = first.articlecontent
+		hours_number = first.prop_hours
 		formatted = data.encode("utf8")
 
 		form = PropForm(request.POST)
@@ -57,9 +56,7 @@ def create_prop(request, articleid):
 			
 			# Getting constitution voting threshold so that vote entry can be created.
 			
-			threshold_data = MicroCons.objects.filter(id__contains=articleid).values()
-			y = threshold_data[0]
-			q = y['majority']
+			q = MicroCons.objects.get(id__contains=articleid).majority
 				
 			# Saving initial record in voting table.
 			
