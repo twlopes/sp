@@ -30,7 +30,7 @@
             <ul class="nav pull-right">
                 <li>
                   {% if user.is_authenticated %}
-  			       {{ user.username }}
+  			       <li><h3>{{ user.username }}</h3></li>
 			     {% else %}
                  Login
 			     {% endif %}

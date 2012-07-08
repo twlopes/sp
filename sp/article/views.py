@@ -11,7 +11,7 @@ def latest_articles(request):
 	return render_to_response ('latest.html', {'article': article}, context_instance=RequestContext(request))
 
 def view_article(request, articleid):
-	article = MicroCons.objects.filter(id__contains=articleid)
+	article = MicroCons.objects.get(id__contains=articleid)
 	htmldiff = Props.objects.filter(microcons_id__contains=articleid)
 	try:
 		prop = Props.objects.get(id=articleid)

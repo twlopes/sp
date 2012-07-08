@@ -5,37 +5,49 @@
 <div class="span12"> {# thesis, button and props #}
 <div class="row">
 	
-	<div class ="span8">
+	<div class ="span8"> {# container for thesis and button #}
 	<div class="row">
-		
 	
-		<div class="span6"> {# thesis only #}
-			<h3>Here is my thesis and I'm going to stick to it.  Here is my thesis and I'm going to stick to it.</h3>
-			</br>
-		</div>	
-		
-		<div class="span2"> {# button only #}
-			<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
+		<div class ="span7"> {# container for thesis and button #}
+		<div class="row">
+
+			<div class="span6"> {# thesis only #}
+				<h3> {{ article.thesis }}</h3>
+			</div>		{# end thesis #}
+
+
+			<div class="span1"> {# button only #}
+				</br>
+				<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
+			</div> {# end button #}
+
+		</div>
+		<hr>
 		</div>
 
+	</div> {# end thesis, button#}
+	
 	</div>
+
+	<div class ="span8"> {# start article content #}
+	<div class="row">
+
+		<div class ="span7">
+		{{ article.articlecontent }}
+		</div>
+
+	</div> {# end article content #}
 	</div>
 
 	<div class="span4"> {# prop column #}
 		
-		<a href="/props/{{ articleid }} "> Props </a>
-	
 		{% if displaydiff %}
     	{% for displaydiff in displaydiff %}
-
-		<b>Prop</b>
 
 		{% autoescape off %}
 		<p>
 		{{ displaydiff }}
 		{% endautoescape %}
-		</br>
-		</br>
 		<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
 		<p>
 		{% endfor %}
@@ -49,14 +61,5 @@
 </div>
 </div>
 
-
-
-<div class="span7"> {# thesis, button and props #}
-
-			
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-
-</div>	
 
 {% endblock %}
