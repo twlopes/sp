@@ -10,8 +10,8 @@ from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from sp.voting.models import Vote
 from sp.tasks import expiry
+from bs4 import BeautifulSoup
 import re
-
 
 @login_required
 def create_prop(request, articleid):
@@ -41,8 +41,9 @@ def create_prop(request, articleid):
 			
 			# Processing diff into different lengths.
 
-			match_list = re.findall('(\S*.{50}<[id][ne][sl] style="background.*">.*<\W[di][en][ls]>.{50}\S*)', diffhtml)
-			long_diffo = '</br></br>'.join(match_list)
+			soup=BeautifulSoup(diffhtml)
+			result=soup.findAll(['ins', 'del'])
+			long_diffo = BeautifulSoup('</br></br>'.join(str(t) for t in result))
 
 			# Saving diff results to database.
 			
