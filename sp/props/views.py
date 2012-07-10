@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from sp.voting.models import Vote
 from sp.tasks import expiry
+import re
 
 
 @login_required
@@ -38,12 +39,19 @@ def create_prop(request, articleid):
 
 			time_object = datetime.now() + timedelta(minutes=hours_number)
 			
+			# Processing diff into different lengths.
+
+			match_list = re.findall('(\S*.{50}<[id][ne][sl] style="background.*">.*<\W[di][en][ls]>.{50}\S*)', diffhtml)
+			long_diffo = '</br></br>'.join(match_list)
+
 			# Saving diff results to database.
 			
-			p = Props(microcons_id=articleid, expiry_time=time_object, current_status="current", maindiff=diff, patch=patchdata, htmldiff=diffhtml)
+			p = Props(microcons_id=articleid, expiry_time=time_object, current_status="current", maindiff=diff, 
+				long_diff=long_diffo, patch=patchdata, htmldiff=diffhtml)
+			
 			p.save()
 			next = p.id
-			
+
 			# Programming the expiry of the prop.
 			
 			expiry.apply_async(args=[next], eta=time_object)
@@ -64,7 +72,8 @@ def create_prop(request, articleid):
 			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=r, current_status="current")
 			q.save()
 		
-		return render_to_response('prop_confirm.html', {'diff': diffhtml, 'time_object': time_object, 'hours_number': hours_number, 'micro_cons': r}, context_instance=RequestContext(request))
+		return render_to_response('prop_confirm.html', {'diff': diffhtml, 'time_object': time_object, 
+			'hours_number': hours_number, 'micro_cons': r}, context_instance=RequestContext(request))
 
 	else:
 		
@@ -91,7 +100,8 @@ def view_article_props(request, articleid):
 
 def view_single_prop(request, propid):
 	prop = Props.objects.get(id=propid)
-	return render_to_response('singleprop.html', {'prop':prop, 'propid':propid}, context_instance=RequestContext(request))
+	longdiff = Props.objects.get(id=propid).long_diff
+	return render_to_response('singleprop.html', {'prop':prop, 'propid':propid, 'longdiff':longdiff}, context_instance=RequestContext(request))
 
 def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
