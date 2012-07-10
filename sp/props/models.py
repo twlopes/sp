@@ -21,3 +21,5 @@ class Props(models.Model):
 	
 	class Meta:
 		verbose_name_plural = "Propositions"
+
+		# Made changes to model in commmit before
