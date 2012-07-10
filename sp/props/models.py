@@ -9,7 +9,10 @@ class Props(models.Model):
 	microcons_id = models.IntegerField()
 	expiry_time = models.DateTimeField()
 	current_status = models.TextField()
-	maindiff = models.TextField() 
+	maindiff = models.TextField()
+	short_diff = models.TextField()
+	medium_diff = models.TextField()
+	long_diff = models.TextField()
 	patch = PickledObjectField()
 	htmldiff = models.TextField()
 	

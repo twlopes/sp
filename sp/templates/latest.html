@@ -16,7 +16,7 @@ Here is a list of the latest articles:
      	<b><a href="{{ article.id }}/">{{ article.thesis }}</a></b>
      	</br>
      	</br>
-     	{{ article.articlecontent }}
+     	{{ article.articlecontent|truncatewords:30 }}
      	</br>
      	</br>
     	</td>
