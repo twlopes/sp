@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>django-bootstrap-toolkit = Bootstrap support for Django</title>
+    <title>SUPERPLEB</title>
     <meta name="description" content="">
     <meta name="author" content="Dylan Verheul">
     {% bootstrap_stylesheet_tag %}
@@ -36,6 +36,12 @@
 			     {% endif %}
                 </li>
             </ul>
+
+            <form class="navbar-search pull-left">
+            <input type="text" class="search-query" placeholder="Search Superpleb...">
+            </form>
+            <div class="span1"></div>
+            <a class="btn btn-primary pull-right" href="/micro_constitution/"<a>Create!</a>
             
         </div>
     </div>
@@ -46,7 +52,7 @@
     {% block content %}Empty page{% endblock %}
 
     <footer class="row">
-        </br>
+        
         <hr>
         <div class="span6">
             <p>This is <a href="https://github.com/dyve/django-bootstrap-toolkit">Superpleb</a></p>

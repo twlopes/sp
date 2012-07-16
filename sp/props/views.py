@@ -94,13 +94,13 @@ def create_prop(request, articleid):
 		# Put together initial data for the form.
 		
 		first = MicroCons.objects.get(id__contains=articleid).articlecontent
-		initial = first.encode("utf8")
+		# initial = first.encode("utf8")
 		thesis = MicroCons.objects.get(id__contains=articleid).thesis
 		
 		# Displaying initial data in form.
 		
 		populate = MicroCons.objects.get(id=articleid)
-		form = PropForm(initial={'article': initial})
+		form = PropForm(initial={'article': first})
 
 	return render_to_response('editarticle.html', {'form': form, 'thesis': thesis}, context_instance=RequestContext(request))
 

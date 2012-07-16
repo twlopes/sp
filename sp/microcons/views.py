@@ -20,6 +20,7 @@ def micro_cons(request):
 		if form.is_valid():
 			business = form.save(commit=False)
 			business.director = request.user
+			
 			business.save()
 			form.save()	
 			

@@ -13,8 +13,8 @@ def latest_articles(request):
 def view_article(request, articleid):
 	article = MicroCons.objects.get(id__contains=articleid)
 
-	articlecontent_data = MicroCons.objects.get(id__contains=articleid).articlecontent
-
+	data = MicroCons.objects.get(id__contains=articleid).articlecontent
+	articlecontent_data = data.encode("utf8")
 
 
 
