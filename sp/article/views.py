@@ -12,9 +12,15 @@ def latest_articles(request):
 
 def view_article(request, articleid):
 	article = MicroCons.objects.get(id__contains=articleid)
+
+	articlecontent_data = MicroCons.objects.get(id__contains=articleid).articlecontent
+
+
+
+
 	htmldiff = Props.objects.filter(microcons_id__contains=articleid)
 	try:
 		prop = Props.objects.get(id=articleid)
 	except Props.DoesNotExist:
 		prop = None
-	return render_to_response('articleview.html', {'article': article, 'articleid': articleid, 'displaydiff': htmldiff, 'prop':prop}, context_instance=RequestContext(request))
+	return render_to_response('articleview.html', {'article': article, 'articlecontent_data': articlecontent_data, 'articleid': articleid, 'displaydiff': htmldiff, 'prop':prop}, context_instance=RequestContext(request))

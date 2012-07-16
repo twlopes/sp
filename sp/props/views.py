@@ -17,7 +17,7 @@ import re
 def create_prop(request, articleid):
 	if request.method == 'POST':
 		dfunction = diff_match_patch()
-				
+		
 		# Creating version to be amended to run diff against.
 		
 		first = MicroCons.objects.get(id__contains=articleid)
@@ -31,19 +31,32 @@ def create_prop(request, articleid):
 			# Running diff functions and creating entries.
 			
 			data = form.cleaned_data['article']
-			asciidata = data.encode("utf8")
-			diff = dfunction.diff_main(formatted, asciidata)
-			diffhtml = dfunction.diff_prettyHtml(diff)
+			utf_data = data.encode("utf8")
 			
-			patchdata = dfunction.patch_make(formatted, asciidata)
+			# creating callable function for diff
+
+			diff = dfunction.diff_main(formatted, utf_data)
+			
+			diffhtml = dfunction.diff_prettyHtml(diff)
+			patchdata = dfunction.patch_make(formatted, utf_data)
 
 			time_object = datetime.now() + timedelta(minutes=hours_number)
 			
 			# Processing diff into different lengths.
 
-			soup=BeautifulSoup(diffhtml)
-			result=soup.findAll(['ins', 'del'])
-			long_diffo = BeautifulSoup('</br></br>'.join(str(t) for t in result))
+			
+			diffhtml_long = dfunction.diff_prettyHtml_long(diff)
+
+			soup=BeautifulSoup(diffhtml_long)
+			results=soup.find_all(['ins', 'del'])
+			elements = []
+			for i in results:
+				prev_sib = i.find_previous_sibling()
+				next_sib = i.find_next_sibling()
+				content= "...%r%r%r...</br></br></br></br>" % (prev_sib, i, next_sib)
+				elements.append(content)
+
+			long_diffo = "".join(elements)
 
 			# Saving diff results to database.
 			

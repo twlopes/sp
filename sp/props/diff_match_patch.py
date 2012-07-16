@@ -1071,7 +1071,7 @@ class diff_match_patch:
     html = []
     for (op, data) in diffs:
       text = (data.replace("&", "&amp;").replace("<", "&lt;")
-                 .replace(">", "&gt;").replace("\n", "&para;<br>"))
+                  .replace(">", "&gt;").replace("\n", "&para;<br>"))
       if op == self.DIFF_INSERT:
         html.append("<ins style=\"background:#e6ffe6;\">%s</ins>" % text)
       elif op == self.DIFF_DELETE:
@@ -1079,6 +1079,34 @@ class diff_match_patch:
       elif op == self.DIFF_EQUAL:
         html.append("<span>%s</span>" % text)
     return "".join(html)
+
+# My version of the html diff display.
+
+  def diff_prettyHtml_long(self, diffs):
+    """Convert a diff array into a pretty HTML report.
+
+    Args:
+      diffs: Array of diff tuples.
+
+    Returns:
+      HTML representation.
+    """
+    html = []
+    for (op, data) in diffs:
+      text = (data.replace("&", "&amp;").replace("<", "&lt;")
+                 .replace(">", "&gt;").replace("\n", "&para;"))
+                  # .replace(">", "&gt;").replace("\n", "&para;<br>"))
+      if op == self.DIFF_INSERT:
+        html.append("<ins style=\"background:#e6ffe6;\">%s</ins>" % text)
+      elif op == self.DIFF_DELETE:
+        html.append("<del style=\"background:#ffe6e6;\">%s</del>" % text)
+      elif op == self.DIFF_EQUAL:
+        html.append("<span>%s</span>" % text)
+    return "".join(html)
+
+
+
+
 
   def diff_text1(self, diffs):
     """Compute and return the source text (all equalities and deletions).

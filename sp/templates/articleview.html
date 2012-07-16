@@ -33,7 +33,9 @@
 	<div class="row">
 
 		<div class ="span7">
-		{{ article.articlecontent }}
+		{% autoescape off %}
+		{{ articlecontent_data }}
+		{% endautoescape %}
 		</div>
 
 	</div> {# end article content #}
