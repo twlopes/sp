@@ -1,3 +1,0 @@
-include README.*
-include LICENCE
-recursive-include follow/templates *.html

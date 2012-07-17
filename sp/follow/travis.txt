@@ -1,3 +1,0 @@
-# Test requirements for travis
-
-django >= 1.1
