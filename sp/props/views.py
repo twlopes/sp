@@ -122,6 +122,7 @@ def view_single_prop(request, propid):
 
 def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
+	
 	return render_to_response('latestprops.html', {'prop':prop}, context_instance=RequestContext(request))
  
 def prop_accept(request, propid):
