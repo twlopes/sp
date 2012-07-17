@@ -12,7 +12,7 @@
 		<div class="row">
 
 			<div class="span6"> {# thesis only #}
-				<h3> Feed</h3>
+				<h3>Prop Feed</h3>
 				<hr>
 
 					<table class="table table-striped table-bordered"> 
@@ -25,7 +25,9 @@
 					   
 					     	</br>
 					        {% autoescape off %}
-					     	
+					     	<a href = /prop/{{ props.id }}>View Prop</a>
+					     </br>
+					     </br>
 					        {{ props.long_diff }}
 					        {% endautoescape %}
 					        
