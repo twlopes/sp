@@ -33,7 +33,7 @@ def expiry(z):
 		content = article.articlecontent
 		result = dfunction.patch_apply(patch, content)
 		
-		article.articlecontent = result
+		article.articlecontent = result[0]
 
 		article.save()
 

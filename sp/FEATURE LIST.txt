@@ -1,5 +1,6 @@
 FEATURE LIST
 
+- Need to fix the way that the diff is displayed after it's been patched.
 - Delete the bug where you can't divide by 0.
 - Create home page feed for user.
 - On expiry, prop get's patched, user gets assigned permission or no.  When assigned permission, follow automatically switched on.
