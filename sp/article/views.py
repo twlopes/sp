@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 def latest_articles(request):
 	article = (MicroCons.objects.order_by('createtime').reverse())[:5]
-	return render_to_response ('latest.html', {'article': article}, context_instance=RequestContext(request))
+	return render_to_response ('latest_articles.html', {'article': article}, context_instance=RequestContext(request))
 
 def view_article(request, articleid):
 	article = MicroCons.objects.get(id__contains=articleid)

@@ -7,6 +7,7 @@ class Props(models.Model):
 	createtime = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	microcons_id = models.IntegerField()
+	author = models.TextField()
 	expiry_time = models.DateTimeField()
 	current_status = models.TextField()
 	maindiff = models.TextField()

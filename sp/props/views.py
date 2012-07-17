@@ -16,8 +16,11 @@ import re
 @login_required
 def create_prop(request, articleid):
 	if request.method == 'POST':
+		
 		dfunction = diff_match_patch()
 		
+		u = request.user
+
 		# Creating version to be amended to run diff against.
 		
 		first = MicroCons.objects.get(id__contains=articleid)
@@ -60,7 +63,7 @@ def create_prop(request, articleid):
 
 			# Saving diff results to database.
 			
-			p = Props(microcons_id=articleid, expiry_time=time_object, current_status="current", maindiff=diff, 
+			p = Props(microcons_id=articleid, author=u, expiry_time=time_object, current_status="current", maindiff=diff, 
 				long_diff=long_diffo, patch=patchdata, htmldiff=diffhtml)
 			
 			p.save()

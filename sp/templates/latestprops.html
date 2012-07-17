@@ -14,6 +14,10 @@ Here is a list of the latest props:
     	{% for prop in prop %}
 		<tr>
 		<td>
+			Prop created by <b>{{ prop.author }}</b>
+			</br>
+			Status: {{ prop.current_status }}
+			</br>
 			</br>
 			{% autoescape off %}
     		{{ prop }}
