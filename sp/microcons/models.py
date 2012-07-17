@@ -1,4 +1,5 @@
 from django.db import models
+from follow import utils
 from django.forms import ModelForm, Textarea, DateField, CharField
 from django import forms
 from crispy_forms.helper import FormHelper
@@ -21,6 +22,9 @@ class MicroCons(models.Model):
 	class Meta:
 		verbose_name_plural = "Micro-constitutions"
 
+# registers the model with follow app
+
+utils.register(MicroCons)
 
 class MicroConsModelForm(forms.ModelForm):
 	

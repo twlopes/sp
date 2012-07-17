@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from sp.views import insta_links
+from sp.views import insta_links, home
 from django.contrib import admin
 admin.autodiscover()
 from sp.microcons.views import micro_cons, micro_done
@@ -14,11 +14,13 @@ from sp.voting.views import up_vote, down_vote
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+	url('^', include('follow.urls')),
 	(r'^accounts/login/$', login),
     (r'^accounts/logout/$', logout),
 	(r'^accounts/profile/$', profile),
 	(r'^register/$', register),
-	(r'^register_done/$', register_done),
+	(r'^register_done/$', home),
+	(r'^home/$', home),
 	(r'^insta_links/$', insta_links),
 	(r'^$', insta_links),
 	(r'^admin/', include(admin.site.urls)),

@@ -22,7 +22,7 @@ def register(request):
     }, context_instance=RequestContext(request))
 
 def register_done(request):
-	return render_to_response('register_done.html')
+	return render_to_response('home.html')
 	
 def profile(request):
 	return render_to_response('profile.html', context_instance=RequestContext(request))

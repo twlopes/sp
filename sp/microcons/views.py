@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.template import loader, RequestContext
 from guardian.shortcuts import assign
 from django.contrib.auth.models import User, Permission, Group
+from follow import utils
 
 @login_required
 def micro_cons(request):
@@ -31,6 +32,9 @@ def micro_cons(request):
 			user = User.objects.get(username=nexto)
 
 			assign('change_microcons', user, constitution)
+
+
+			utils.follow(user, constitution)
 			
 			return HttpResponseRedirect('/done/')
 	else:

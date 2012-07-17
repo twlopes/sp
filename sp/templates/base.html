@@ -26,13 +26,13 @@
     <div class="navbar-inner">
         <div class="container">
 
-            <a href="/insta_links/" class="brand" style="color:pink">SUPERPLEB</a>
+            <a href="/home/" class="brand" style="color:pink">SUPERPLEB</a>
             <ul class="nav pull-right">
                 <li>
                   {% if user.is_authenticated %}
   			       <h3><a href="/accounts/profile/" class="brand">{{ user.username }}</a></h3>
 			     {% else %}
-                 Login
+                 <a href = /accounts/login/ class="brand"><b>LOGIN</b></a>
 			     {% endif %}
                 </li>
             </ul>
@@ -47,22 +47,13 @@
     </div>
 </div>
 
+
+
+
 <div class="container">
 
-    {% block content %}Empty page{% endblock %}
+{% block content %}Empty page{% endblock %}    
 
-    <footer class="row">
-        
-        <hr>
-        <div class="span6">
-            <p>This is <a href="https://github.com/dyve/django-bootstrap-toolkit">Superpleb</a></p>
-        </div>
-        <div class="span6" style="text-align:right">
-            <p>
-                &copy; <a href="http://twitter.com/pjbrow">Patrick Brown</a> 2012
-            </p>
-        </div>
-    </footer>
 
 </div> <!-- container -->
 
