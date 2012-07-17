@@ -5,7 +5,7 @@ from django.template import loader, RequestContext
 from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
-from sp.voting.models import Vote
+from sp.voting.models import Vote_Counter
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
@@ -40,7 +40,7 @@ def up_vote(request, propid):
 		
 		if g == "current":
 
-			count = Vote.objects.filter(prop_id=propid).values()
+			count = Vote_Counter.objects.filter(prop_id=propid).values()
 			data = count[0]
 
 			# Pull out information to update.
@@ -59,7 +59,7 @@ def up_vote(request, propid):
 
 			# Pull out instance to update.
 
-			record = Vote.objects.get(prop_id=propid)
+			record = Vote_Counter.objects.get(prop_id=propid)
 
 			# Save into object instance.
 
@@ -97,7 +97,7 @@ def down_vote(request, propid):
 
 		if g == "current":
 
-			count = Vote.objects.filter(prop_id=propid).values()
+			count = Vote_Counter.objects.filter(prop_id=propid).values()
 			data = count[0]
 
 			# Pull out information to update.
@@ -116,7 +116,7 @@ def down_vote(request, propid):
 
 			# Pull out instance to update.
 
-			record = Vote.objects.get(prop_id=propid)
+			record = Vote_Counter.objects.get(prop_id=propid)
 
 			# Save into object instance.
 

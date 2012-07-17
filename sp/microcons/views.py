@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from sp.microcons.models import MicroConsModelForm, MicroCons
-from sp.voting.models import Vote
+from sp.voting.models import Vote_Counter
 from django.contrib.auth.decorators import login_required
 from django.template import loader, RequestContext
 from guardian.shortcuts import assign

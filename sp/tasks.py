@@ -1,7 +1,7 @@
 from celery.task import task
 from datetime import datetime, timedelta
 from celery.task import task
-from sp.voting.models import Vote
+from sp.voting.models import Vote_Counter
 from sp.props.models import Props
 from django.db import models
 from django.forms import ModelForm

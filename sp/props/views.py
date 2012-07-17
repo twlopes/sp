@@ -8,7 +8,7 @@ from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
 from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
-from sp.voting.models import Vote
+from sp.voting.models import Vote_Counter
 from sp.tasks import expiry
 from bs4 import BeautifulSoup
 import re
@@ -53,7 +53,7 @@ def create_prop(request, articleid):
 			for i in results:
 				prev_sib = i.find_previous_sibling()
 				next_sib = i.find_next_sibling()
-				content= "...%r%r%r...</br></br></br></br>" % (prev_sib, i, next_sib)
+				content= "...%r%r%r..." % (prev_sib, i, next_sib)
 				elements.append(content)
 
 			long_diffo = "".join(elements)
@@ -83,7 +83,7 @@ def create_prop(request, articleid):
 
 			# Saving initial record in voting table.
 			
-			q = Vote(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=r, current_status="current")
+			q = Vote_Counter(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=r, current_status="current")
 			q.save()
 		
 		return render_to_response('prop_confirm.html', {'diff': diffhtml, 'time_object': time_object, 
