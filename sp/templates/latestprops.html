@@ -20,7 +20,8 @@ Here is a list of the latest props:
 			</br>
 			Status: <b>{{ prop.currency }}</b>
 			</br>
-			Expiry Time: <b>{{ prop.new_field }}</b>
+			{# Expiry Time: <b>{{ prop.new_field|time:"H:i" }}</b> #}
+			Expiry Time: <b>{{ prop.expiry_time|timeuntil }}</b>
 			</br>
 			</br>
 			{% autoescape off %}

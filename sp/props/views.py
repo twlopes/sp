@@ -154,7 +154,6 @@ def view_latest_props(request):
 		'latestprops.html', 
 		{
 		'prop':prop,
-		# 'time_left':time_left
 		}, 
 		context_instance=RequestContext(request)
 		)
