@@ -136,21 +136,25 @@ def view_single_prop(request, propid):
 	longdiff = Props.objects.get(id=propid).long_diff
 	return render_to_response('singleprop.html', {'prop':prop, 'propid':propid, 'longdiff':longdiff}, context_instance=RequestContext(request))
 
+def time_convert(d):
+	now=datetime.utcnow()
+	raw_expiry=d
+	expiry=raw_expiry.replace(tzinfo=None)
+	amount=expiry-now
+	return amount
+
 def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
 	
-
-	# time_left = prop.expiry_time - datetime.now() + timedelta(minutes=hours_number)
-
-	# now=datetime.utcnow()
-	# raw_expiry=prop.expiry_time
-	# expiry=raw_expiry.replace(tzinfo=None)
-	# amount=expiry-now
+	for row in prop:
+		d=row.expiry_time
+		row.new_field = time_convert(d)
 
 	return render_to_response(
 		'latestprops.html', 
 		{
 		'prop':prop,
+		# 'time_left':time_left
 		}, 
 		context_instance=RequestContext(request)
 		)
