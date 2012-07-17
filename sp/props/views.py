@@ -6,9 +6,11 @@ from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
+
 from datetime import datetime, timedelta
+from sp.props.models import Props
+
 from django.contrib.auth.decorators import login_required
-from sp.voting.models import Vote_Counter
 from sp.tasks import expiry
 from bs4 import BeautifulSoup
 import re
@@ -26,6 +28,7 @@ def create_prop(request, articleid):
 		first = MicroCons.objects.get(id__contains=articleid)
 		data = first.articlecontent
 		hours_number = first.prop_hours
+		r = first.majority
 		formatted = data.encode("utf8")
 
 		form = PropForm(request.POST)
@@ -63,31 +66,29 @@ def create_prop(request, articleid):
 
 			# Saving diff results to database.
 			
-			p = Props(microcons_id=articleid, author=u, expiry_time=time_object, current_status="current", maindiff=diff, 
-				long_diff=long_diffo, patch=patchdata, htmldiff=diffhtml)
-			
-			p.save()
-			next = p.id
+			p = Props(
+				microcons_id=articleid, 
+				author=u,  
+				maindiff=diff,
+				short_diff="",
+				medium_diff="",
+				long_diff=long_diffo, 
+				patch=patchdata, 
+				htmldiff=diffhtml, 
+				expiry_time=time_object,
+				currency="current",
+				vote_for=0, 
+				vote_against=0, 
+				percentage_for=0, 
+				threshold=r, 
+				pass_status="No Votes")
 
+			p.save()
+
+			next=p.id
 			# Programming the expiry of the prop.
 			
 			expiry.apply_async(args=[next], eta=time_object)
-
-			# Getting prop details so that vote entry can be created.
-			
-			x = Props.objects.filter(id=next).values()
-			data = x[0]
-			z = data['id']
-			
-			# Getting constitution voting threshold so that vote entry can be created.
-			
-			q = MicroCons.objects.get(id__contains=articleid)
-			r = q.majority
-
-			# Saving initial record in voting table.
-			
-			q = Vote_Counter(prop_id=z, vote_for=0, vote_against=0, percentage_for=0, threshold=r, current_status="current")
-			q.save()
 		
 		return render_to_response('prop_confirm.html', {'diff': diffhtml, 'time_object': time_object, 
 			'hours_number': hours_number, 'micro_cons': r}, context_instance=RequestContext(request))
@@ -105,7 +106,14 @@ def create_prop(request, articleid):
 		populate = MicroCons.objects.get(id=articleid)
 		form = PropForm(initial={'article': first})
 
-	return render_to_response('editarticle.html', {'form': form, 'thesis': thesis}, context_instance=RequestContext(request))
+	return render_to_response(
+		'editarticle.html', 
+		{
+		'form': form, 
+		'thesis': thesis
+		}, 
+		context_instance=RequestContext(request)
+		)
 
 def view_article_props(request, articleid):
 	htmldiff = Props.objects.filter(microcons_id__contains=articleid)
@@ -113,7 +121,15 @@ def view_article_props(request, articleid):
 		prop = Props.objects.get(id=articleid)
 	except Props.DoesNotExist:
 		prop = None
-	return render_to_response('articleprops.html', {'articleid': articleid, 'displaydiff': htmldiff, 'prop':prop}, context_instance=RequestContext(request))
+	return render_to_response(
+		'articleprops.html', 
+		{
+		'articleid': articleid, 
+		'displaydiff': htmldiff, 
+		'prop':prop
+		}, 
+		context_instance=RequestContext(request)
+		)
 
 def view_single_prop(request, propid):
 	prop = Props.objects.get(id=propid)
@@ -123,7 +139,21 @@ def view_single_prop(request, propid):
 def view_latest_props(request):
 	prop = (Props.objects.order_by('createtime').reverse())[:5]
 	
-	return render_to_response('latestprops.html', {'prop':prop}, context_instance=RequestContext(request))
+
+	# time_left = prop.expiry_time - datetime.now() + timedelta(minutes=hours_number)
+
+	# now=datetime.utcnow()
+	# raw_expiry=prop.expiry_time
+	# expiry=raw_expiry.replace(tzinfo=None)
+	# amount=expiry-now
+
+	return render_to_response(
+		'latestprops.html', 
+		{
+		'prop':prop,
+		}, 
+		context_instance=RequestContext(request)
+		)
  
 def prop_accept(request, propid):
 	

@@ -16,7 +16,11 @@ Here is a list of the latest props:
 		<td>
 			Prop created by <b>{{ prop.author }}</b>
 			</br>
-			Status: {{ prop.current_status }}
+			Pass/Fail: <b>{{ prop.pass_status }}</b>
+			</br>
+			Status: <b>{{ prop.currency }}</b>
+			</br>
+			{# Time Remaining: <b>{{ time_left }}</b> #}
 			</br>
 			</br>
 			{% autoescape off %}

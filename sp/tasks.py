@@ -1,7 +1,6 @@
 from celery.task import task
 from datetime import datetime, timedelta
 from celery.task import task
-from sp.voting.models import Vote_Counter
 from sp.props.models import Props
 from django.db import models
 from django.forms import ModelForm
@@ -14,7 +13,7 @@ def expiry(z):
 	
 	# Save into object instance.
 	
-	record.current_status = "expired"
+	record.currency = "expired"
 	
 	# Send back into database.
 
@@ -26,5 +25,5 @@ def expiry(z):
 @task
 def time_expiry(next, hours):
 	record = Props.objects.get(id=next)
-	record.current_status = "expired"
+	record.currency = "expired"
 	record.save()

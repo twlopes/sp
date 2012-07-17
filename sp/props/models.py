@@ -8,14 +8,19 @@ class Props(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)
 	microcons_id = models.IntegerField()
 	author = models.TextField()
-	expiry_time = models.DateTimeField()
-	current_status = models.TextField()
 	maindiff = models.TextField()
 	short_diff = models.TextField()
 	medium_diff = models.TextField()
 	long_diff = models.TextField()
 	patch = PickledObjectField()
 	htmldiff = models.TextField()
+	expiry_time = models.DateTimeField()
+	currency = models.TextField()
+	vote_for = models.IntegerField()
+	vote_against = models.IntegerField()
+	percentage_for = models.IntegerField()
+	threshold = models.IntegerField()
+	pass_status = models.TextField()
 	
 	def __unicode__(self):
 		return self.htmldiff
