@@ -3,6 +3,7 @@ FEATURE LIST
 
 - Create home page feed for user.
 - On expiry, prop get's patched, user gets assigned permission or no.  When assigned permission, follow automatically switched on.
+- If vote expired, it doesn't go through.
 - Prop summary.
 - Permissions for voting work - buttons need to not appear if you don't have permission.
 - user can only vote once on prop.
