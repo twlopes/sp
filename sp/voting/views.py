@@ -5,7 +5,7 @@ from django.template import loader, RequestContext
 from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
-from sp.voting.models import Vote_Counter
+from sp.voting.models import Vote_Counter, Vote_Records
 from sp.props.diff_match_patch import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
@@ -26,6 +26,8 @@ def up_vote(request, propid):
 # Get the variables together to check permission.	
 	
 	u = request.user
+	u_id=User.objects.get(username=u).id
+
 	m = Props.objects.filter(id=propid).values()
 	o = m[0]
 	f = o['microcons_id']
@@ -59,16 +61,19 @@ def up_vote(request, propid):
 
 			# Pull out instance to update.
 
-			record = Vote_Counter.objects.get(prop_id=propid)
+			counter = Vote_Counter.objects.get(prop_id=propid)
 
 			# Save into object instance.
 
-			record.vote_for = new_upvote
-			record.percentage_for = percentage_up
-			record.current_status = blah
+			counter.vote_for = new_upvote
+			counter.percentage_for = percentage_up
+			counter.current_status = blah
 
 			# Send back into database.
 
+			counter.save()
+
+			record = Vote_Records(user_id=u_id, target_prop=propid, for_against="for")
 			record.save()
 
 			return render_to_response('thanks_for_vote.html', context_instance=RequestContext(request))
@@ -85,6 +90,9 @@ def up_vote(request, propid):
 def down_vote(request, propid):
 
 	u = request.user
+	u_id=User.objects.get(username=u).id
+
+
 	m = Props.objects.filter(id=propid).values()
 	o = m[0]
 	f = o['microcons_id']
@@ -114,19 +122,23 @@ def down_vote(request, propid):
 
 			blah = status(percentage_up, threshold)
 
-			# Pull out instance to update.
+			# Pull out counter instance to update.
 
-			record = Vote_Counter.objects.get(prop_id=propid)
+			counter = Vote_Counter.objects.get(prop_id=propid)
 
 			# Save into object instance.
 
-			record.vote_against = new_down_vote
-			record.percentage_for = percentage_up
-			record.current_status = blah
+			counter.vote_against = new_down_vote
+			counter.percentage_for = percentage_up
+			counter.current_status = blah
 
 			# Send back into database.
 
+			counter.save()
+
+			record = Vote_Records(user_id=u_id, target_prop=propid, for_against="against")
 			record.save()
+
 
 			return render_to_response('thanks_for_vote.html', context_instance=RequestContext(request))
 
