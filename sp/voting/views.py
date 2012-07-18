@@ -48,7 +48,7 @@ def up_vote(request, propid):
 
 			new_up_vote = upvote + 1
 			total_votes = 	new_up_vote + downvote
-			percentage_up = float(upvote) / float(total_votes) * 100
+			percentage_up = float(new_up_vote) / float(total_votes) * 100
 
 			pass_or_fail = status(percentage_up, threshold)
 

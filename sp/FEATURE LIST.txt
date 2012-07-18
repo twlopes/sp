@@ -1,8 +1,8 @@
 FEATURE LIST
 
-- Delete the bug where you can't divide by 0.
 - Create home page feed for user.
 - On expiry, prop get's patched, user gets assigned permission or no.  When assigned permission, follow automatically switched on.
+- Start working on two users in different browsers so that I can be sure that the permissions are working.
 - If vote expired, it doesn't go through.
 - Prop summary.
 - Permissions for voting work - buttons need to not appear if you don't have permission.

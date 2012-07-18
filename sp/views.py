@@ -44,9 +44,9 @@ def home(request):
 
 	return  render_to_response('home.html', {'person': person, 'props': props,}, context_instance=RequestContext(request))
 
-@task
-def addo(x, y):
-	return x + y
+# @task
+# def addo(x, y):
+# 	return x + y
 
 # from celery.task import task
 # >>> from sp.views import addo
