@@ -6,6 +6,7 @@ from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
+from sp.diff_script import long_diff_html
 
 from datetime import datetime, timedelta
 from sp.props.models import Props
@@ -51,18 +52,18 @@ def create_prop(request, articleid):
 			# Processing diff into different lengths.
 
 			
-			diffhtml_long = dfunction.diff_prettyHtml_long(diff)
+			diff_html_long = long_diff_html(diff)
 
-			soup=BeautifulSoup(diffhtml_long)
-			results=soup.find_all(['ins', 'del'])
-			elements = []
-			for i in results:
-				prev_sib = i.find_previous_sibling()
-				next_sib = i.find_next_sibling()
-				content= "...%r%r%r..." % (prev_sib, i, next_sib)
-				elements.append(content)
+			# soup=BeautifulSoup(diffhtml_long)
+			# results=soup.find_all(['ins', 'del'])
+			# elements = []
+			# for i in results:
+			# 	prev_sib = i.find_previous_sibling()
+			# 	next_sib = i.find_next_sibling()
+			# 	content= "...%r%r%r..." % (prev_sib, i, next_sib)
+			# 	elements.append(content)
 
-			long_diffo = "".join(elements)
+			# long_diffo = "".join(elements)
 
 			# Saving diff results to database.
 			
@@ -72,7 +73,7 @@ def create_prop(request, articleid):
 				maindiff=diff,
 				short_diff="",
 				medium_diff="",
-				long_diff=long_diffo, 
+				long_diff=diff_html_long, 
 				patch=patchdata, 
 				htmldiff=diffhtml, 
 				expiry_time=time_object,

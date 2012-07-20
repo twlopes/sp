@@ -1,8 +1,11 @@
 FEATURE LIST
 
+- Do algorithm for summarising props.  First summarise and then turn it into the html wversion.
+- Do word based diffs:  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
+- Split article  table out into another table like the follower one.
 - Create home page feed for user.
-- On expiry, prop get's patched, user gets assigned permission or no.  When assigned permission, follow automatically switched on.
 - Start working on two users in different browsers so that I can be sure that the permissions are working.
+- User gets assigned permission or no.  When assigned permission, follow automatically switched on.
 - If vote expired, it doesn't go through.
 - Prop summary.
 - Permissions for voting work - buttons need to not appear if you don't have permission.
@@ -21,3 +24,13 @@ LAUNCH
 - need to figure out how to keep settings credentials safe in django when putting it up to Github.
 - Create great content.
 - Create burner accounts.
+
+ALGORITHM TO SUMMARISE DIFF
+
+1.  Sort out what is worth showing.
+	+ go through and pick the top three diffs.
+	+ then put them into their correct order.
+	+ then 
+2.  cut down what's worth showing (in terms of non diff) so it fits into a reasonable amount of characters.
+
+3.  
