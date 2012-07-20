@@ -1,7 +1,10 @@
 def long_diff_html(diff):
 	
+	# Give each diff section a number.
+
 	enumerated=enumerate(diff)
 
+	 
 	listo=[]
 	for i in enumerated:
 	    listo.append(i)
@@ -99,9 +102,6 @@ def long_diff_html(diff):
 # 	four_list = [new_list[i:i+4] for i in range(0,len(new_list),4)]
 	
 
-
-
-
 # top_3 = [filtered_change[1] for filtered_change in sorted(sorted(enumerate(input), key=lambda change: len(change[1][1]), reverse=True)[:3])]
 
 # # Need to arrange by type. [1, -1, 0]
@@ -117,9 +117,6 @@ def long_diff_html(diff):
 # # ...     if k == -1:
 # # ...         print k
 # # ...         print v
-
-
-
 
 # _______________
 
@@ -163,16 +160,7 @@ def long_diff_html(diff):
 # ...     if i[1]==1:
 # ...         plus_one_list.append(i)
 		  
-
-
-
-
-
 # ______________________
-
-
-
-
 
 #results_sorted = sorted(dictionary.keys(), key = lambda x: dictionary[x][0], reverse = True)
 
