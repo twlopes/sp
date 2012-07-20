@@ -3,11 +3,14 @@ def long_diff_html(diff):
 	# Give each diff section a number.
 
 	enumerated=enumerate(diff)
-
 	 
 	listo=[]
 	for i in enumerated:
 	    listo.append(i)
+
+	# Give each diff section a number.
+
+	# formatted = listo.encode("utf8")
 
 	dictionary = dict((x, y) for x, y in listo)
 

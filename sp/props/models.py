@@ -8,7 +8,7 @@ class Props(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)
 	microcons_id = models.IntegerField()
 	author = models.TextField()
-	maindiff = models.TextField()
+	maindiff = PickledObjectField()
 	short_diff = models.TextField()
 	medium_diff = models.TextField()
 	long_diff = models.TextField()
