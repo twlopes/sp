@@ -176,7 +176,6 @@ INSTALLED_APPS = (
     'follow',
     'bootstrap_toolkit',
     'crispy_forms',
-    'dj-database-url',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
