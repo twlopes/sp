@@ -4,6 +4,10 @@ os.getcwd()
 import djcelery
 djcelery.setup_loader()
 
+# Code for heroku database
+
+import dj_database_url
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 
 # Bootstrap toolkit integration
 SETTINGS_ROOT = os.path.dirname(__file__)
