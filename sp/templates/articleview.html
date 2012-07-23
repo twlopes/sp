@@ -48,7 +48,7 @@
 
 		{% autoescape off %}
 		<p>
-		{{ displaydiff|truncatewords:10 }}
+		{{ displaydiff|truncatewords:80 }}
 		{% endautoescape %}
 		<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
 		<p>
