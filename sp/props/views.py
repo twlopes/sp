@@ -8,7 +8,7 @@ from sp.props.models import Props
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
-from sp.diff_script import long_diff_html
+from sp.props.diff_script import long_diff_html
 
 from datetime import datetime, timedelta
 from sp.props.models import Props
