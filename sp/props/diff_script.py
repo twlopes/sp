@@ -77,29 +77,17 @@ def long_diff_html(diff):
 
 		back_front.append(sub)
 
-
-	# back_front=[]
-
-	# for g in keys:
-	
-	# 	for p in four_list:
-
-	# 		if p[1]==i-1 or i or i+1:
-	# 			a=p
-			
-	# 		sub=[]
-
-	# 		sub.append(a)
-
-	# # back_front.append(sub)
-		
-
-	html_l=[]
-
-	
 	for r in back_front:
 		for j in r:
+			if isinstance(j, int):
+				r.remove(j)
+	
+	html_l=[]
+	
+	for r in back_front:
 
+		for j in r:
+			
 			if j[0]==0:
 				html_l.append("<span>%s</span>" % j[2])
 			elif j[0]==-1:
