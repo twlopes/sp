@@ -10,8 +10,6 @@ def long_diff_html(diff):
 
 	# Give each diff section a number.
 
-	# formatted = listo.encode("utf8")
-
 	dictionary = dict((x, y) for x, y in listo)
 
 	new_list=[]
@@ -20,66 +18,89 @@ def long_diff_html(diff):
 		for i in val:
 			new_list.append(key)
 			new_list.append(i)
-
+	
 	four_list = [new_list[i:i+4] for i in range(0,len(new_list),4)]
+
+	for i in four_list:
+		i.remove(i[2])
+
+	# Get list in format operator, sequence number and string.
 
 	plus_minus_list=[]
 	zero_list=[]
 
 	for i in four_list:
-		if i[1]== 0:
-			zero_list.append(i)
-		else:
+		if i[0]== -1:
 			plus_minus_list.append(i)
+	
+	for i in four_list:
+		if i[0]== 1:
+			plus_minus_list.append(i)
+
+	for i in four_list:
+		if i[0]== 0:
+			zero_list.append(i)
 
 	# finally orders the changes according to the length of the third part of each list.
 
-	sorted_list = sorted(plus_minus_list, key=lambda change: len(change[3]), reverse=True)
+	sorted_list = sorted(plus_minus_list, key=lambda change: len(change[2]), reverse=True)
+	
 	cut_list = sorted_list[:3]
 
 	keys=[]
 	for i in cut_list:
-		a=i[0]
+		a=i[1]
 		keys.append(a)
+
+	# order keys
+
+	keys.sort()
+
+	# DONE TO HERE
 
 	back_front=[]
 
 	for i in keys:
 		for p in four_list:
-			if p[0]==i-1:
+			if p[1]==i-1:
 				a=p
-			if p[0]==i:
+			if p[1]==i:
 				b=p
-			if p[0]==i+1:
+			if p[1]==i+1:
 				c=p
 		sub=[]
+
 		
-		if a==c:
-			pass
-		else:
-			sub.append(a)
+		sub.append(a)
 		sub.append(b)
 		sub.append(c)
-		
+
 		back_front.append(sub)
 
+	for r in back_front:
+		for j in r:
+			if isinstance(j, int):
+				r.remove(j)
+	
 	html_l=[]
+	
+	for r in back_front:
 
-	for i in back_front:
-		for j in i:
-			if j[1]==0:
-				html_l.append(j[3])
-			elif j[1]==-1:
-				html_l.append("<ins style=\"background:#e6ffe6;\">%s</ins>" % j[3])
-			elif j[1]==1:
-				html_l.append("<del style=\"background:#ffe6e6;\">%s</del>" % j[3])
-			else:
-				pass
-		html_l.append("</br></br></br></br>")
+		for j in r:
+			
+			if j[0]==0:
+				html_l.append("<span>%s</span>" % j[2])
+			elif j[0]==-1:
+				html_l.append("<del style=\"background:#ffe6e6;\">%s</del>" % j[2])
+			elif j[0]==1:
+				html_l.append("<ins style=\"background:#e6ffe6;\">%s</ins>" % j[2])
+		
+		html_l.append("</br></br></br>")
 
 	html= "".join(html_l)
+	join_again="".join(html)
 
-	return html
+	return join_again
 
 
 
