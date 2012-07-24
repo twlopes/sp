@@ -83,7 +83,7 @@ def long_diff_html(diff):
 			if isinstance(j, int):
 				r.remove(j)
 
-	new_back_front=[[[b_n, b_p, b_s[-20:]], change, [a_n, a_p, a_s[:20]]] for (b_n, b_p, b_s), change, (a_n, a_p, a_s) in back_front]
+	new_back_front=[[[b_n, b_p, b_s[-30:]], change, [a_n, a_p, a_s[:30]]] for (b_n, b_p, b_s), change, (a_n, a_p, a_s) in back_front]
 
 	# still need to fix bug for when I delete final and first stuff in article.
 
@@ -100,12 +100,14 @@ def long_diff_html(diff):
 			elif j[0]==1:
 				html_l.append("<ins style=\"background:#e6ffe6;\">%s</ins>" % j[2])
 		
-		html_l.append("</br></br></br>")
+		html_l.append("... [...]  ...")
 
 	html= "".join(html_l)
 	join_again="".join(html)
-
-	return join_again
+	knocked_end=join_again.strip()[:-11]
+	f="..."
+	final = f+knocked_end
+	return final
 
 # x = p[2]
 # e = x.rstrip()[25 : ]
