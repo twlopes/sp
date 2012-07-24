@@ -63,21 +63,22 @@ def long_diff_html(diff):
 	for i in keys:
 		for p in four_list:
 			if p[1]==i-1:
-				o = p[2]
-				f = o.rstrip()[-25 : ]
-				p[2]=f
 				a=p
 			if p[1]==i:
 				b=p
 			if p[1]==i+1:
-				x = p[2]
-				e = x.rstrip()[25 : ]
-				p[2]=e
 				c=p
 		sub=[]
 
 	# There is a bug here somewhere that does not truncate the end of the final markup for some reason.
+		# if p[1]==i-1:
+		# 	x=a[2]
+		# 	e = x.rstrip()[-5:]
+		# 	a[2]=e
+
 		
+
+
 		sub.append(a)
 		sub.append(b)
 		sub.append(c)
@@ -90,7 +91,9 @@ def long_diff_html(diff):
 		for j in r:
 			if isinstance(j, int):
 				r.remove(j)
-	
+
+
+
 	# still need to fix bug for when I delete final stuff in article - like above, where there is a stray number in the list.	
 
 	html_l=[]
@@ -98,7 +101,7 @@ def long_diff_html(diff):
 	for r in back_front:
 
 		for j in r:
-			
+		
 			if j[0]==0:
 				html_l.append("<span>%s</span>" % j[2])
 			elif j[0]==-1:
@@ -113,8 +116,18 @@ def long_diff_html(diff):
 
 	return join_again
 
+# x = p[2]
+# e = x.rstrip()[25 : ]
+# p[2]=e
 
 
+# for i in back_front:
+	
+	# 	for h in i:
+	# 		if h==i[0]:
+	# 			r=h[2]
+	# 			e=r.rstrip()[25 : ]
+	# 			h[2]=e
 
 # def list_function(a, b):
 	
