@@ -70,15 +70,6 @@ def long_diff_html(diff):
 				c=p
 		sub=[]
 
-	# There is a bug here somewhere that does not truncate the end of the final markup for some reason.
-		# if p[1]==i-1:
-		# 	x=a[2]
-		# 	e = x.rstrip()[-5:]
-		# 	a[2]=e
-
-		
-
-
 		sub.append(a)
 		sub.append(b)
 		sub.append(c)
@@ -92,13 +83,13 @@ def long_diff_html(diff):
 			if isinstance(j, int):
 				r.remove(j)
 
+	new_back_front=[[[b_n, b_p, b_s[-20:]], change, [a_n, a_p, a_s[:20]]] for (b_n, b_p, b_s), change, (a_n, a_p, a_s) in back_front]
 
-
-	# still need to fix bug for when I delete final stuff in article - like above, where there is a stray number in the list.	
+	# still need to fix bug for when I delete final and first stuff in article.
 
 	html_l=[]
 	
-	for r in back_front:
+	for r in new_back_front:
 
 		for j in r:
 		
@@ -148,7 +139,15 @@ def long_diff_html(diff):
 # 			new_list.append(i)
 
 # 	four_list = [new_list[i:i+4] for i in range(0,len(new_list),4)]
-	
+
+	# There is a bug here somewhere that does not truncate the end of the final markup for some reason.
+		# if p[1]==i-1:
+		# 	x=a[2]
+		# 	e = x.rstrip()[-5:]
+		# 	a[2]=e
+
+		
+
 
 # top_3 = [filtered_change[1] for filtered_change in sorted(sorted(enumerate(input), key=lambda change: len(change[1][1]), reverse=True)[:3])]
 
