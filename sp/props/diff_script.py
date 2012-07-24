@@ -85,7 +85,7 @@ def long_diff_html(diff):
 
 	new_back_front=[[[b_n, b_p, b_s[-30:]], change, [a_n, a_p, a_s[:30]]] for (b_n, b_p, b_s), change, (a_n, a_p, a_s) in back_front]
 
-	# still need to fix bug for when I delete final and first stuff in article.
+	# still need to fix bug for when I delete final and first stuff in article.  Also where unicode gets chopped.
 
 	html_l=[]
 	
