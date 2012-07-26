@@ -18,14 +18,14 @@ def view_article(request, articleid):
 	
 	# articlecontent_data = data.encode("utf8")
 
-	prop_data = Props.objects.filter(microcons_id=articleid)
+	prop_data = Props.objects.filter(microcons_id=articleid)[:5]
 	# .filter(microcons_id__contains=articleid)
 	
 	return render_to_response(
 		'article_view.html', 
 		{
 		'article': article, 
-		'articlecontent_data': data, 
+		'data': data, 
 		'articleid': articleid,
 		'prop_data': prop_data,
 		}, 
