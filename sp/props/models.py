@@ -22,8 +22,8 @@ class Props(models.Model):
 	threshold = models.IntegerField()
 	pass_status = models.TextField()
 	
-	def __unicode__(self):
-		return self.htmldiff
+	# def __unicode__(self):
+	# 	return self.htmldiff
 	
 	class Meta:
 		verbose_name_plural = "Propositions"

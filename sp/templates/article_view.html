@@ -43,18 +43,21 @@
 
 	<div class="span4"> {# prop column #}
 		
-		{% if prop_data.long_diff %}
-    	{% for prop_data.long_diff in prop_data.long_diff %}
+		{% if prop_data %}
+
+    	{% for prop_data in prop_data %}
 
 		{% autoescape off %}
 		<p>
 		{{ prop_data.long_diff }}
+
 		{% endautoescape %}
+
 		<a href = /prop/{{ prop_data.id }}>View Single Prop</a>
 		<p>
 		{% endfor %}
 
-			{% else %}
+		{% else %}
 		<p>No propositions are available for this article.</p>
 		{% endif %}
 	
