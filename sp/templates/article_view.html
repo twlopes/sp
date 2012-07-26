@@ -43,14 +43,14 @@
 
 	<div class="span4"> {# prop column #}
 		
-		{% if displaydiff %}
-    	{% for displaydiff in displaydiff %}
+		{% if prop_data.long_diff %}
+    	{% for prop_data.long_diff in prop_data.long_diff %}
 
 		{% autoescape off %}
 		<p>
-		{{ displaydiff|truncatewords:80 }}
+		{{ prop_data.long_diff }}
 		{% endautoescape %}
-		<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
+		<a href = /prop/{{ prop_data.id }}>View Single Prop</a>
 		<p>
 		{% endfor %}
 

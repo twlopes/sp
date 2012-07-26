@@ -2,7 +2,9 @@ FEATURE LIST
 
 
 - Do algorithm for summarising props.  First summarise and then turn it into the html version.
+- For the algorithm that summarises diffs, do an else statment for each of the if statements.
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
+- find out what iter means.
 - Split article  table out into another table like the follower one.
 - Look into Gunicorn.
 - Create home page feed for user.

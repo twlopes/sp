@@ -16,7 +16,7 @@ def view_article(request, articleid):
 	data = MicroCons.objects.get(id__contains=articleid).articlecontent
 	articlecontent_data = data.encode("utf8")
 
-	htmldiff = Props.objects.filter(microcons_id__contains=articleid)
+	prop_data = Props.objects.get(microcons_id__contains=articleid)
 	
 	try:
 		prop = Props.objects.get(id=articleid)
@@ -24,13 +24,12 @@ def view_article(request, articleid):
 		prop = None
 
 	return render_to_response(
-		'articleview.html', 
+		'article_view.html', 
 		{
 		'article': article, 
 		'articlecontent_data': articlecontent_data, 
-		'articleid': articleid, 
-		'displaydiff': htmldiff, 
-		'prop':prop
+		'articleid': articleid,
+		'prop_data':prop_data
 		}, 
 		context_instance=RequestContext(request)
 		)
