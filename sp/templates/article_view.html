@@ -44,7 +44,6 @@
 	<h3>[Insert Sharing options.  Top bar?]</h3>
 
 </br>
-</br>
 
 	Director of the idea is <b>{{ article.director }}</b>.</br>
 	Microconstitution has a threshold of <b>{{ article.majority }}%</b>.
@@ -64,7 +63,7 @@
 	{{ prop_data.long_diff }}
 
 	{% endautoescape %}
-	<a href = /prop/{{ prop_data.id }}>(See more)</a>
+	</br><a href = /prop/{{ prop_data.id }}>(See more)</a>
 	<p>
 
 	{% endfor %}
