@@ -1,6 +1,6 @@
 FEATURE LIST
 
-
+- Look into changing hte standard bootstrap container.  Need more space and seperatino for the aritlce.  See quora for example.
 - Do algorithm for summarising props.  First summarise and then turn it into the html version.
 - For the algorithm that summarises diffs, do an else statment for each of the if statements.
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
