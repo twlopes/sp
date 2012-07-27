@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<div class="span12"> {# thesis, button and props #}
+<div class ="span12">
 <div class="row">
+
+
+<div class ="span8">
+
+		<div class ="span8"> {# container for thesis and button #}
 	
-	<div class ="span8"> {# container for thesis and button #}
-	<div class="row">
-	
-		<div class ="span7"> {# container for thesis and button #}
-		<div class="row">
 
 			<div class="span6"> {# thesis only #}
 				<h3> {{ article.thesis }}</h3>
@@ -20,58 +20,57 @@
 				</br>
 				<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
 			</div> {# end button #}
-
-		</div>
-		<hr>
-		</div>
-
-	</div> {# end thesis, button#}
-	</div>
-
-	<div class ="span8"> {# start article content #}
-	<div class="row">
-
-		<div class ="span7">
-		
-		{{ article.articlecontent|linebreaks }}
-		
-		</div>
-
-	</div> {# end article content #}
-	</div>
-
-	<div class="span4"> {# prop column #}
-	<div class="row">
-		
-		Director of the idea is <b>{{ article.director }}</b>.</br>
-		Microconstitution has a threshold of <b>{{ article.majority }}%</b>.
-
-	</br>
-	</br>
 		
 
-		{% if prop_data %}
 
-    	{% for prop_data in prop_data %}
+			<div class ="span7">
+			
+			<hr>
 
-		{% autoescape off %}
-		<p>
-		{{ prop_data.long_diff }}
+			{{ article.articlecontent|linebreaks }}
+			
+			</div> {# span 7 #}
 
-		{% endautoescape %}
-		<a href = /prop/{{ prop_data.id }}>View Single Prop</a>
-		
-		{% endfor %}
 
-		{% else %}
-		<p>No propositions are available for this article.</p>
-		{% endif %}
+		</div> {# end span 8 #}
+
+
+</div> {# end span8 #}
+
+
+<div class="span4"> {# prop column #}
+{# <div class="row"> #}
 	
-	</div>
-	</div>
+	Director of the idea is <b>{{ article.director }}</b>.</br>
+	Microconstitution has a threshold of <b>{{ article.majority }}%</b>.
+
+</br>
+</br>
+	
+
+	{% if prop_data %}
+
+	{% for prop_data in prop_data %}
+
+	{% autoescape off %}
+	<p>
+	{{ prop_data.long_diff }}
+
+	{% endautoescape %}
+	<a href = /prop/{{ prop_data.id }}>View Single Prop</a>
+	
+	{% endfor %}
+
+	{% else %}
+	<p>No propositions are available for this article.</p>
+	{% endif %}
 
 </div>
+{# </div> #}
+
 </div>
+</div>  {# end span 12 #}
+
 
 
 {% endblock %}
