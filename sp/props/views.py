@@ -110,7 +110,7 @@ def create_prop(request, articleid):
 		form = PropForm(initial={'article': first})
 
 	return render_to_response(
-		'editarticle.html', 
+		'edit_article.html', 
 		{
 		'form': form, 
 		'thesis': thesis
@@ -154,7 +154,7 @@ def view_latest_props(request):
 		row.new_field = time_convert(d)
 
 	return render_to_response(
-		'latestprops.html', 
+		'latest_props.html', 
 		{
 		'prop':prop,
 		}, 
