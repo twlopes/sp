@@ -1,14 +1,14 @@
 FEATURE LIST
 
-- Look into changing hte standard bootstrap container.  Need more space and seperatino for the aritlce.  See quora for example.
-- Do algorithm for summarising props.  First summarise and then turn it into the html version.
+- Decide on how to do the home page feed and do it.
+- Create home page feed for user.
+
 - For the algorithm that summarises diffs, do an else statment for each of the if statements.
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
-- find out what iter means.
-- Split article  table out into another table like the follower one.
+- Look into changing the standard bootstrap container.  Need more space and seperatino for the aritlce.  See quora for example.
+
 - Look into Gunicorn.
-- Create home page feed for user.
-- Start working on two users in different browsers so that I can be sure that the permissions are working.
+- Start working on two users in different browsers so that I can be sure that the permissions and following are working.
 - User gets assigned permission or no.  When assigned permission, follow automatically switched on.
 - If vote expired, it doesn't go through.
 - Prop summary.
