@@ -40,8 +40,13 @@ def expiry(z):
 		new_version_id = previous_version_id + 1
 
 		patched_content = dfunction.patch_apply(patch, content)
+		
+		# Gets the new content and leaves out the result.
+
 		formatted_content = patched_content[0]
 		
+		# creating the new record to be saved.
+
 		n = Articles(
 			cons_id = article_number,
 			version_id=new_version_id,
@@ -55,8 +60,6 @@ def expiry(z):
 
 	else:
 		pass
-
-
 
 @task
 def time_expiry(next, hours):
