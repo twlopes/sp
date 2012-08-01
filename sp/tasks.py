@@ -6,6 +6,7 @@ from sp.microcons.models import MicroCons
 from django.db import models
 from django.forms import ModelForm
 from sp.props.diff_match_patch import *
+from sp.article.models import Articles
 
 # function to save to database
 
@@ -30,17 +31,29 @@ def expiry(z):
 	if record.pass_status == "pass":
 		dfunction = diff_match_patch()
 		patch = record.patch
-		content = article.articlecontent
-		result = dfunction.patch_apply(patch, content)
 		
-		article.articlecontent = result[0]
 
-		article.save()
+		qset = (Articles.objects.filter(cons_id=article_number).order_by('version_id').reverse())[:1]
+		q = qset[0]
+		content = q.articlecontent
+		previous_version_id = q.version_id
+		new_version_id = previous_version_id + 1
+
+		patched_content = dfunction.patch_apply(patch, content)
+		
+		n = Articles(
+			cons_id = article_number,
+			version_id=new_version_id,
+			articlecontent=patched_content,
+			)
+
+		# Ensures a new row, not an amendment to old row.
+
+		n.pk = None
+		n.save()
 
 	else:
 		pass
-
-
 
 
 

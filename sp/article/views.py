@@ -15,7 +15,8 @@ def view_article(request, articleid):
 	
 	article = MicroCons.objects.get(id__contains=articleid)
 
-	data = Articles.objects.get(cons_id=articleid).articlecontent
+	data_one = (Articles.objects.filter(cons_id=articleid).order_by('version_id').reverse())[:1]
+	data=data_one[0]
 	
 	# articlecontent_data = data.encode("utf8")
 
