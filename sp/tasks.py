@@ -29,9 +29,9 @@ def expiry(z):
 	article = MicroCons.objects.get(id=article_number)
 
 	if record.pass_status == "pass":
+		
 		dfunction = diff_match_patch()
 		patch = record.patch
-		
 
 		qset = (Articles.objects.filter(cons_id=article_number).order_by('version_id').reverse())[:1]
 		q = qset[0]
@@ -40,11 +40,12 @@ def expiry(z):
 		new_version_id = previous_version_id + 1
 
 		patched_content = dfunction.patch_apply(patch, content)
+		formatted_content = patched_content[0]
 		
 		n = Articles(
 			cons_id = article_number,
 			version_id=new_version_id,
-			articlecontent=patched_content,
+			articlecontent=formatted_content,
 			)
 
 		# Ensures a new row, not an amendment to old row.
