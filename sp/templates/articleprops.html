@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Propositions Relating to Article</h1>
+
+<p>	
+{% if displaydiff %}
+    {% for displaydiff in displaydiff %}
+
+<b>Prop</b>
+
+	{% autoescape off %}
+	<p>
+	{{ displaydiff }}
+	{% endautoescape %}
+	</br>
+	</br>
+	<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
+	<p>
+	{% endfor %}
+
+		{% else %}
+	<p>No propositions are available for this article.</p>
+{% endif %}
+
+{% endblock %}

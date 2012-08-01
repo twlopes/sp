@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Proposition</h2>
+</br>
+<p>	
+{% if prop %}
+
+	{% autoescape off %}
+	<p>
+	{{ prop.htmldiff }}
+	<p>
+	{% endautoescape %}
+	</br>
+	<a class="btn btn-success" href="/prop/{{ propid }}/up/">Upvote</a>
+	<a class="btn btn-danger" href="/prop/{{ propid }}/down/">Downvote</a>
+	</br>
+	</br>
+	{% else %}
+	    <p>No article is available.</p>
+{% endif %}
+
+<h2>Diff Summary</h2>
+	</br>
+{% autoescape off %}
+{{ longdiff }}
+{% endautoescape %}
+	</br>
+	</br>
+
+{% endblock %}
