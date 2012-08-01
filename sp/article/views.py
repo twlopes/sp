@@ -23,7 +23,7 @@ def view_article(request, articleid):
 	# .filter(microcons_id__contains=articleid)
 	
 	return render_to_response(
-		'articleview.html', 
+		'article_view.html', 
 		{
 		'article': article, 
 		'data': data, 

@@ -125,7 +125,7 @@ def view_article_props(request, articleid):
 def view_single_prop(request, propid):
 	prop = Props.objects.get(id=propid)
 	longdiff = Props.objects.get(id=propid).long_diff
-	return render_to_response('singleprop.html', {'prop':prop, 'propid':propid, 'longdiff':longdiff}, context_instance=RequestContext(request))
+	return render_to_response('single_prop.html', {'prop':prop, 'propid':propid, 'longdiff':longdiff}, context_instance=RequestContext(request))
 
 def time_convert(d):
 	now=datetime.utcnow()
