@@ -24,21 +24,36 @@ def micro_cons(request):
 		if cons_form.is_valid() and article_form.is_valid():
 			
 			cons = cons_form.save(commit=False)
+			article = article_form.save(commit=False)
 			cons.director = request.user
 			
+			# saving constitution model form
+
 			cons_form.save()
+			
+			# Grab id and director name for cons just created
+
+			saved_cons_id = cons.id
+			saved_cons_director = cons.director
+			
+			# Save constitution id to the article model form.
+
+			article.cons_id = saved_cons_id
+			article.version_id = 1
 			article_form.save()
 
-			# next = cons.id
-			# nexto = cons.director
-			
-			# constitution = MicroCons.objects.get(id=next)
-			# user = User.objects.get(username=nexto)
+			# Grab relevant objects
 
-			# assign('change_microcons', user, constitution)
+			constitution = MicroCons.objects.get(id=saved_cons_id)
+			user = User.objects.get(username=saved_cons_director)
 
+			# Give user permission for constitution
 
-			# utils.follow(user, constitution)
+			assign('change_microcons', user, constitution)
+
+			# Make user follow changes to constitution
+
+			utils.follow(user, constitution)
 			
 			return HttpResponseRedirect('/done')
 	else:

@@ -21,6 +21,7 @@ class ArticleModelForm(forms.ModelForm):
 	
 	class Meta:
 		model = Articles
+		exclude = ('cons_id', 'version_id')
 
 	articlecontent = forms.CharField(
 			label = 'Article Content',
