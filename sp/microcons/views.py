@@ -20,14 +20,12 @@ def micro_cons(request):
 	if request.method == 'POST':
 		
 		cons_form = MicroConsModelForm(request.POST)
-		# cons_form = MicroConsModelForm(request.POST, prefix = "cons_form")
 		article_form = ArticleModelForm(request.POST)
-		# article_form = ArticleModelForm(request.POST, prefix = "article_form")
 		
 		if cons_form.is_valid() and article_form.is_valid():
-			print "all validation passed"
-			# cons = cons_form.save(commit=False)
-			# cons.director = request.user
+			
+			cons = cons_form.save(commit=False)
+			cons.director = request.user
 			
 			cons_form.save()
 			article_form.save()

@@ -11,14 +11,12 @@
 </br>
 
 
-
-
 <form method="post">
     {% csrf_token %}
 	<table>
-		{{ form }}
+		{{ form|as_bootstrap:layout }}
 		{# {{ form|as_bootstrap:layout }} #}
-		{{ article_form }}
+		{{ article_form|as_bootstrap:layout }}
 		{# {{ article_form|as_bootstrap:layout }} #}
 	</table>
 	</br>

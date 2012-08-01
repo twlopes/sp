@@ -29,13 +29,13 @@ class MicroConsModelForm(forms.ModelForm):
 	
 	class Meta:
 		model = MicroCons
-		# exclude = ('director')
+		exclude = ('director')
 
 	thesis = forms.CharField(
 		label = 'Thesis',
 		required = 'True',
 		help_text = "What's your opinion in 130 characters or less.  Make it the kernel of your idea.  Short and sweet.",
-		# widget = forms.Textarea(attrs={'rows':'2'}),
+		widget = forms.Textarea(attrs={'rows':'2'}),
 	)
 
 	majority = forms.CharField(
