@@ -28,9 +28,11 @@ def create_prop(request, articleid):
 		# Creating version to be amended to run diff against.
 		
 		first = MicroCons.objects.get(id__contains=articleid)
-		content = Articles.objects.get(cons_id=articleid)
+		content = (Articles.objects.filter(cons_id=articleid).order_by('version_id').reverse())[:1]
 
-		data = content.articlecontent
+
+		blah = content[0]
+		data = blah.articlecontent
 		hours_number = first.prop_hours
 		r = first.majority
 		formatted = data.encode("utf8")
