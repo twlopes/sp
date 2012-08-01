@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 
 class MicroCons(models.Model):
 	thesis = models.CharField(max_length=100)
-	articlecontent = models.TextField()
 	director = models.ForeignKey(User)
 	majority = models.IntegerField(max_length=3)
 	prop_hours = models.IntegerField(max_length=3)
@@ -39,13 +38,6 @@ class MicroConsModelForm(forms.ModelForm):
 		widget = forms.Textarea(attrs={'rows':'2'}),
 	)
 
-	articlecontent = forms.CharField(
-		label = 'Article Content',
-		required = 'True',
-		widget = forms.Textarea(),
-		help_text = 'Put as much article content in as you like.  This will get people started on your idea.',
-	)
-
 	majority = forms.CharField(
 		label = 'Majority',
 		required = 'True',
@@ -62,18 +54,18 @@ class MicroConsModelForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
+		self.helper.form_tag = False
 		self.helper.form_method = 'post'
 		self.helper.form_class = 'form-horizontal'
 		self.helper.layout=Layout(
     			HTML("""<div class="span 3 offset6"><span class="countdown"></span></div></br>"""),
     			Field('thesis', css_class="message span6 input-xlarge"),
     			HTML("""</br>"""),
-    			Field('articlecontent', css_class="span6"),
     			HTML("""</br>"""),
     			AppendedText('majority', '%'),
     			AppendedText('prop_hours', 'Hours', 'span1'),
 				FormActions(
-					Submit('save_changes', 'Submit', css_class="btn-primary")
+					# Submit('save_changes', 'Submit', css_class="btn-primary")
 					)			
 			)
 		super(MicroConsModelForm, self).__init__(*args, **kwargs)
