@@ -87,8 +87,10 @@ def create_prop(request, articleid):
 	else:
 		
 		# Put together initial data for the form.
-		
-		first = Articles.objects.get(cons_id=articleid).articlecontent
+		q = (Articles.objects.filter(cons_id=articleid).order_by('version_id').reverse())[:1]
+		data = q[0]
+		first = data.articlecontent
+
 		# initial = first.encode("utf8")
 		thesis = MicroCons.objects.get(id__contains=articleid).thesis
 		
