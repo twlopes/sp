@@ -19,28 +19,29 @@ def micro_cons(request):
 
 	if request.method == 'POST':
 		
-		cons_form = MicroConsModelForm(request.POST, prefix = "cons_form")
-		article_form = ArticleModelForm(request.POST, prefix = "article_form")
+		cons_form = MicroConsModelForm(request.POST)
+		# cons_form = MicroConsModelForm(request.POST, prefix = "cons_form")
+		article_form = ArticleModelForm(request.POST)
+		# article_form = ArticleModelForm(request.POST, prefix = "article_form")
 		
 		if cons_form.is_valid() and article_form.is_valid():
+			print "all validation passed"
+			# cons = cons_form.save(commit=False)
+			# cons.director = request.user
 			
-			cons = cons_form.save(commit=False)
-			cons.director = request.user
-			cons_form.save()	
-			
-
+			cons_form.save()
 			article_form.save()
 
-			next = cons.id
-			nexto = cons.director
+			# next = cons.id
+			# nexto = cons.director
 			
-			constitution = MicroCons.objects.get(id=next)
-			user = User.objects.get(username=nexto)
+			# constitution = MicroCons.objects.get(id=next)
+			# user = User.objects.get(username=nexto)
 
-			assign('change_microcons', user, constitution)
+			# assign('change_microcons', user, constitution)
 
 
-			utils.follow(user, constitution)
+			# utils.follow(user, constitution)
 			
 			return HttpResponseRedirect('/done')
 	else:
