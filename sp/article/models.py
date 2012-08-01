@@ -36,9 +36,10 @@ class ArticleModelForm(forms.ModelForm):
 		self.helper.form_method = 'post'
 		self.helper.form_class = 'form-horizontal'
 		self.helper.layout=Layout(
-    			HTML("""<div class="span 3 offset6"></div></br>"""),
-		# 		FormActions(
-		# 			# Submit('save_changes', 'Submit', css_class="btn-primary")
-		# 			)			
+    			HTML("""<div class="span 3 offset6"></div>"""),
+    			Field('articlecontent', css_class="span6"),
+				FormActions(
+					Submit('save_changes', 'Submit', css_class="btn-primary")
+					)			
 			)
 		super(ArticleModelForm, self).__init__(*args, **kwargs)

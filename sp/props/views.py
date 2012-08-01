@@ -1,10 +1,9 @@
-# coding: utf-8
-
 from django import forms
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, RequestContext
 from sp.props.models import Props
+from sp.article.models import Articles
 from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
@@ -29,7 +28,9 @@ def create_prop(request, articleid):
 		# Creating version to be amended to run diff against.
 		
 		first = MicroCons.objects.get(id__contains=articleid)
-		data = first.articlecontent
+		content = Articles.objects.get(cons_id=articleid)
+
+		data = content.articlecontent
 		hours_number = first.prop_hours
 		r = first.majority
 		formatted = data.encode("utf8")
@@ -55,19 +56,6 @@ def create_prop(request, articleid):
 
 			
 			diff_html_long = long_diff_html(diff)
-
-			# soup=BeautifulSoup(diffhtml_long)
-			# results=soup.find_all(['ins', 'del'])
-			# elements = []
-			# for i in results:
-			# 	prev_sib = i.find_previous_sibling()
-			# 	next_sib = i.find_next_sibling()
-			# 	content= "...%r%r%r..." % (prev_sib, i, next_sib)
-			# 	elements.append(content)
-
-			# long_diffo = "".join(elements)
-
-			# Saving diff results to database.
 			
 			p = Props(
 				microcons_id=articleid, 
@@ -100,7 +88,7 @@ def create_prop(request, articleid):
 		
 		# Put together initial data for the form.
 		
-		first = MicroCons.objects.get(id__contains=articleid).articlecontent
+		first = Articles.objects.get(cons_id=articleid).articlecontent
 		# initial = first.encode("utf8")
 		thesis = MicroCons.objects.get(id__contains=articleid).thesis
 		

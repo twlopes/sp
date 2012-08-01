@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="span12"> {# thesis, button and props #}
+<div class="row">
+
+	<div class ="span8"> {# container for thesis and button #}
+	<div class="row">
+
+		<div class ="span7"> {# container for thesis and button #}
+		<div class="row">
+
+			<div class="span6"> {# thesis only #}
+				<h3> {{ article.thesis }}</h3>
+			</div>		{# end thesis #}
+
+
+			<div class="span1"> {# button only #}
+				</br>
+				<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
+			</div> {# end button #}
+
+		</div>
+		<hr>
+		</div>
+
+	</div> {# end thesis, button#}
+
+	</div>
+
+	<div class ="span8"> {# start article content #}
+	<div class="row">
+
+		<div class ="span7">
+
+		{{ data|linebreaks }}
+
+		</div>
+
+	</div> {# end article content #}
+	</div>
+
+	<div class="span4"> {# prop column #}
+
+		{% if displaydiff %}
+    	{% for displaydiff in displaydiff %}
+
+		{% autoescape off %}
+		<p>
+		{{ displaydiff|truncatewords:10 }}
+		{% endautoescape %}
+		<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
+		<p>
+		{% endfor %}
+
+			{% else %}
+		<p>No propositions are available for this article.</p>
+		{% endif %}
+
+	</div>
+
+</div>
+</div>
+
+
+{% endblock %}

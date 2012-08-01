@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from sp.microcons.models import MicroCons, MicroConsModelForm
 from sp.props.models import Props
+from sp.article.models import Articles
 from django.http import HttpResponse, HttpResponseRedirect
 
 def latest_articles(request):
@@ -14,7 +15,7 @@ def view_article(request, articleid):
 	
 	article = MicroCons.objects.get(id__contains=articleid)
 
-	data = MicroCons.objects.get(id__contains=articleid).articlecontent
+	data = Articles.objects.get(cons_id=articleid).articlecontent
 	
 	# articlecontent_data = data.encode("utf8")
 
@@ -22,7 +23,7 @@ def view_article(request, articleid):
 	# .filter(microcons_id__contains=articleid)
 	
 	return render_to_response(
-		'article_view.html', 
+		'articleview.html', 
 		{
 		'article': article, 
 		'data': data, 
