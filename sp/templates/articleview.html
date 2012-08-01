@@ -2,16 +2,16 @@
 
 {% block content %}
 
-<div class="span12"> {# thesis, button and props #}
+<div class ="span12">
 <div class="row">
 
-	<div class ="span8"> {# container for thesis and button #}
-	<div class="row">
 
-		<div class ="span7"> {# container for thesis and button #}
-		<div class="row">
+<div class ="span8">
 
-			<div class="span6"> {# thesis only #}
+		<div class ="span8"> {# container for thesis and button #}
+	
+
+			<div class="span5"> {# thesis only #}
 				<h3> {{ article.thesis }}</h3>
 			</div>		{# end thesis #}
 
@@ -20,48 +20,66 @@
 				</br>
 				<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
 			</div> {# end button #}
+		
 
-		</div>
-		<hr>
-		</div>
 
-	</div> {# end thesis, button#}
+			<div class ="span6">
+			
+			<hr>
 
-	</div>
+			{{ data|linebreaks }}
+			
+			</div> {# span 7 #}
 
-	<div class ="span8"> {# start article content #}
-	<div class="row">
 
-		<div class ="span7">
+		</div> {# end span 8 #}
 
-		{{ data|linebreaks }}
 
-		</div>
+</div> {# end span8 #}
 
-	</div> {# end article content #}
-	</div>
 
-	<div class="span4"> {# prop column #}
+<div class="span4"> {# prop column #}
+{# <div class="row"> #}
+	
+	<h3>[Insert Sharing options.  Top bar?]</h3>
 
-		{% if displaydiff %}
-    	{% for displaydiff in displaydiff %}
+</br>
 
-		{% autoescape off %}
-		<p>
-		{{ displaydiff|truncatewords:10 }}
-		{% endautoescape %}
-		<a href = /prop/{{ displaydiff.id }}>View Single Prop</a>
-		<p>
-		{% endfor %}
+	Director of the idea is <b>{{ article.director }}</b>.</br>
+	Microconstitution has a threshold of <b>{{ article.majority }}%</b>.
 
-			{% else %}
-		<p>No propositions are available for this article.</p>
-		{% endif %}
+</br>
+</br>
+	
 
-	</div>
+	{% if prop_data %}
+
+	{% for prop_data in prop_data %}
+
+	<b>{{ prop_data.percentage_for }}%</b> for the prop by <b>{{ prop_data.author }}</b> with <b>[*] hours </b> to vote.
+
+	{% autoescape off %}
+	<p>
+	{{ prop_data.long_diff }}
+
+	{% endautoescape %}
+	</br><a href = /prop/{{ prop_data.id }}>(See more)</a>
+	<p>
+
+	{% endfor %}
+
+	{% else %}
+	<p>No propositions are available for this article.</p>
+	{% endif %}
+
+
 
 </div>
+{# </div> #}
+
 </div>
+</div>  {# end span 12 #}
+
 
 
 {% endblock %}
