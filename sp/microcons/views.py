@@ -4,7 +4,6 @@ from sp.microcons.models import MicroConsModelForm, MicroCons
 from sp.article.models import ArticleModelForm
 from django.contrib.auth.decorators import login_required
 from django.template import loader, RequestContext
-
 from guardian.shortcuts import assign
 from django.contrib.auth.models import User, Permission, Group
 from follow import utils

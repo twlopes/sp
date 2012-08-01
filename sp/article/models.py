@@ -2,9 +2,9 @@ from django.db import models
 from django import forms
 from django.forms import ModelForm, Textarea, DateField, CharField
 from django import forms
-# from crispy_forms.helper import FormHelper
-# from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
-# from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset
+from crispy_forms.helper import FormHelper
+from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset
 
 
 # Create your models here.
@@ -25,19 +25,19 @@ class ArticleModelForm(forms.ModelForm):
 	articlecontent = forms.CharField(
 			label = 'Article Content',
 			required = 'True',
-			# widget = forms.Textarea(),
+			widget = forms.Textarea(),
 			help_text = 'Put as much article content in as you like.  This will get people started on your idea.',
 		)
 
-	# def __init__(self, *args, **kwargs):
-	# 	self.helper = FormHelper()
-	# 	self.helper.form_tag = False
-	# 	self.helper.form_method = 'post'
-	# 	self.helper.form_class = 'form-horizontal'
-	# 	self.helper.layout=Layout(
- #    			# HTML("""<div class="span 3 offset6"><span class="countdown"></span></div></br>"""),
-	# 			FormActions(
-	# 				# Submit('save_changes', 'Submit', css_class="btn-primary")
-	# 				)			
-	# 		)
-	# 	super(ArticleModelForm, self).__init__(*args, **kwargs)
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		self.helper.form_tag = False
+		self.helper.form_method = 'post'
+		self.helper.form_class = 'form-horizontal'
+		self.helper.layout=Layout(
+    			HTML("""<div class="span 3 offset6"></div></br>"""),
+		# 		FormActions(
+		# 			# Submit('save_changes', 'Submit', css_class="btn-primary")
+		# 			)			
+			)
+		super(ArticleModelForm, self).__init__(*args, **kwargs)
