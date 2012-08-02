@@ -1,0 +1,65 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            e9:b3:71:03:a7:f8:c7:20
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=AU, ST=NSW, L=Sydney, O='.', OU='.', CN=pat/emailAddress=patrickjamesbrown@gmail.com
+        Validity
+            Not Before: Aug  2 05:33:55 2012 GMT
+            Not After : Sep  1 05:33:55 2012 GMT
+        Subject: C=AU, ST=NSW, L=Sydney, O='.', OU='.', CN=pat/emailAddress=patrickjamesbrown@gmail.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:b7:bc:1e:03:56:fa:91:be:a2:6d:96:41:df:cc:
+                    1d:47:da:9c:9f:64:32:85:fe:ab:9c:b6:5b:f0:01:
+                    b8:cf:a4:8e:9a:71:a7:be:ce:ad:c9:11:0b:74:a8:
+                    22:35:cd:90:d1:50:e9:69:b1:a0:a7:f3:ce:2b:d0:
+                    cf:e4:ba:bc:90:fc:63:d5:c5:36:bc:b2:df:5f:a7:
+                    1a:fd:ee:e0:62:5d:5b:bf:d1:5f:1e:f5:71:3a:0e:
+                    bf:7c:a4:8c:1c:dd:ad:7c:c6:23:57:f3:64:b9:2f:
+                    db:82:9d:5f:3a:76:eb:7e:0e:ca:ad:3b:24:f2:9d:
+                    0c:db:e9:2b:81:74:14:f7:53
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                60:A9:50:52:74:64:D7:22:C7:E3:6A:E2:A3:FE:4A:2A:0E:F2:A6:0A
+            X509v3 Authority Key Identifier: 
+                keyid:60:A9:50:52:74:64:D7:22:C7:E3:6A:E2:A3:FE:4A:2A:0E:F2:A6:0A
+                DirName:/C=AU/ST=NSW/L=Sydney/O='.'/OU='.'/CN=pat/emailAddress=patrickjamesbrown@gmail.com
+                serial:E9:B3:71:03:A7:F8:C7:20
+
+            X509v3 Basic Constraints: 
+                CA:TRUE
+    Signature Algorithm: sha1WithRSAEncryption
+        10:d6:c4:2e:a3:c4:1e:28:6b:ab:04:98:e9:6f:ea:7a:4b:c7:
+        e1:16:2f:b4:75:d6:0e:cf:bb:68:cf:b4:a3:e7:e4:78:28:dc:
+        14:d8:d4:c6:44:30:7a:93:2a:4e:c9:30:d4:93:29:46:46:2d:
+        7a:ac:db:65:a3:fb:bf:8c:14:fb:55:a2:d3:9a:f9:9e:0a:0d:
+        e9:14:3e:97:70:5a:29:10:81:5f:19:33:a9:7c:a5:9e:6a:2b:
+        4f:e9:59:c4:16:07:02:24:9b:9b:88:7a:06:37:2b:95:65:86:
+        2a:21:5d:53:8d:56:6f:77:1f:00:7f:8e:6a:35:84:92:0e:d0:
+        58:7c
+-----BEGIN CERTIFICATE-----
+MIIDbzCCAtigAwIBAgIJAOmzcQOn+McgMA0GCSqGSIb3DQEBBQUAMIGCMQswCQYD
+VQQGEwJBVTEMMAoGA1UECBMDTlNXMQ8wDQYDVQQHEwZTeWRuZXkxDDAKBgNVBAoT
+AycuJzEMMAoGA1UECxMDJy4nMQwwCgYDVQQDEwNwYXQxKjAoBgkqhkiG9w0BCQEW
+G3BhdHJpY2tqYW1lc2Jyb3duQGdtYWlsLmNvbTAeFw0xMjA4MDIwNTMzNTVaFw0x
+MjA5MDEwNTMzNTVaMIGCMQswCQYDVQQGEwJBVTEMMAoGA1UECBMDTlNXMQ8wDQYD
+VQQHEwZTeWRuZXkxDDAKBgNVBAoTAycuJzEMMAoGA1UECxMDJy4nMQwwCgYDVQQD
+EwNwYXQxKjAoBgkqhkiG9w0BCQEWG3BhdHJpY2tqYW1lc2Jyb3duQGdtYWlsLmNv
+bTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAt7weA1b6kb6ibZZB38wdR9qc
+n2Qyhf6rnLZb8AG4z6SOmnGnvs6tyRELdKgiNc2Q0VDpabGgp/POK9DP5Lq8kPxj
+1cU2vLLfX6ca/e7gYl1bv9FfHvVxOg6/fKSMHN2tfMYjV/NkuS/bgp1fOnbrfg7K
+rTsk8p0M2+krgXQU91MCAwEAAaOB6jCB5zAdBgNVHQ4EFgQUYKlQUnRk1yLH42ri
+o/5KKg7ypgowgbcGA1UdIwSBrzCBrIAUYKlQUnRk1yLH42rio/5KKg7ypgqhgYik
+gYUwgYIxCzAJBgNVBAYTAkFVMQwwCgYDVQQIEwNOU1cxDzANBgNVBAcTBlN5ZG5l
+eTEMMAoGA1UEChMDJy4nMQwwCgYDVQQLEwMnLicxDDAKBgNVBAMTA3BhdDEqMCgG
+CSqGSIb3DQEJARYbcGF0cmlja2phbWVzYnJvd25AZ21haWwuY29tggkA6bNxA6f4
+xyAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQAQ1sQuo8QeKGurBJjp
+b+p6S8fhFi+0ddYOz7toz7Sj5+R4KNwU2NTGRDB6kypOyTDUkylGRi16rNtlo/u/
+jBT7VaLTmvmeCg3pFD6XcFopEIFfGTOpfKWeaitP6VnEFgcCJJubiHoGNyuVZYYq
+IV1TjVZvdx8Af45qNYSSDtBYfA==
+-----END CERTIFICATE-----
