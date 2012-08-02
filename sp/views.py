@@ -42,4 +42,11 @@ def home(request):
 	# chain together lists of lists (which are results)
 	props=list(itertools.chain.from_iterable(elements))
 
-	return  render_to_response('home.html', {'person': person, 'props': props,}, context_instance=RequestContext(request))
+	return  render_to_response(
+		'home.html', 
+		{
+		'person': person, 
+		'props': props,}
+		, 
+		context_instance=RequestContext(request)
+		)

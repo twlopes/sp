@@ -6,7 +6,10 @@ FEATURE LIST
 - For the algorithm that summarises diffs, do an else statment for each of the if statements.
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
 - Look into changing the standard bootstrap container.  Need more space and seperatino for the aritlce.  See quora for example.
-
+- Create functionality to select versions.
+- Relate articles to props with a new field for prop id in terms of changes made for new versions.
+-Make a time line for the article. So and so changed constitution then. Prop proposed then. Like github.
+-Make micro constitutions changeable by director. Or give them the option.
 - Look into Gunicorn.
 - Start working on two users in different browsers so that I can be sure that the permissions and following are working.
 - User gets assigned permission or no.  When assigned permission, follow automatically switched on.
