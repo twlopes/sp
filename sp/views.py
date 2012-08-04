@@ -36,7 +36,7 @@ def home(request):
 
 	props = Props.objects.filter(microcons_id__in=cons_list).order_by('createtime').reverse()
 	articles = MicroCons.objects.filter(id__in=cons_list).order_by('createtime').reverse()
-
+	
 	return  render_to_response(
 		'home.html', 
 		{
