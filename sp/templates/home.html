@@ -16,7 +16,8 @@
 					    	{% for articles in articles %}
 								
 								{% if props.microcons_id = articles.id  %}
-								{{ articles.thesis }}</br>
+								<a href="/latest/{{ articles.id }}"> {{ articles.thesis }}</a>
+								</br>
 								{% endif %}
 
 							{% endfor %}
