@@ -13,19 +13,31 @@
 					    	
 					    	{% for props in props %}
 
-					    	{% for articles in articles %}
+					    		{% for articles in articles %}
 								
-								{% if props.microcons_id = articles.id  %}
-								<p><b><a href="/articles/{{ articles.id }}"> {{ articles.thesis }}</a></b></p>
-								
-								{% endif %}
+									{% if props.microcons_id = articles.id  %}
+									<p><b><a href="/articles/{{ articles.id }}"> {{ articles.thesis }}</a></b></p>
+									{% endif %}
 
-							{% endfor %}
+								{% endfor %}
+
+							<class id="more"><table class="table table-bordered">
+						        <thead>
+						          <tr>
+						            <th><a href="/props/{{ props.id }}">Prop</a> by <a href="">{{ props.author }}</a></th>
+						            <th>Total Votes: [*]</th>
+						            <th>{{ props.pass_status }}: {{ props.percentage_for }}% / {{ props.threshold }}%</th>
+						            <th>[21 hours left]</th>
+						          </tr>
+						        </thead>
+					      	</table></class>
+
 
 					        {% autoescape off %}
 					        {{ props.long_diff }}
 					        {% endautoescape %}
-					        <b><a href="/props/{{ props.id }}"><span>   </span>(more)</a></b>
+
+					        <b><a href="/props/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
 
 					        <hr>
 							{% endfor %}
@@ -41,3 +53,5 @@
 
 
 {% endblock %}
+
+Prop by user1

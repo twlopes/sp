@@ -1,9 +1,9 @@
 FEATURE LIST
 
-- Decide on how to do the home page feed and do it.
+- Do the time delta calculations and tack them on for time remaining.
 - Create home page feed for user.
 
-- Fix the thing.
+
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
 - Look into changing the standard bootstrap container.  Need more space and seperatino for the aritlce.  See quora for example.
 - Create functionality to select versions.
