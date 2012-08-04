@@ -1073,9 +1073,9 @@ class diff_match_patch:
       text = (data.replace("&", "&amp;").replace("<", "&lt;")
                   .replace(">", "&gt;").replace("\n", "&para;<br>"))
       if op == self.DIFF_INSERT:
-        html.append("<ins style=\"background:#e6ffe6;\">%s</ins>" % text)
+        html.append("<span style=\"background:#e6ffe6;\">%s</span>" % text)
       elif op == self.DIFF_DELETE:
-        html.append("<del style=\"background:#ffe6e6;\">%s</del>" % text)
+        html.append("<span style=\"background:#ffe6e6;\">%s</span>" % text)
       elif op == self.DIFF_EQUAL:
         html.append("<span>%s</span>" % text)
     return "".join(html)

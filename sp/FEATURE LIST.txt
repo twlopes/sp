@@ -3,7 +3,7 @@ FEATURE LIST
 - Decide on how to do the home page feed and do it.
 - Create home page feed for user.
 
-- For the algorithm that summarises diffs, do an else statment for each of the if statements.
+- Fix the thing.
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
 - Look into changing the standard bootstrap container.  Need more space and seperatino for the aritlce.  See quora for example.
 - Create functionality to select versions.

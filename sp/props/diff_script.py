@@ -56,18 +56,28 @@ def long_diff_html(diff):
 
 	keys.sort()
 
-	# DONE TO HERE
+	# Sort based on insertion, deletion, or unchanged.
 
 	back_front=[]
 
 	for i in keys:
 		for p in four_list:
+			
 			if p[1]==i-1:
 				a=p
+			else:
+				pass
+
 			if p[1]==i:
 				b=p
+			else:
+				pass
+
 			if p[1]==i+1:
 				c=p
+			else:
+				pass
+
 		sub=[]
 
 		sub.append(a)
@@ -83,8 +93,9 @@ def long_diff_html(diff):
 			if isinstance(j, int):
 				r.remove(j)
 
-	new_back_front=[[[b_n, b_p, b_s[-30:]], change, [a_n, a_p, a_s[:30]]] for (b_n, b_p, b_s), change, (a_n, a_p, a_s) in back_front]
+	new_back_front=[[[b_n, b_p, b_s[-60:]], change, [a_n, a_p, a_s[:60]]] for (b_n, b_p, b_s), change, (a_n, a_p, a_s) in back_front]
 
+	print new_back_front
 	# still need to fix bug for when I delete final and first stuff in article.  Also where unicode gets chopped.
 
 	html_l=[]
@@ -96,17 +107,18 @@ def long_diff_html(diff):
 			if j[0]==0:
 				html_l.append("<span>%s</span>" % j[2])
 			elif j[0]==-1:
-				html_l.append("<del style=\"background:#ffe6e6;\">%s</del>" % j[2])
+				html_l.append("<span style=\"background:#ffe6e6;\">%s</span>" % j[2])
 			elif j[0]==1:
-				html_l.append("<ins style=\"background:#e6ffe6;\">%s</ins>" % j[2])
+				html_l.append("<span style=\"background:#e6ffe6;\">%s</span>" % j[2])
 		
-		html_l.append("... [...]  ...")
+		html_l.append("... </p>  ...")
 
 	html= "".join(html_l)
 	join_again="".join(html)
 	knocked_end=join_again.strip()[:-11]
 	f="..."
 	final = f+knocked_end
+	print final
 	return final
 
 # x = p[2]
