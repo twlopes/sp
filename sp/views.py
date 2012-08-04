@@ -34,13 +34,16 @@ def home(request):
 	for i in q_set:
 		cons_list.append(i.target_microcons_id)
 
-	articles = MicroCons.objects.filter(id__in=cons_list)
+	props = Props.objects.filter(microcons_id__in=cons_list).order_by('createtime').reverse()
+	articles = MicroCons.objects.filter(id__in=cons_list).order_by('createtime').reverse()
 
 	return  render_to_response(
 		'home.html', 
 		{
 		'person': person, 
-		'articles': articles,}
+		'props': props,
+		'articles': articles,
+		}
 		, 
 		context_instance=RequestContext(request)
 		)
