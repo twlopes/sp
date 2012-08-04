@@ -14,6 +14,7 @@ class MicroCons(models.Model):
 	prop_hours = models.IntegerField(max_length=3)
 	createtime = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	last_prop = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
 		return "%s" % (self.thesis)

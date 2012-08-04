@@ -55,7 +55,6 @@ def create_prop(request, articleid):
 			time_object = datetime.now() + timedelta(minutes=hours_number)
 			
 			# Processing diff into different lengths.
-
 			
 			diff_html_long = long_diff_html(diff)
 			
@@ -79,9 +78,16 @@ def create_prop(request, articleid):
 			p.save()
 
 			next=p.id
+			
 			# Programming the expiry of the prop.
 			
 			expiry.apply_async(args=[next], eta=time_object)
+
+			# Updating latest prop time for microconstitution model
+
+			f = MicroCons.objects.get(id=p.microcons_id)
+			f.last_prop = datetime.now()
+			f.save()	
 		
 		return render_to_response('prop_confirm.html', {'diff': diffhtml, 'time_object': time_object, 
 			'hours_number': hours_number, 'micro_cons': r}, context_instance=RequestContext(request))

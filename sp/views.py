@@ -27,26 +27,20 @@ def home(request):
 	user_number = user_set.id
 
 	# query set to grab articles/microcons that the user is following
-	q_set = Follow.objects.filter(user_id=user_number).values_list('target_microcons_id')
+	q_set = Follow.objects.filter(user_id=user_number)
 	
-	# formatting data
-	result = map(list, q_set)
-	next=sum(result, [])
+	# Grabbing list of constitution ids and then querying using the list
+	cons_list=[]
+	for i in q_set:
+		cons_list.append(i.target_microcons_id)
 
-	# building list of props for constitutions that user is following.
-	elements=[]
-	for i in next:
-		results=Props.objects.filter(microcons_id=i)
-		elements.append(results)
-
-	# chain together lists of lists (which are results)
-	props=list(itertools.chain.from_iterable(elements))
+	articles = MicroCons.objects.filter(id__in=cons_list)
 
 	return  render_to_response(
 		'home.html', 
 		{
 		'person': person, 
-		'props': props,}
+		'articles': articles,}
 		, 
 		context_instance=RequestContext(request)
 		)

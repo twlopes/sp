@@ -7,6 +7,7 @@ from django.template import loader, RequestContext
 from guardian.shortcuts import assign
 from django.contrib.auth.models import User, Permission, Group
 from follow import utils
+from datetime import datetime, timedelta
 
 @login_required
 def micro_cons(request):
