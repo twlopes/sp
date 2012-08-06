@@ -107,11 +107,11 @@ def long_diff_html(diff):
 			if j[0]==0:
 				html_l.append("<span>%s</span>" % j[2])
 			elif j[0]==-1:
-				html_l.append("<span style=\"background:#ffe6e6;\">%s</span>" % j[2])
+				html_l.append("<span style=\"background:#FFC5CE;\">%s</span>" % j[2])
 			elif j[0]==1:
-				html_l.append("<span style=\"background:#e6ffe6;\">%s</span>" % j[2])
+				html_l.append("<span style=\"background:#C5FFC4;\">%s</span>" % j[2])
 		
-		html_l.append("... </p>  ...")
+		html_l.append("... </p>  ....")
 
 	html= "".join(html_l)
 	join_again="".join(html)

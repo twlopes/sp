@@ -6,7 +6,7 @@
 <div class="row">
 
 			<div class="span8">
-				<h3>Feed</h3>
+				<h3>Activity Feed</h3>
 				<hr>
 					
 							{% if props and articles %}
@@ -24,9 +24,9 @@
 							<class id="more"><table class="table table-bordered">
 						        <thead>
 						          <tr>
-						            <th><a href="">{{ props.author }}</a> created a <a href="/prop/{{ props.id }}">prop</a></th>
-						            <th>Total Votes: [*]</th>
-						            <th>{{ props.pass_status }}: {{ props.percentage_for }}% / {{ props.threshold }}%</th>
+						            <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
+						            <th>{{ props.total_votes }} votes</th>
+						            <th>{{ props.pass_status|capfirst }}: {{ props.percentage_for }}% / {{ props.threshold }}%</th>
 						            <th>[21 hours left]</th>
 						          </tr>
 						        </thead>
@@ -37,7 +37,7 @@
 					        {{ props.long_diff }}
 					        {% endautoescape %}
 
-					        <b><a href="/props/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
+					        <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
 
 					        <hr>
 							{% endfor %}
