@@ -71,6 +71,7 @@ def create_prop(request, articleid):
 				currency="current",
 				vote_for=0, 
 				vote_against=0, 
+				total_votes=0,
 				percentage_for=0, 
 				threshold=r, 
 				pass_status="No Votes")

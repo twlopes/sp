@@ -58,22 +58,20 @@ def up_vote(request, propid):
 			qset.percentage_for = percentage_up
 			qset.pass_status = pass_or_fail
 
-
 			# Send back into database.
 
 			qset.save()
 
 			# Save vote records
 
-			record = Vote_Records
-			(
-				user_id=u_id, 
-				target_prop=propid, 
-				total_votes=total_votes, 
-				for_against="for"
-				)
+			record = Vote_Records(user_id=u_id, target_prop=propid, for_against="for")
 			record.save()
 
+			# Pull out new queryset and then save total votes back into it.
+
+			qset_vote = Props.objects.get(id=propid)
+			qset_vote.total_votes = qset.vote_for + qset.vote_against
+			qset_vote.save()
 
 			return render_to_response('thanks_for_vote.html', context_instance=RequestContext(request))
 
@@ -133,6 +131,11 @@ def down_vote(request, propid):
 			record = Vote_Records(user_id=u_id, target_prop=propid, for_against="against")
 			record.save()
 
+			# Pull out new queryset and then save total votes back into it.
+
+			qset_vote = Props.objects.get(id=propid)
+			qset_vote.total_votes = qset.vote_for + qset.vote_against
+			qset_vote.save()
 
 			return render_to_response('thanks_for_vote.html', context_instance=RequestContext(request))
 
