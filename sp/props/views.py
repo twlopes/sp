@@ -74,7 +74,7 @@ def create_prop(request, articleid):
 				total_votes=0,
 				percentage_for=0, 
 				threshold=r, 
-				pass_status="No Votes")
+				pass_status="fail")
 
 			p.save()
 

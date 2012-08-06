@@ -20,7 +20,7 @@ def view_article(request, articleid):
 	
 	# articlecontent_data = data.encode("utf8")
 
-	prop_data = Props.objects.filter(microcons_id=articleid)[:4]
+	prop_data = Props.objects.filter(microcons_id=articleid).order_by('createtime').reverse()[:4]
 	# .filter(microcons_id__contains=articleid)
 	
 	return render_to_response(

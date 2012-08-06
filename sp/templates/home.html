@@ -5,7 +5,7 @@
 <div class="span12"> {# Full row #}
 <div class="row">
 
-			<div class="span8">
+			<div class="span10">
 				<h3>Activity Feed</h3>
 				<hr>
 					
@@ -26,8 +26,8 @@
 						          <tr>
 						            <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
 						            <th>{{ props.total_votes }} votes</th>
-						            <th>{{ props.pass_status|capfirst }}: {{ props.percentage_for }}% / {{ props.threshold }}%</th>
-						            <th>[21 hours left]</th>
+						            <th>{{ props.pass_status|capfirst }}ing: {{ props.percentage_for }}% / {{ props.threshold }}%</th>
+						            <th>{{ props.expiry_time|timeuntil }} Until <a href="/prop/{{ props.id }}">Prop</a> Expires</th>
 						          </tr>
 						        </thead>
 					      	</table></class>
