@@ -18,6 +18,7 @@ class Props(models.Model):
 	currency = models.TextField()
 	vote_for = models.IntegerField()
 	vote_against = models.IntegerField()
+	total_votes = models.IntegerField()
 	percentage_for = models.IntegerField()
 	threshold = models.IntegerField()
 	pass_status = models.TextField()

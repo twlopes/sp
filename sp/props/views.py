@@ -123,7 +123,7 @@ def view_article_props(request, articleid):
 	except Props.DoesNotExist:
 		prop = None
 	return render_to_response(
-		'articleprops.html', 
+		'article_props.html', 
 		{
 		'articleid': articleid, 
 		'displaydiff': htmldiff, 

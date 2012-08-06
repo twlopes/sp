@@ -65,7 +65,13 @@ def up_vote(request, propid):
 
 			# Save vote records
 
-			record = Vote_Records(user_id=u_id, target_prop=propid, for_against="for")
+			record = Vote_Records
+			(
+				user_id=u_id, 
+				target_prop=propid, 
+				total_votes=total_votes, 
+				for_against="for"
+				)
 			record.save()
 
 
