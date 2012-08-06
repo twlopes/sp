@@ -1,10 +1,10 @@
 from django.conf.urls.defaults import *
-from sp.views import insta_links, home
+from sp.views import *
 from django.contrib import admin
 admin.autodiscover()
 from sp.microcons.views import micro_cons, micro_done
 from django.contrib.auth.views import login, logout
-from sp.article.views import latest_articles, view_article
+from sp.article.views import view_article
 from sp.props.views import create_prop, view_article_props, view_latest_props, view_single_prop, prop_accept
 from sp.accounts.views import register, register_done, profile
 from sp.voting.views import up_vote, down_vote
@@ -35,6 +35,7 @@ urlpatterns = patterns('',
 	(r'^propaccept/(\d+)/$', prop_accept),
 	(r'^prop/(\d+)/up/$', up_vote),
 	(r'^prop/(\d+)/down/$', down_vote),
+	(r'^hot/$', hot),
 
     # Examples:
     # url(r'^$', 'sp.views.home', name='home'),

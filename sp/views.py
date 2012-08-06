@@ -9,6 +9,7 @@ from sp.props.models import Props
 from django.contrib.auth.models import User, Permission, Group
 from follow.models import Follow
 from sp.microcons.models import MicroCons
+from sp.article.models import Articles
 import itertools
 
 def insta_links(request):
@@ -36,7 +37,6 @@ def home(request):
 
 	props = Props.objects.filter(microcons_id__in=cons_list).order_by('createtime').reverse()
 	articles = MicroCons.objects.filter(id__in=cons_list).order_by('createtime').reverse()
-
 	
 	return  render_to_response(
 		'home.html', 
@@ -48,3 +48,28 @@ def home(request):
 		, 
 		context_instance=RequestContext(request)
 		)
+
+@login_required
+def latest_articles(request):
+	articles = MicroCons.objects.order_by('createtime').reverse()
+
+	id_list = []
+	for i in articles:
+		id_list.append(i.id)
+
+	print id_list
+	content = (Articles.objects.filter(id__in=id_list).reverse())[:5]
+	print content
+
+	return render_to_response ('latest_articles.html', {'article': articles, 'content': content,}, context_instance=RequestContext(request))
+
+@login_required
+def hot(request):
+
+	return render_to_response ('hot_articles.html', context_instance=RequestContext(request))
+
+
+# def hottest_articles(request):
+# 	article_list = 
+# 	currency = current
+# 	the most microcons_id

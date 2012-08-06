@@ -6,40 +6,87 @@
 <div class="row">
 
     </br>
+
     <div class="span10">
         
         <ul class="nav nav-tabs">
-          
-            <li><a href="/home/"><b>Your Activity</b></a></li>
-          
-          <li><a href="#"><b>Hottest Articles</b></a></li>
-          <li class="active">
-          <a href="/latest/"><b>Newest Articles</b></a>
-          </li>
+          <li><a href="/home/"><b>Your Activity</b></a></li>
+          <li><a href="/hot/"><b>Hot Articles</b></a></li>
+          <li class="active"><a href="/latest/"><b>Newest Articles</b></a></li>
         </ul>    
+        
         </br>
         </br>
 
-        
+
         {% if article %}
+
+
         {% for article in article %}     
+        
         <b><a href="/articles/{{ article.id }}/">{{ article.thesis }}</a></b>
         <br>
         Director: <b>{{ article.director }}</b>
-        </br>
         
         </br>
-        {% endfor %}
+        </br>
         
+        
+
+
+            <class id="more">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
+                    <th>{{ props.total_votes }} votes</th>
+                    <th>{{ props.pass_status|capfirst }}ing with {{ props.percentage_for }}% in favour and a {{ props.threshold }}% threshold</th>
+                    <th>Expires</th>
+
+
+
+                  </tr>
+                </thead>
+            </table>
+            </class>
+
+                {% for content in content %}
+                
+                    {% if content.cons_id = article.id  %}
+                    
+                    {{ content.articlecontent|linebreaks }}
+
+                    {% endif %}
+
+                {% endfor %}
+
+            <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
+
+            <hr>
+            {% endfor %}
+
         {% else %}
-        <p>No articles are available.  Get cracking!</p>
+
+        <p>You don't have any props yet, you're not subscribed to a constitution.  Get cracking!</p>
+            
         {% endif %}
 
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+        
     </div>
-
-
-
-
 
 </div>
 </div>

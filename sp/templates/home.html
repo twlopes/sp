@@ -6,83 +6,74 @@
 <div class="row">
 
 	</br>
+
 	<div class="span10">
 		
 		<ul class="nav nav-tabs">
-		  <li class="active">
-		    <a href="#"><b>Your Activity</b></a>
-		  </li>
-		  <li><a href="#"><b>Hottest Articles</b></a></li>
+		  <li class="active"><a href="#"><b>Your Activity</b></a></li>
+		  <li><a href="/hot/"><b>Hot Articles</b></a></li>
 		  <li><a href="/latest/"><b>Newest Articles</b></a></li>
 		</ul>
 		
 		</br>
 		</br>
 
-		      
+		{% if props and articles %}
+	    	
+	    	{% for props in props %}
 
-				{% if props and articles %}
-			    	
-			    	{% for props in props %}
+	    		{% for articles in articles %}
+				
+					{% if props.microcons_id = articles.id  %}
+					<p><b><a href="/articles/{{ articles.id }}"> {{ articles.thesis }}</a></b></p>
+					{% endif %}
 
-			    		{% for articles in articles %}
-						
-							{% if props.microcons_id = articles.id  %}
-							<p><b><a href="/articles/{{ articles.id }}"> {{ articles.thesis }}</a></b></p>
-							{% endif %}
+				{% endfor %}
 
-						{% endfor %}
+			<class id="more">
+			<table class="table table-bordered">
+		        <thead>
+		          <tr>
+		            <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
+		            <th>{{ props.total_votes }} votes</th>
+		            <th>{{ props.pass_status|capfirst }}ing with {{ props.percentage_for }}% in favour and a {{ props.threshold }}% threshold</th>
+		            <th>
+		            	{% if props.expiry_time|timeuntil = "0 minutes" %}
 
-					<class id="more">
-					<table class="table table-bordered">
-				        <thead>
-				          <tr>
-				            <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
-				            <th>{{ props.total_votes }} votes</th>
-				            <th>{{ props.pass_status|capfirst }}ing with {{ props.percentage_for }}% in favour and a {{ props.threshold }}% threshold</th>
-				            <th>
-				            	{% if props.expiry_time|timeuntil = "0 minutes" %}
+		            	Prop has expired!
 
-				            	Prop has expired!
+		            	{% else %}
+		            	
+		            	{{ props.expiry_time|timeuntil }} 
 
-				            	{% else %}
-				            	
-				            	{{ props.expiry_time|timeuntil }} 
+		            	until <a href="/prop/{{ props.id }}">Prop</a> Expires
+		            </th>
 
-				            	until <a href="/prop/{{ props.id }}">Prop</a> Expires</th>
+		            	{% endif %}
 
-				            	{% endif %}
+		          </tr>
+		        </thead>
+	      	</table>
+	      	</class>
 
-				            	
-				          </tr>
-				        </thead>
-			      	</table>
-			      	</class>
+	        {% autoescape off %}
+	        {{ props.long_diff }}
+	        {% endautoescape %}
 
+	        <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
 
-			        {% autoescape off %}
-			        {{ props.long_diff }}
-			        {% endautoescape %}
+	        <hr>
+			{% endfor %}
 
-			        <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
+		{% else %}
 
-			        <hr>
-					{% endfor %}
-
-				{% else %}
-
-			    <p>You don't have any props yet, you're not subscribed to a constitution.  Get cracking!</p>
-					
-				{% endif %}
+	    <p>You don't have any props yet, you're not subscribed to a constitution.  Get cracking!</p>
+			
+		{% endif %}
 
     </div>
-		    
-	</div>
 
 </div>
 </div>
-
 
 {% endblock %}
-
-Prop by user1

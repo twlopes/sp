@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 
-{% block content %}
-
-
 <div class="span12"> {# Full row #}
 <div class="row">
 
@@ -10,8 +7,10 @@
 	<div class="span10">
 		
 		<ul class="nav nav-tabs">
-		  <li><a href="/home/"><b>Your Activity</b></a></li>
-		  <li class="active"><a href="/hot/"><b>Hot Articles</b></a></li>
+		  <li class="active">
+		    <a href="#"><b>Your Activity</b></a>
+		  </li>
+		  <li><a href="/hot/"><b>Hottest Articles</b></a></li>
 		  <li><a href="/latest/"><b>Newest Articles</b></a></li>
 		</ul>
 		
@@ -24,5 +23,8 @@
 
 </div>
 </div>
+
+
+Working?
 
 {% endblock %}
