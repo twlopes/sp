@@ -44,15 +44,22 @@
 	<h3>[Insert Sharing options.  Top bar?]</h3>
 
 </br>
-
-	Director of the idea is <b>{{ article.director }}</b>.</br>
-	Microconstitution has a threshold of <b>{{ article.majority }}%</b>.
-
+	<b>Micro-Constitution</b></br>
+	<b>{{ article.director|capfirst }}</b> is the director of this article.</br>
+	Props need <b>{{ article.majority }}%</b> approval over <b>{{ article.prop_hours }}</b> hours.</br>
+	
 </br>
+	<b>Article Statistics</b></br>
+	This article has [*] members and [*] followers.</br>
+	[*] props were accepted to build this article.</br>
+	There are [*] props outstanding right now.</br>
+	
+
+
 </br>
 	
 	
-	<b>Latest article that's passed</b>
+	<b>Latest Props Accepted</b>
 </br>
 </br>
 
@@ -73,7 +80,7 @@
 	{% endfor %}
 
 	{% else %}
-	<p>No propositions have passed to contribute to this article.</p>
+	<p>No proposition has been accepted by this article's members.  You should propose one!</p>
 	{% endif %}
 
 
