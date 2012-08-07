@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <div class="span12"> {# Full row #}
 <div class="row">
 
@@ -11,21 +10,34 @@
 		
 		<ul class="nav nav-tabs">
 		  <li><a href="/home/"><b>Your Activity</b></a></li>
-		  <li class="active"><a href="/hot/"><b>Hot Articles</b></a></li>
+		  <li class="active"><a href="/hot/"><b>Hottest Articles</b></a></li>
 		  <li><a href="/latest/"><b>Newest Articles</b></a></li>
 		</ul>
 		
+	
+
+		</br>
+		
+		</br>
+
+		
+
+		
+		{% for articles in articles %}
+		Thesis:{{ articles.thesis }} 
+	</br>
+		Number of articles: {{ articles.num_props }}
 		</br>
 		</br>
-
-
-
+		{% endfor %}
 
     </div>
-		    
-	</div>
+		   
 
 </div>
 </div>
+
+
+
 
 {% endblock %}

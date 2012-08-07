@@ -59,7 +59,8 @@ def create_prop(request, articleid):
 			diff_html_long = long_diff_html(diff)
 			
 			p = Props(
-				microcons_id=articleid, 
+				microcons_id=articleid,
+				cons_id_key=first, 
 				author=u,  
 				maindiff=diff,
 				short_diff="",

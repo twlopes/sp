@@ -7,24 +7,31 @@
 	<div class="span10">
 		
 		<ul class="nav nav-tabs">
-		  <li class="active">
-		    <a href="#"><b>Your Activity</b></a>
-		  </li>
-		  <li><a href="/hot/"><b>Hottest Articles</b></a></li>
+		  <li><a href="/home/"><b>Your Activity</b></a></li>
+		  <li class="active"><a href="/hot/"><b>Hottest Articles</b></a></li>
 		  <li><a href="/latest/"><b>Newest Articles</b></a></li>
 		</ul>
 		
+		Hello
+
 		</br>
+		ello
 		</br>
+
+		Blah
+
+		
+		{% for articles in articles %}
+		{{ articles.id }}
+		{% endfor %}
 
     </div>
-		    
-	</div>
+		   
 
 </div>
 </div>
 
 
-Working?
+
 
 {% endblock %}

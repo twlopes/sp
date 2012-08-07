@@ -69,24 +69,6 @@ def latest_articles(request):
 @login_required
 def hot(request):
 
-	articles = Props.objects.filter(currency='current').annotate(num_props=Count('microcons_id')).distinct('microcons_id')
-
-	# results = Attachments.objects.filter(currency='current').annotate(num_attachments=Count('article_id')).distinct('article_id')
-
-	# second = articles.order_by('num_props')
-	# third = second.distinct('microcons_id')
-	print articles
-	# print second
-	# print third
-
-
-
-	# articles = Props.objects.annotate(num_props=Count(currency='current')).order_by('num_props')
+	articles = MicroCons.objects.filter(props__currency="current").annotate(num_props=Count('props')).order_by('num_props').reverse()
 	
 	return render_to_response ('hot_articles.html', {'articles':articles,}, context_instance=RequestContext(request))
-
-
-# def hottest_articles(request):
-# 	article_list = 
-# 	currency = current
-# 	the most microcons_id
