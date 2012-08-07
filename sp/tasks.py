@@ -28,6 +28,9 @@ def expiry(z):
 	# Get article record
 	article = MicroCons.objects.get(id=article_number)
 
+	# get instance for foreign key relationship
+	instance = MicroCons.objects.get(id=article.id)
+
 	if record.pass_status == "pass":
 		
 		dfunction = diff_match_patch()
@@ -49,6 +52,7 @@ def expiry(z):
 
 		n = Articles(
 			cons_id = article_number,
+			cons_id_key = instance,
 			version_id=new_version_id,
 			articlecontent=formatted_content,
 			)
