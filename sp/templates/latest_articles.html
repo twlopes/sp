@@ -16,6 +16,7 @@
         </ul>    
         
         </br>
+        [Make decisions about what information exactly is required.]</br>
         </br>
 
 
@@ -26,9 +27,6 @@
         
         <b><a href="/articles/{{ article.id }}/">{{ article.thesis }}</a></b>
         <br>
-        Director: <b>{{ article.director }}</b>
-        
-        </br>
         </br>
         
         
@@ -38,13 +36,10 @@
             <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
-                    <th>{{ props.total_votes }} votes</th>
-                    <th>{{ props.pass_status|capfirst }}ing with {{ props.percentage_for }}% in favour and a {{ props.threshold }}% threshold</th>
-                    <th>Expires</th>
-
-
-
+                    <th><a href="">{{ article.director|capfirst }}</a> as Director</th>
+                    <th>[*] outstanding props</th>
+                    <th>[*] Members</th>
+                    <th>[*] versions</th>
                   </tr>
                 </thead>
             </table>
@@ -54,37 +49,22 @@
                 
                     {% if content.cons_id = article.id  %}
                     
-                    {{ content.articlecontent|linebreaks }}
+                    {{ content.articlecontent|linebreaks|truncatewords:60 }}
 
                     {% endif %}
 
                 {% endfor %}
 
-            <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
-
+            <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Article)</class></a></b>
             <hr>
+
             {% endfor %}
 
         {% else %}
 
         <p>You don't have any props yet, you're not subscribed to a constitution.  Get cracking!</p>
             
-        {% endif %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
+        {% endif %}        
         
     </div>
 

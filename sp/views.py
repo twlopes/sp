@@ -11,6 +11,7 @@ from follow.models import Follow
 from sp.microcons.models import MicroCons
 from sp.article.models import Articles
 import itertools
+from django.db.models import Count
 
 def insta_links(request):
 	return render_to_response('insta_links.html', context_instance=RequestContext(request))
@@ -53,20 +54,36 @@ def home(request):
 def latest_articles(request):
 	articles = MicroCons.objects.order_by('createtime').reverse()
 
+	# Build list of article/cons ids
+
 	id_list = []
 	for i in articles:
 		id_list.append(i.id)
 
-	print id_list
-	content = (Articles.objects.filter(id__in=id_list).reverse())[:5]
-	print content
+	# Search on list of article/cons ids
 
+	content = (Articles.objects.filter(id__in=id_list).reverse())[:5]
+	
 	return render_to_response ('latest_articles.html', {'article': articles, 'content': content,}, context_instance=RequestContext(request))
 
 @login_required
 def hot(request):
 
-	return render_to_response ('hot_articles.html', context_instance=RequestContext(request))
+	articles = Props.objects.filter(currency='current').annotate(num_props=Count('microcons_id')).distinct('microcons_id')
+
+	# results = Attachments.objects.filter(currency='current').annotate(num_attachments=Count('article_id')).distinct('article_id')
+
+	# second = articles.order_by('num_props')
+	# third = second.distinct('microcons_id')
+	print articles
+	# print second
+	# print third
+
+
+
+	# articles = Props.objects.annotate(num_props=Count(currency='current')).order_by('num_props')
+	
+	return render_to_response ('hot_articles.html', {'articles':articles,}, context_instance=RequestContext(request))
 
 
 # def hottest_articles(request):
