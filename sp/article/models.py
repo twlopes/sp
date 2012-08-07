@@ -10,6 +10,7 @@ from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, F
 class Articles(models.Model):
 	createtime = models.DateTimeField(auto_now_add=True)
 	cons_id = models.IntegerField(max_length=3)
+	cons_id_key = models.ForeignKey(MicroCons)
 	version_id = models.IntegerField(max_length=3)
 	articlecontent = models.TextField()
 
