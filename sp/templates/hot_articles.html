@@ -40,7 +40,15 @@
             </table>
             </class>
 
-            Text, text, text.
+            {% for content in content  %}
+
+            	{% if  articles.id = content.cons_id_key_id %}
+
+	            {{ content.articlecontent }}
+
+    	        {% endif %}
+
+            {% endfor %}
 
         </br>
     </br>

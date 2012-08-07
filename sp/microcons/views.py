@@ -28,7 +28,7 @@ def micro_cons(request):
 			article = article_form.save(commit=False)
 			cons.director = request.user
 			
-			# saving constitution model form
+			# saving constitution model form			
 
 			cons_form.save()
 			
@@ -41,10 +41,13 @@ def micro_cons(request):
 
 			article.cons_id = saved_cons_id
 			article.version_id = 1
+			article.cons_id_key = MicroCons.objects.get(id=article.cons_id)
 			article_form.save()
 
 			# Grab relevant objects
 
+
+			
 			constitution = MicroCons.objects.get(id=saved_cons_id)
 			user = User.objects.get(username=saved_cons_director)
 

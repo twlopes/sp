@@ -70,5 +70,16 @@ def latest_articles(request):
 def hot(request):
 
 	articles = MicroCons.objects.filter(props__currency="current").annotate(num_props=Count('props')).order_by('num_props').reverse()
-	
-	return render_to_response ('hot_articles.html', {'articles':articles,}, context_instance=RequestContext(request))
+
+	content_list=[]
+
+	for i in articles:
+		content_list.append(i.id)
+
+	print content_list
+
+	content = (Articles.objects.filter(id__in=content_list))
+
+	print content
+
+	return render_to_response ('hot_articles.html', {'articles':articles, 'content':content,}, context_instance=RequestContext(request))

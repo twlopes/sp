@@ -4,6 +4,7 @@ from django.forms import ModelForm, Textarea, DateField, CharField
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from sp.microcons.models import MicroCons
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset
 
 
@@ -21,7 +22,7 @@ class ArticleModelForm(forms.ModelForm):
 	
 	class Meta:
 		model = Articles
-		exclude = ('cons_id', 'version_id')
+		exclude = ('cons_id', 'version_id', 'cons_id_key')
 
 	articlecontent = forms.CharField(
 			label = 'Article Content',
