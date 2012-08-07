@@ -19,16 +19,27 @@
 		</br>
 		
 		</br>
-
-		
-
 		
 		{% for articles in articles %}
-		Thesis:{{ articles.thesis }} 
-	</br>
-		Number of articles: {{ articles.num_props }}
-		</br>
-		</br>
+		
+		<b><a href="/articles/{{ articles.id }}/">{{ articles.thesis }}</a></b>
+        <br>
+        </br>
+        
+        
+            <class id="more">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th><a href="">{{ articles.director|capfirst }}</a> as Director</th>
+                    <th>{{ articles.num_props }} outstanding props</th>
+                    <th>[*] Members</th>
+                    <th>[*] versions</th>
+                  </tr>
+                </thead>
+            </table>
+            </class>
+		
 		{% endfor %}
 
     </div>
