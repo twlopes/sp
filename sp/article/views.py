@@ -17,7 +17,7 @@ def view_article(request, articleid):
 	
 	# articlecontent_data = data.encode("utf8")
 
-	prop_data = Props.objects.filter(microcons_id=articleid).order_by('createtime').reverse()[:4]
+	prop_data = Props.objects.filter(microcons_id=articleid).filter(currency = "expired").filter(pass_status="pass").order_by('createtime').reverse()[:5]
 	# .filter(microcons_id__contains=articleid)
 	
 	return render_to_response(

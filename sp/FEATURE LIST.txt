@@ -1,6 +1,7 @@
 FEATURE LIST
 
 - Work on The article view page.
+- fixup the query so that it shows the acceptance and rejection of props.
 - Go through and setup table relationships throughout.
 - Work patches into the Activity Feed.
 - Need to setup MailChimp.
