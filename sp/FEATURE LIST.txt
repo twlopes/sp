@@ -1,6 +1,16 @@
 FEATURE LIST
 
 - Make sure that it is the latest version of the aritcle being returned in all cases.  Highest version id.
+
+
+>>> x = Articles.objects.filter(cons_id=1).aggregate(Max('version_id'))
+>>> x['version_id__max']
+4
+>>> 
+
+
+
+
 - Lock up parts of the doc.
 
 
