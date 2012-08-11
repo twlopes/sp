@@ -23,6 +23,7 @@ class Props(models.Model):
 	percentage_for = models.IntegerField()
 	threshold = models.IntegerField()
 	pass_status = models.TextField()
+	success = models.TextField()
 	
 	# def __unicode__(self):
 	# 	return self.htmldiff

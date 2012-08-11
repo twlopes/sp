@@ -36,8 +36,9 @@ def home(request):
 	for i in q_set:
 		cons_list.append(i.target_microcons_id)
 
-	props = Props.objects.filter(microcons_id__in=cons_list).order_by('createtime').reverse()
-	articles = MicroCons.objects.filter(id__in=cons_list).order_by('createtime').reverse()
+	# Arranging results.
+	props = Props.objects.filter(microcons_id__in=cons_list).order_by('updated_at').reverse()
+	articles = MicroCons.objects.filter(id__in=cons_list).order_by('updated_at').reverse()
 	
 	return  render_to_response(
 		'home.html', 
@@ -72,10 +73,15 @@ def hot(request):
 	articles = MicroCons.objects.filter(props__currency="current").annotate(num_props=Count('props')).order_by('num_props').reverse()
 
 	content_list=[]
+	
 
 	for i in articles:
 		content_list.append(i.id)
 
-	content = (Articles.objects.filter(id__in=content_list))
+	print content_list
+
+	content = Articles.objects.filter(cons_id_key_id__in=content_list)
+
+	print content
 
 	return render_to_response ('hot_articles.html', {'articles':articles, 'content':content,}, context_instance=RequestContext(request))

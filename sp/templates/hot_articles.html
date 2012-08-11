@@ -42,9 +42,11 @@
 
             {% for content in content  %}
 
-            	{% if  articles.id = content.cons_id_key_id %}
+            	{% if articles.id = content.cons_id %}
 
 	            {{ content.articlecontent }}
+
+	            {% else %}
 
     	        {% endif %}
 

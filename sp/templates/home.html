@@ -37,19 +37,42 @@
 		            <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
 		            <th>{{ props.total_votes }} votes</th>
 		            <th>{{ props.pass_status|capfirst }}ing with {{ props.percentage_for }}% in favour and a {{ props.threshold }}% threshold</th>
-		            <th>
-		            	{% if props.expiry_time|timeuntil = "0 minutes" %}
+		            
 
-		            	Prop has expired!
 
-		            	{% else %}
-		            	
-		            	{{ props.expiry_time|timeuntil }} 
+		            {% if props.success = "undetermined" %}
 
-		            	until <a href="/prop/{{ props.id }}">Prop</a> Expires
-		            </th>
 
-		            	{% endif %}
+
+				            	{% if props.expiry_time|timeuntil = "0 minutes" %}
+
+				            	<th>Less than a minute!</th>
+
+				            	{% else %}
+				            	
+				            	<th>{{ props.expiry_time|timeuntil }}
+
+				            	until <a href="/prop/{{ props.id }}">Prop</a> Expires</th>
+
+				            	{% endif %}
+
+				 
+
+					{% else %}
+
+						{% if props.success = "yes" %}
+
+						<th>Prop passed!</th>
+
+						{% else %}
+
+						<th>Prop Failed!</th>						
+
+						{% endif %}
+
+				    {% endif %}
+
+
 
 		          </tr>
 		        </thead>
@@ -61,6 +84,10 @@
 	        {% endautoescape %}
 
 	        <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
+
+	        {% if props.success = "yes" %}
+	        THIS IS A PATCH REPORT
+	        {% endif %}
 
 	        <hr>
 			{% endfor %}

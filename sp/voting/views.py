@@ -64,7 +64,7 @@ def up_vote(request, propid):
 
 			# Save vote records
 
-			record = Vote_Records(user_id=u_id, target_prop=propid, for_against="for")
+			record = Vote_Records(user_id=u_id, target_prop=propid, prop_id_key_id=propid, for_against="for")
 			record.save()
 
 			# Pull out new queryset and then save total votes back into it.
@@ -128,7 +128,7 @@ def down_vote(request, propid):
 
 			# Save vote records
 
-			record = Vote_Records(user_id=u_id, target_prop=propid, for_against="against")
+			record = Vote_Records(user_id=u_id, target_prop=propid, prop_id_key_id=propid, for_against="against")
 			record.save()
 
 			# Pull out new queryset and then save total votes back into it.

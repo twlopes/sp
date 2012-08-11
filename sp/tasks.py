@@ -62,8 +62,15 @@ def expiry(z):
 		n.pk = None
 		n.save()
 
+		record = Props.objects.get(id=z)
+		record.success = "yes"
+		record.save()
+
 	else:
-		pass
+		
+		record = Props.objects.get(id=z)
+		record.success = "no"
+		record.save()
 
 @task
 def time_expiry(next, hours):
