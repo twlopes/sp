@@ -1,8 +1,9 @@
 FEATURE LIST
 
-- Go through and setup table relationships throughout.
-- Work patches into the Activity Feed.
-- fixup the query so that it shows the acceptance and rejection of props.
+- Make sure that it is the latest version of the aritcle being returned in all cases.  Highest version id.
+- Lock up parts of the doc.
+
+
 - Need to setup MailChimp.
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
 - Look into changing the standard bootstrap container.  Need more space and seperatino for the aritlce.  See quora for example.
