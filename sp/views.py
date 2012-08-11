@@ -74,14 +74,9 @@ def hot(request):
 
 	content_list=[]
 	
-
 	for i in articles:
 		content_list.append(i.id)
 
-	print content_list
-
 	content = Articles.objects.filter(cons_id_key_id__in=content_list)
-
-	print content
 
 	return render_to_response ('hot_articles.html', {'articles':articles, 'content':content,}, context_instance=RequestContext(request))
