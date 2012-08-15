@@ -1,15 +1,6 @@
 FEATURE LIST
 
-- Make sure that it is the latest version of the aritcle being returned in all cases.  Highest version id.
-
-
-
-
-
-
-
 - Lock up parts of the doc.
-
 
 - Need to setup MailChimp.
 - Do word based diffs (for display to users who don't want to see fine changes)?  http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
