@@ -14,7 +14,6 @@ from sp.props.models import Props
 
 from django.contrib.auth.decorators import login_required
 from sp.tasks import expiry
-from bs4 import BeautifulSoup
 import re
 
 @login_required
