@@ -170,6 +170,7 @@ INSTALLED_APPS = (
 	'sp.microcons',
 	'sp.article',
 	'sp.props',
+    'sp.gunicorn',
 	'sp.voting',
 	'django.contrib.admin',
 	'guardian',
