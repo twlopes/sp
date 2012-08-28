@@ -8,7 +8,7 @@ from sp.props.forms import PropForm
 from sp.microcons.models import MicroCons
 from sp.props.diff_match_patch import *
 from sp.props.diff_script import long_diff_html
-
+from sp.props.sandbox import arrange_props
 from datetime import datetime, timedelta
 from sp.props.models import Props
 
@@ -101,7 +101,14 @@ def create_prop(request, articleid):
 		data = q[0]
 		first = data.articlecontent
 
+		# Put together data for text affected by outstanding props.
+
+		x = Props.objects.filter(microcons_id=articleid).filter(success="undetermined")
+		outstanding_changes = arrange_props(articleid)
+		print outstanding_changes
+
 		# initial = first.encode("utf8")
+
 		thesis = MicroCons.objects.get(id__contains=articleid).thesis
 		
 		# Displaying initial data in form.
@@ -112,6 +119,7 @@ def create_prop(request, articleid):
 	return render_to_response(
 		'edit_article.html', 
 		{
+		'outstanding_changes':outstanding_changes,
 		'form': form, 
 		'thesis': thesis
 		}, 
@@ -137,7 +145,12 @@ def view_article_props(request, articleid):
 def view_single_prop(request, propid):
 	prop = Props.objects.get(id=propid)
 	longdiff = Props.objects.get(id=propid).long_diff
-	return render_to_response('single_prop.html', {'prop':prop, 'propid':propid, 'longdiff':longdiff}, context_instance=RequestContext(request))
+	return render_to_response('single_prop.html', 
+		{
+		'prop':prop, 
+		'propid':propid, 
+		'longdiff':longdiff
+		}, context_instance=RequestContext(request))
 
 def time_convert(d):
 	now=datetime.utcnow()
