@@ -35,7 +35,7 @@
   <script type="text/javascript">
   $(document).ready(function() {
       $("#demo1").highlightTextarea({
-          words: ["Lorem ipsum","vulputate"],
+          words: {% autoescape off %}{{ outstanding_changes }}{% endautoescape %},
           color: "#ADF0FF"
       });
   });
@@ -48,6 +48,7 @@
       border-radius:0.5em;
   }
   </style>
+
 
 
 </head>
@@ -128,7 +129,11 @@
 
       {{ outstanding_changes }}
 
-			<textarea id="demo1" cols="50" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at massa non erat convallis vulputate molestie nec dui. Donec auctor blandit nibh quis luctus. Donec tincidunt auctor consequat.</textarea>
+			<textarea id="demo1" cols="50" rows="5">Here is article content for me to setup a conflict with.  This needs to be delicately done.
+
+Here is article content.  And I am not sure how this will work.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at massa non erat convallis vulputate molestie nec dui. Donec auctor blandit nibh quis luctus. Donec tincidunt auctor consequat.</textarea>
 
 			{% if form.errors %}
 					<p style="color: red;">
