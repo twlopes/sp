@@ -23,6 +23,33 @@
 #more {font-size:.8em;}
 </style>
 
+
+  <link type="text/css" href="{{ STATIC_URL }}/src/style.css" rel="stylesheet" />    
+  <link type="text/css" href="{{ STATIC_URL }}/src/highlight.css" rel="stylesheet" />
+  <link type="text/css" href="{{ STATIC_URL }}jquery.highlighttextarea.css" rel="stylesheet" />
+  <link type="text/css" href="{{ STATIC_URL }}jquery/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />  
+  <script type="text/javascript" src="{{ STATIC_URL }}/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/jquery/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/jquery.highlighttextarea.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $("#demo1").highlightTextarea({
+          words: ["Lorem ipsum","vulputate"],
+          color: "#ADF0FF"
+      });
+  });
+  </script>
+  
+  <style type="text/css">
+  #demo5-wrap .highlight {
+      padding:0 3px;
+      margin:0 -3px;
+      border-radius:0.5em;
+  }
+  </style>
+
+
 </head>
 
 <body>

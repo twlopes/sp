@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head>
+  
+  <link type="text/css" href="src/style.css" rel="stylesheet" />	
+  <link type="text/css" href="src/highlight.css" rel="stylesheet" />
+  <link type="text/css" href="jquery.highlighttextarea.css" rel="stylesheet" />
+  <link type="text/css" href="jquery/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
+  <script type="text/javascript" src="jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="jquery.highlighttextarea.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $("#demo1").highlightTextarea({
+          words: ["Lorem ipsum","vulputate"],
+          color: "#ADF0FF"
+      });
+  });
+  </script>
+  
+  <style type="text/css">
+  #demo5-wrap .highlight {
+      padding:0 3px;
+      margin:0 -3px;
+      border-radius:0.5em;
+  }
+  </style>
+
+</head>
+
+<body>
+  <textarea id="demo1" cols="50" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at massa non erat convallis vulputate molestie nec dui. Donec auctor blandit nibh quis luctus. Donec tincidunt auctor consequat.</textarea>
+</body>
+</html>
