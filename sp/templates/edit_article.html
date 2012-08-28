@@ -41,14 +41,6 @@
   });
   </script>
   
-  <style type="text/css">
-  #demo5-wrap .highlight {
-      padding:0 3px;
-      margin:0 -3px;
-      border-radius:0.5em;
-  }
-  </style>
-
 
 
 </head>
@@ -124,17 +116,9 @@
 	<div class="row">
 
 		<div class ="span7">
-		
-			<img src="{{ STATIC_URL }}hdr_logo.gif">
 
-      {{ outstanding_changes }}
-
-			<textarea id="demo1" cols="50" rows="5">Here is article content for me to setup a conflict with.  This needs to be delicately done.
-
-Here is article content.  And I am not sure how this will work.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at massa non erat convallis vulputate molestie nec dui. Donec auctor blandit nibh quis luctus. Donec tincidunt auctor consequat.</textarea>
-
+</br>
+</br>
 			{% if form.errors %}
 					<p style="color: red;">
 						Please correct the error{{ form.errors|pluralize }} below.
