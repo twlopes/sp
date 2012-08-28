@@ -1,6 +1,96 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+{% load bootstrap_toolkit %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SUPERPLEB</title>
+    <meta name="description" content="">
+    <meta name="author" content="Dylan Verheul">
+    {% bootstrap_stylesheet_tag %}
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    {% bootstrap_javascript_tag "dropdown" %}
+    {% block extra_head %}{% endblock %}
 
-{% block content %}
+<style type="text/css">
+#more {font-size:.8em;}
+</style>
+
+
+  <link type="text/css" href="{{ STATIC_URL }}/src/style.css" rel="stylesheet" />    
+  <link type="text/css" href="{{ STATIC_URL }}/src/highlight.css" rel="stylesheet" />
+  <link type="text/css" href="{{ STATIC_URL }}jquery.highlighttextarea.css" rel="stylesheet" />
+  <link type="text/css" href="{{ STATIC_URL }}jquery/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />  
+  <script type="text/javascript" src="{{ STATIC_URL }}/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/jquery/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/jquery.highlighttextarea.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $("#demo1").highlightTextarea({
+          words: ["Lorem ipsum","vulputate"],
+          color: "#ADF0FF"
+      });
+  });
+  </script>
+  
+  <style type="text/css">
+  #demo5-wrap .highlight {
+      padding:0 3px;
+      margin:0 -3px;
+      border-radius:0.5em;
+  }
+  </style>
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+
+            <a href="/home/" class="brand" style="color:#FFC5CE">SUPER<font color="#C5FFC4">PLEB</font></a>
+                  
+            
+            <form class="navbar-search pull-left">
+            <input type="text" class="search-query" placeholder="Search Superpleb...">
+            </form>
+            <div class="span1"></div>
+            
+
+
+
+            <a class="btn btn-primary" href="/micro_constitution/"<a>Create Article</a>
+
+            <ul class="nav pull-right">
+            {% if user.is_authenticated %}
+                   <a href="/accounts/profile/">{{ user.username }}</a>
+                 {% else %}
+                 <a href = /accounts/login/><b>LOGIN</b></a>
+                 {% endif %}
+            </ul>
+
+
+
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
 
 <div class="span12"> {# thesis, button and props #}
 <div class="row">
@@ -67,4 +157,27 @@
 </div>
 
 
-{% endblock %}
+ 
+
+
+</div> <!-- container -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
