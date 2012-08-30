@@ -47,9 +47,34 @@ def create_prop(request, articleid):
 			# creating callable function for diff
 
 			diff = main_diff_word_mode(formatted, utf_data)
-			
-			diffhtml = dfunction.diff_prettyHtml(diff)
 			patchdata = dfunction.patch_make(formatted, diff)
+
+			# Grabbing all the outstanding propositions.
+
+			x = Props.objects.filter(microcons_id=articleid).filter(success="undetermined")
+
+			# add outstanding patches and current patch to list				
+			
+			patch_list = []
+			for i in x:
+				patch_list.append(i.patch[0])
+
+			patch_list.append(patchdata[0])
+			print patch_list
+
+			patch_attempt = dfunction.patch_apply(patch_list, formatted)
+
+			for i in patch_attempt[1]:
+				if i == False:
+					return render_to_response('conflict_alert.html')
+					break
+				else:
+					pass
+
+			# creating pretty html diff to display
+
+			diffhtml = dfunction.diff_prettyHtml(diff)
+			
 
 			time_object = datetime.now() + timedelta(minutes=hours_number)
 			
