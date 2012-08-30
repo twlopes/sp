@@ -26,4 +26,3 @@ def arrange_props(x):
 				pass
 
 	return changes
-

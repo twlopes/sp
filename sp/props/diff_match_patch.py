@@ -50,7 +50,11 @@ class diff_match_patch:
     # Cost of an empty edit operation in terms of edit characters.
     self.Diff_EditCost = 4
     # At what point is no match declared (0.0 = perfection, 1.0 = very loose).
-    self.Match_Threshold = 0.5
+    
+    # PB: This has been "lobotomised" as per Neil's comments here:
+    # https://groups.google.com/forum/?fromgroups=#!topic/diff-match-patch/6HK8QKgc5Pc
+
+    self.Match_Threshold = 0.1
     # How far to search for a match (0 = exact location, 1000+ = broad match).
     # A match this many characters away from the expected location will add
     # 1.0 to the score (0.0 is a perfect match).
