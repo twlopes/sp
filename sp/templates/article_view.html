@@ -12,7 +12,7 @@
 	
 
 			<div class="span5"> {# thesis only #}
-				<h3> {{ article.thesis }}</h3>
+				<h4> {{ article.thesis }}</h4>
 			</div>		{# end thesis #}
 
 
@@ -41,7 +41,7 @@
 <div class="span4"> {# prop column #}
 {# <div class="row"> #}
 	
-	<h3>[Insert Sharing options.  Top bar?]</h3>
+	<h4>[Insert Sharing options.  Top bar?]</h4>
 
 </br>
 	<b>Micro-Constitution</b></br>
@@ -53,6 +53,7 @@
 	This article has [*] members and [*] followers.</br>
 	[*] props were accepted to build this article.</br>
 	There are [*] props outstanding right now.</br>
+	The prop acceptance rate is [x]%.</br>
 	
 
 
@@ -61,7 +62,7 @@
 	
 	<b>Latest Props Accepted</b>
 </br>
-</br>
+
 
 	{% if prop_data %}
 
@@ -80,8 +81,21 @@
 	{% endfor %}
 
 	{% else %}
-	<p>No proposition has been accepted by this article's members.  You should propose one!</p>
+	No proposition has been accepted by this article's members.  You should propose one!
 	{% endif %}
+
+</br>
+</br>
+
+	<b>The latest Prop Created</b>
+</br>
+	[Insert here]
+</br>
+</br>
+
+<b>Article Version History / Evolution of an idea</b>
+</br>
+</br>
 
 
 
