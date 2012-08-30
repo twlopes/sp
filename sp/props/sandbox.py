@@ -27,13 +27,3 @@ def arrange_props(x):
 
 	return changes
 
-def diff_wordMode(text1, text2):
-	dmp = diff_match_patch()
-	a = dmp.diff_linesToWords(text1, text2)
-	wordText1 = a[0]
-	wordText2 = a[1]
-	wordArray = a[2]
-
-	diffs = dmp.diff_main(wordText1, wordText2)
-	dmp.diff_charsToLines(diffs, wordArray)
-	return diffs

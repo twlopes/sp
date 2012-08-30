@@ -402,7 +402,8 @@ class diff_match_patch:
     # So we'll insert a junk entry to avoid generating a null character.
     lineArray.append('')
 
-# Extra from PB
+# Extra from PB to make the diff operate on a word level rather than character level.
+# See notes here: http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
 
   def diff_linesToWords(self, text1, text2):
     """Split two texts into an array of strings.  Reduce the texts to a string
@@ -443,6 +444,9 @@ class diff_match_patch:
       lineStart = 0
       lineEnd = -1
       while lineEnd < len(text) - 1:
+      
+        # Changed '\n' to ' ' to make the diff operate on a word level.
+
         lineEnd = text.find(' ', lineStart)
         if lineEnd == -1:
           lineEnd = len(text) - 1
@@ -1970,8 +1974,14 @@ class patch_obj:
       text.append(urllib.quote(data, "!~*'();/?:@&=+$,# ") + "\n")
     return "".join(text)
 
+def main_diff_word_mode(text1, text2):
+  dmp = diff_match_patch()
+  a = dmp.diff_linesToWords(text1, text2)
+  wordText1 = a[0]
+  wordText2 = a[1]
+  wordArray = a[2]
 
+  diffs = dmp.diff_main(wordText1, wordText2)
+  dmp.diff_charsToLines(diffs, wordArray)
+  return diffs
 
-# blah = diff_match_patch()
-# 
-# print blah.diff_main("this is a dog", "this is a cat")

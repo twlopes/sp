@@ -46,10 +46,10 @@ def create_prop(request, articleid):
 			
 			# creating callable function for diff
 
-			diff = dfunction.diff_main(formatted, utf_data)
+			diff = main_diff_word_mode(formatted, utf_data)
 			
 			diffhtml = dfunction.diff_prettyHtml(diff)
-			patchdata = dfunction.patch_make(formatted, utf_data)
+			patchdata = dfunction.patch_make(formatted, diff)
 
 			time_object = datetime.now() + timedelta(minutes=hours_number)
 			
