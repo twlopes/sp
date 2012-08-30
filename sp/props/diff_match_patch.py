@@ -402,6 +402,29 @@ class diff_match_patch:
     # So we'll insert a junk entry to avoid generating a null character.
     lineArray.append('')
 
+# Extra from PB
+
+  def diff_linesToWords(self, text1, text2):
+    """Split two texts into an array of strings.  Reduce the texts to a string
+    of hashes where each Unicode character represents one line.
+
+    Args:
+      text1: First string.
+      text2: Second string.
+
+    Returns:
+      Three element tuple, containing the encoded text1, the encoded text2 and
+      the array of unique strings.  The zeroth element of the array of unique
+      strings is intentionally blank.
+    """
+    lineArray = []  # e.g. lineArray[4] == "Hello\n"
+    lineHash = {}   # e.g. lineHash["Hello\n"] == 4
+
+    # "\x00" is a valid character, but various debuggers don't like it.
+    # So we'll insert a junk entry to avoid generating a null character.
+    lineArray.append('')
+
+
     def diff_linesToCharsMunge(text):
       """Split a text into an array of strings.  Reduce the texts to a string
       of hashes where each Unicode character represents one line.
@@ -420,7 +443,7 @@ class diff_match_patch:
       lineStart = 0
       lineEnd = -1
       while lineEnd < len(text) - 1:
-        lineEnd = text.find('\n', lineStart)
+        lineEnd = text.find(' ', lineStart)
         if lineEnd == -1:
           lineEnd = len(text) - 1
         line = text[lineStart:lineEnd + 1]
