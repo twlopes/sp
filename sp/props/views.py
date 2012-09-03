@@ -29,7 +29,6 @@ def create_prop(request, articleid):
 		first = MicroCons.objects.get(id__contains=articleid)
 		content = (Articles.objects.filter(cons_id=articleid).order_by('version_id').reverse())[:1]
 
-
 		blah = content[0]
 		data = blah.articlecontent
 		hours_number = first.prop_hours
@@ -75,7 +74,6 @@ def create_prop(request, articleid):
 
 			diffhtml = dfunction.diff_prettyHtml(diff)
 			
-
 			time_object = datetime.now() + timedelta(minutes=hours_number)
 			
 			# Processing diff into different lengths.

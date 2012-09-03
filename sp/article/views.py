@@ -7,7 +7,6 @@ from sp.microcons.models import MicroCons, MicroConsModelForm
 from sp.props.models import Props
 from follow import models
 from sp.article.models import Articles
-
 from django.http import HttpResponse, HttpResponseRedirect
 from follow.models import Follow
 
