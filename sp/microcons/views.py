@@ -45,8 +45,6 @@ def micro_cons(request):
 			article_form.save()
 
 			# Grab relevant objects
-
-
 			
 			constitution = MicroCons.objects.get(id=saved_cons_id)
 			user = User.objects.get(username=saved_cons_director)
