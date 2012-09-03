@@ -72,6 +72,10 @@ def expiry(z):
 		record.success = "no"
 		record.save()
 
+	# This is where we insert a function to the effect that the person has certain permissions.
+
+	
+
 @task
 def time_expiry(next, hours):
 	record = Props.objects.get(id=next)

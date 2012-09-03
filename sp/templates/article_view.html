@@ -39,8 +39,8 @@
 
 		<h4>[Insert Sharing options.  Top bar?]</h4>
 
-		<a class="btn btn-primary" href="/edit/{{ articleid }} "> Make Prop</a>
-		<a class="btn btn-primary" href="/edit/{{ articleid }} "> Follow Article</a>
+		<a class="btn btn-primary" href="/edit/{{ articleid }} "> Create a Prop</a>
+		<a class="btn btn-primary" href="/edit/{{ articleid }} "> Follow this Article</a>
 		</br>
 		</br>
 		<b>Framework</b></br>
@@ -50,48 +50,66 @@
 		</br>
 		<b>Article Statistics</b></br>
 		This article has [*] members and {{ follower_number }} followers.</br>
-		{{ accepted_props }} props were accepted to build this article.</br>
-		There are {{ outstanding }} props outstanding right now.</br>
-		The prop acceptance rate is {{ accepted_props }}%.</br>
+		
+
+		{% if total > 0 %}
+
+		There have been a total of {{ total }} props created in relation to this article.
+
+			
 
 		</br>
+			There are {{ outstanding }} props outstanding right now.</br>
+			{{ percentage_accepted }}</br>
 
-		<b>Latest Props Accepted</b>
-		</br>
+			</br>
+
+			{% if accepted_props > 0 %}
+				{{ accepted_props }} props were accepted to build this article.</br>
+			{% else %}
+			{% endif %}
+
+			<b>Latest Props Accepted</b>
+			</br>
 
 
-		{% if prop_data %}
+			{% if prop_data %}
 
-		{% for prop_data in prop_data %}
+			{% for prop_data in prop_data %}
 
-		<b>{{ prop_data.percentage_for }}%</b> for the prop by <b>{{ prop_data.author }}</b> with <b>[*] hours </b> to vote.
+			<b>{{ prop_data.percentage_for }}%</b> for the prop by <b>{{ prop_data.author }}</b> with <b>[*] hours </b> to vote.
 
-		{% autoescape off %}
-		<p>
-		{{ prop_data.long_diff }}
+			{% autoescape off %}
+			<p>
+			{{ prop_data.long_diff }}
 
-		{% endautoescape %}
-		</br><a href = /prop/{{ prop_data.id }}>(See more)</a>
-		<p>
+			{% endautoescape %}
+			</br><a href = /prop/{{ prop_data.id }}>(See more)</a>
+			<p>
 
-		{% endfor %}
+			{% endfor %}
+
+			{% else %}
+			No proposition has been accepted by this article's members.  You should propose one!
+			{% endif %}
+
+			</br>
+			</br>
+
+			<b>The latest Prop Created</b>
+			</br>
+			[Insert here]
+			</br>
+			</br>
+
+			<b>Article Version History / Evolution</b>
+			</br>
+			</br>
 
 		{% else %}
-		No proposition has been accepted by this article's members.  You should propose one!
+		No props have been created yet!
 		{% endif %}
-
-		</br>
-		</br>
-
-		<b>The latest Prop Created</b>
-		</br>
-		[Insert here]
-		</br>
-		</br>
-
-		<b>Article Version History / Evolution</b>
-		</br>
-		</br>
+			
 
 	</div>
 

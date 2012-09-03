@@ -24,6 +24,9 @@ def view_article(request, articleid):
 	# Query for number of followers
 	follower_number=Follow.objects.get_follows(MicroCons.objects.filter(id=articleid)).count()
 
+	# total number of props
+	total = Props.objects.filter(cons_id_key_id=articleid).count()
+
 	# Query for accepted props
 	accepted_props=Props.objects.filter(cons_id_key_id=articleid).filter(success="yes").count()
 
@@ -33,14 +36,18 @@ def view_article(request, articleid):
 	# Query and calculation for acceptance rate.
 	total_props = Props.objects.filter(cons_id_key_id=articleid).filter(currency="expired").count()
 	
-	if accepted_props or total_props == 0:
-		percentage_accepted = 0
+	if total_props == 0:
+		percentage_accepted = "No props have run their course yet!"
+	elif accepted_props == 0:
+		percentage_accepted = "No props have been accepted yet!"
 	else:
-		percentage_accepted = accepted_props / total_props * 100
+		number = accepted_props / total_props * 100
+		percentage_accepted = "%d percent of props have been accepted." % number
 
 	return render_to_response(
 		'article_view.html', 
 		{
+		'total': total,
 		'article': article, 
 		'data': data, 
 		'percentage_accepted': percentage_accepted,
