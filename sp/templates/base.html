@@ -45,9 +45,9 @@
             <li><a href="/micro_constitution/" style="color:#C5FFC4">Create Article</a></li></ul>          
 
             <ul class="nav pull-right">
-              
               <li class="divider-vertical"></li>
               <li><a href="/home/">Feeds</a></li>
+              <li class="divider-vertical"></li>
               <li><a href="#">Front Page</a></li>
               <li class="divider-vertical"></li>
               <li>{% if user.is_authenticated %}
@@ -55,6 +55,7 @@
                  {% else %}
                  <a href = /accounts/login/><b>LOGIN</b></a>
                  {% endif %}</a></li>
+              <li class="divider-vertical"></li>
             </ul>
 
 
