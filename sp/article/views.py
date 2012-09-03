@@ -1,3 +1,4 @@
+from __future__ import division
 from django.shortcuts import render_to_response
 from django.template import Context, loader, RequestContext
 from django.http import HttpResponse
@@ -6,6 +7,7 @@ from sp.microcons.models import MicroCons, MicroConsModelForm
 from sp.props.models import Props
 from follow import models
 from sp.article.models import Articles
+
 from django.http import HttpResponse, HttpResponseRedirect
 from follow.models import Follow
 
@@ -30,14 +32,19 @@ def view_article(request, articleid):
 	outstanding = Props.objects.filter(cons_id_key_id=articleid).filter(success="undetermined").count()
 
 	# Query and calculation for acceptance rate.
-	total_props = Props.objects.filter(cons_id_key_id=articleid)
-	accepted_props = 
+	total_props = Props.objects.filter(cons_id_key_id=articleid).filter(currency="expired").count()
+	
+	if accepted_props or total_props == 0:
+		percentage_accepted = 0
+	else:
+		percentage_accepted = accepted_props / total_props * 100
 
 	return render_to_response(
 		'article_view.html', 
 		{
 		'article': article, 
 		'data': data, 
+		'percentage_accepted': percentage_accepted,
 		'articleid': articleid,
 		'outstanding': outstanding,
 		'prop_data': prop_data,
