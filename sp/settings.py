@@ -1,7 +1,7 @@
 import os
 os.getcwd()
 
-# Tristan, ya silly billy.
+# no I'm not!
 
 import djcelery
 djcelery.setup_loader()
