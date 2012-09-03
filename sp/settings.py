@@ -176,8 +176,6 @@ INSTALLED_APPS = (
     'gunicorn',
 	'djcelery',
     'follow',
-    'gevent',
-    'greenlet',
     'bootstrap_toolkit',
     'crispy_forms',
     # Uncomment the next line to enable the admin:
