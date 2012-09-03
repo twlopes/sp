@@ -27,8 +27,11 @@ def view_article(request, articleid):
 	accepted_props=Props.objects.filter(cons_id_key_id=articleid).filter(success="yes").count()
 
 	# Query for props outstanding
-	outstanding = Props.objects.filter(success="undertermined").count()
+	outstanding = Props.objects.filter(cons_id_key_id=articleid).filter(success="undetermined").count()
 
+	# Query and calculation for acceptance rate.
+	total_props = Props.objects.filter(cons_id_key_id=articleid)
+	accepted_props = 
 
 	return render_to_response(
 		'article_view.html', 
