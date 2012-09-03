@@ -2,101 +2,101 @@
 
 {% block content %}
 
-<div class="span12"> {# Full row #}
-<div class="row">
 
+
+
+</br>
+
+<div class="row">
+<div class="span10">
+	
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href="#"><b>Your Activity</b></a></li>
+	  <li><a href="/hot/"><b>Hot Articles</b></a></li>
+	  <li><a href="/latest/"><b>Newest Articles</b></a></li>
+	</ul>
+	
+	</br>
 	</br>
 
-	<div class="span10">
-		
-		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#"><b>Your Activity</b></a></li>
-		  <li><a href="/hot/"><b>Hot Articles</b></a></li>
-		  <li><a href="/latest/"><b>Newest Articles</b></a></li>
-		</ul>
-		
-		</br>
-		</br>
+	{% if props and articles %}
+    	
+    	{% for props in props %}
 
-		{% if props and articles %}
-	    	
-	    	{% for props in props %}
+    		{% for articles in articles %}
+			
+				{% if props.microcons_id = articles.id  %}
+				<p><b><a href="/articles/{{ articles.id }}"> {{ articles.thesis }}</a></b></p>
+				{% endif %}
 
-	    		{% for articles in articles %}
-				
-					{% if props.microcons_id = articles.id  %}
-					<p><b><a href="/articles/{{ articles.id }}"> {{ articles.thesis }}</a></b></p>
-					{% endif %}
+			{% endfor %}
 
-				{% endfor %}
-
-			<class id="more">
-			<table class="table table-bordered">
-		        <thead>
-		          <tr>
-		            <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
-		            <th>{{ props.total_votes }} votes</th>
-		            <th>{{ props.pass_status|capfirst }}ing with {{ props.percentage_for }}% in favour and a {{ props.threshold }}% threshold</th>
-		            
+		<class id="more">
+		<table class="table table-bordered">
+	        <thead>
+	          <tr>
+	            <th><a href="">{{ props.author|capfirst }}</a> Created a <a href="/prop/{{ props.id }}">Prop</a></th>
+	            <th>{{ props.total_votes }} votes</th>
+	            <th>{{ props.pass_status|capfirst }}ing with {{ props.percentage_for }}% in favour and a {{ props.threshold }}% threshold</th>
+	            
 
 
-		            {% if props.success = "undetermined" %}
+	            {% if props.success = "undetermined" %}
 
 
 
-				            	{% if props.expiry_time|timeuntil = "0 minutes" %}
+			            	{% if props.expiry_time|timeuntil = "0 minutes" %}
 
-				            	<th>Less than a minute!</th>
+			            	<th>Less than a minute!</th>
 
-				            	{% else %}
-				            	
-				            	<th>{{ props.expiry_time|timeuntil }}
+			            	{% else %}
+			            	
+			            	<th>{{ props.expiry_time|timeuntil }}
 
-				            	until <a href="/prop/{{ props.id }}">Prop</a> Expires</th>
+			            	until <a href="/prop/{{ props.id }}">Prop</a> Expires</th>
 
-				            	{% endif %}
+			            	{% endif %}
 
-				 
+			 
+
+				{% else %}
+
+					{% if props.success = "yes" %}
+
+					<th>Prop passed!</th>
 
 					{% else %}
 
-						{% if props.success = "yes" %}
+					<th>Prop Failed!</th>						
 
-						<th>Prop passed!</th>
+					{% endif %}
 
-						{% else %}
-
-						<th>Prop Failed!</th>						
-
-						{% endif %}
-
-				    {% endif %}
+			    {% endif %}
 
 
 
-		          </tr>
-		        </thead>
-	      	</table>
-	      	</class>
+	          </tr>
+	        </thead>
+      	</table>
+      	</class>
 
-	        {% autoescape off %}
-	        {{ props.long_diff }}
-	        {% endautoescape %}
+        {% autoescape off %}
+        {{ props.long_diff }}
+        {% endautoescape %}
 
-	        <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
+        <b><a href="/prop/{{ props.id }}"><span>   </span><class id="more">(Prop)</class></a></b>
 
-	        <hr>
-			{% endfor %}
+        <hr>
+		{% endfor %}
 
-		{% else %}
+	{% else %}
 
-	    <p>You don't have any props yet, you're not subscribed to a constitution.  Get cracking!</p>
-			
-		{% endif %}
-
-    </div>
+    <p>You don't have any props yet, you're not subscribed to a constitution.  Get cracking!</p>
+		
+	{% endif %}
 
 </div>
 </div>
+
 
 {% endblock %}

@@ -2,16 +2,14 @@
 
 {% block content %}
 
-<div class ="span12">
-<div class="row">
 
+<div class ="row">
 
-<div class ="span8">
+	<div class ="span8">
 
-		<div class ="span8"> {# container for thesis and button #}
-	
+		<div class ="row">
 
-			<div class="span5"> {# thesis only #}
+			<div class="span6"> {# thesis only #}
 				<h4> {{ article.thesis }}</h4>
 			</div>		{# end thesis #}
 
@@ -20,8 +18,10 @@
 				</br>
 				<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
 			</div> {# end button #}
-		
 
+		</div>
+
+		<div class ="row">	
 
 			<div class ="span6">
 			
@@ -32,79 +32,68 @@
 			</div> {# span 7 #}
 
 
-		</div> {# end span 8 #}
-
-
-</div> {# end span8 #}
-
-
-<div class="span4"> {# prop column #}
-{# <div class="row"> #}
+		</div> 
 	
-	<h4>[Insert Sharing options.  Top bar?]</h4>
-
-</br>
-	<b>Micro-Constitution</b></br>
-	<b>{{ article.director|capfirst }}</b> is the director of this article.</br>
-	Props need <b>{{ article.majority }}%</b> approval over <b>{{ article.prop_hours }}</b> hours.</br>
-	
-</br>
-	<b>Article Statistics</b></br>
-	This article has [*] members and [*] followers.</br>
-	[*] props were accepted to build this article.</br>
-	There are [*] props outstanding right now.</br>
-	The prop acceptance rate is [x]%.</br>
-	
+	</div>
 
 
-</br>
-	
-	
-	<b>Latest Props Accepted</b>
-</br>
+	<div class="span4"> {# prop column #}
 
 
-	{% if prop_data %}
+		<h4>[Insert Sharing options.  Top bar?]</h4>
 
-	{% for prop_data in prop_data %}
+		</br>
+		<b>Micro-Constitution</b></br>
+		<b>{{ article.director|capfirst }}</b> is the director of this article.</br>
+		Props need <b>{{ article.majority }}%</b> approval over <b>{{ article.prop_hours }}</b> hours.</br>
 
-	<b>{{ prop_data.percentage_for }}%</b> for the prop by <b>{{ prop_data.author }}</b> with <b>[*] hours </b> to vote.
+		</br>
+		<b>Article Statistics</b></br>
+		This article has [*] members and [*] followers.</br>
+		[*] props were accepted to build this article.</br>
+		There are [*] props outstanding right now.</br>
+		The prop acceptance rate is [x]%.</br>
 
-	{% autoescape off %}
-	<p>
-	{{ prop_data.long_diff }}
+		</br>
 
-	{% endautoescape %}
-	</br><a href = /prop/{{ prop_data.id }}>(See more)</a>
-	<p>
-
-	{% endfor %}
-
-	{% else %}
-	No proposition has been accepted by this article's members.  You should propose one!
-	{% endif %}
-
-</br>
-</br>
-
-	<b>The latest Prop Created</b>
-</br>
-	[Insert here]
-</br>
-</br>
-
-<b>Article Version History / Evolution of an idea</b>
-</br>
-</br>
+		<b>Latest Props Accepted</b>
+		</br>
 
 
+		{% if prop_data %}
+
+		{% for prop_data in prop_data %}
+
+		<b>{{ prop_data.percentage_for }}%</b> for the prop by <b>{{ prop_data.author }}</b> with <b>[*] hours </b> to vote.
+
+		{% autoescape off %}
+		<p>
+		{{ prop_data.long_diff }}
+
+		{% endautoescape %}
+		</br><a href = /prop/{{ prop_data.id }}>(See more)</a>
+		<p>
+
+		{% endfor %}
+
+		{% else %}
+		No proposition has been accepted by this article's members.  You should propose one!
+		{% endif %}
+
+		</br>
+		</br>
+
+		<b>The latest Prop Created</b>
+		</br>
+		[Insert here]
+		</br>
+		</br>
+
+		<b>Article Version History / Evolution</b>
+		</br>
+		</br>
+
+	</div>
 
 </div>
-{# </div> #}
-
-</div>
-</div>  {# end span 12 #}
-
-
-
 {% endblock %}
