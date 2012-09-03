@@ -10,15 +10,11 @@
 
 		<div class ="row">
 
-			<div class="span6"> {# thesis only #}
+			<div class="span7"> {# thesis only #}
+			</br>
 				<h4> {{ article.thesis }}</h4>
 			</div>		{# end thesis #}
 
-
-			<div class="span1"> {# button only #}
-				</br>
-				<a class="btn-large btn-primary" href="/edit/{{ articleid }} "> Edit </a>
-			</div> {# end button #}
 
 		</div>
 
@@ -43,8 +39,11 @@
 
 		<h4>[Insert Sharing options.  Top bar?]</h4>
 
+		<a class="btn btn-primary" href="/edit/{{ articleid }} "> Make Prop</a>
+		<a class="btn btn-primary" href="/edit/{{ articleid }} "> Follow Article</a>
 		</br>
-		<b>Micro-Constitution</b></br>
+		</br>
+		<b>Framework</b></br>
 		<b>{{ article.director|capfirst }}</b> is the director of this article.</br>
 		Props need <b>{{ article.majority }}%</b> approval over <b>{{ article.prop_hours }}</b> hours.</br>
 
