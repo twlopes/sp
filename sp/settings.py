@@ -1,6 +1,8 @@
 import os
 os.getcwd()
 
+# Tristan, ya silly billy.
+
 import djcelery
 djcelery.setup_loader()
 
